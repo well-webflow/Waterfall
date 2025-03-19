@@ -217,6 +217,20 @@ export default function paginationCategory() {
         tested: false,
       },
     ],
+    actions: [
+      {
+        label: 'Pagination Container',
+        attr: 'pagination'
+      },
+      {
+        label: 'Pagination Bullet',
+        attr: 'pagination-bullet'
+      },
+      {
+        label: 'Pagination Bullet Active',
+        attr: 'pagination-bullet-active'
+      }
+    ]
   };
   return config;
 }

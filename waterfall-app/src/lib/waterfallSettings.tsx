@@ -15,6 +15,7 @@ import a11yConfig from './modules/a11y';
 import classnamesCategory from './modules/classNames';
 import advancedCategory from './modules/advanced';
 import { WaterfallCategory } from '../../types/waterfall-types';
+import scrollbarCategory from './modules/scrollbar';
 
 export const defaultWaterfallSettings: WaterfallCategory[] = [
   generalConfig(),
@@ -22,6 +23,7 @@ export const defaultWaterfallSettings: WaterfallCategory[] = [
   playbackCategory(),
   navigationCategory(),
   paginationCategory(),
+  scrollbarCategory(),
   freemodeCategory(),
   touchClickCategory(),
   // MANIPULATION (NOT IMPLEMENTED)

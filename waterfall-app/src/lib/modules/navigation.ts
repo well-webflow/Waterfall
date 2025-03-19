@@ -90,6 +90,16 @@ export default function navigationCategory() {
         tested: false,
       },
     ],
+    actions: [
+      {
+        label: 'Prev Button',
+        attr: 'prev'
+      },
+      {
+        label: 'Next Button',
+        attr: 'next'
+      }
+    ]
   };
   return config;
 }

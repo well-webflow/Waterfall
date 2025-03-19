@@ -28,6 +28,7 @@ export interface WaterfallCategory {
   summary?: string;
   groups?: WaterfallGroup[];
   items?: WaterfallSetting[];
+  actions?: Action[];
 }
 
 export interface WaterfallGroup {

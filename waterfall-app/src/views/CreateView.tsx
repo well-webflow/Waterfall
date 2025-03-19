@@ -12,15 +12,15 @@ export default function CreateView() {
         <Heading level={1} className="mb-10">
           Create Elements
         </Heading>
-        {defaultWaterfallSettings.map((group) => (
-          <div key={group.name}>
-            {group.actions && (
+        {defaultWaterfallSettings.map((category) => (
+          <div key={category.name}>
+            {category.actions && (
               <div className="mb-10">
                 <Heading level={2} className="text-primary mb-3">
-                  {group.name}
+                  {category.name}
                 </Heading>
                 <div className="flex flex-row gap-3">
-                  {group.actions.map((action) => (
+                  {category.actions.map((action) => (
                     <Button
                       key={action.attr}
                       onClick={async () =>

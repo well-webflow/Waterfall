@@ -102,6 +102,16 @@ export default function scrollbarCategory() {
         tested: false,
       },
     ],
+    actions: [
+      {
+        label: 'Scrollbar Container',
+        attr: 'scrollbar',
+      },
+      {
+        label: 'Scrollbar Drag',
+        attr: 'scrollbar-drag',
+      }
+    ]
   };
   return config;
 }
