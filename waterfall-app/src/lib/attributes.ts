@@ -1,4 +1,4 @@
-import { Breakpoints, websiteBreakpoints } from '../../types/waterfall-types';
+import { Breakpoints, websiteBreakpoints } from "../../types/waterfall-types.d";
 
 /**
  * Prefixes a breakpoint to an attribute
