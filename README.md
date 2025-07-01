@@ -1,84 +1,179 @@
-﻿#  💧 Waterfall by Wellflow
+﻿[![npm version](https://badge.fury.io/js/angular2-expandable-list.svg)](https://badge.fury.io/js/angular2-expandable-list) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-![enter image description here](https://cdn.prod.website-files.com/66e09b03023abfe4518e1f2f/67db20278f3466a741b0a032_Screenshot%202025-03-19%20at%203.50.34%E2%80%AFPM.png)
+# 🚿 Waterfall by Wellflow 🚿
 
-Waterfall is a **Free** and **Open-Source** Slider library for Webflow that allows you to quickly create fully customizable sliders without using Javascript! Waterfall also includes a Webflow App that allows you to modify settings through a UI.
+Waterfall is a single-line of code for Webflow that enables developers to use attributes to quickly build sliders based on SwiperJS. This library is a basically an attribute wrapper for SwiperJS 10.9.0.
 
-**Why create this?**
-Hi! I'm Kevin with Wellflow, and my goal is to provide free features for Webflow Developers. Sliders should be a basic feature for websites in 2025. Unfortunately, Webflow's solution is extremely limited, other free options are limited in customization, and others have stupidly expensive monthly costs. Waterfall is intended to be your FREE, OPEN-SOURCE Slider solution with all the features you need, ALWAYS!
+While other slider options are paid, Waterfall will always be a free solution (until Webflow implements a better native slider option).
 
-## How Does it Work?
+## Table of contents
 
-Waterfall uses Attributes as a middleman to initialize SwiperJS. When your site loads, it reads all Attributes on the Waterfall Container and uses them to initialize a SwiperJS swiper. It also looks for elements with special attributes for modules like Navigation, Pagination, Scrollbar, etc. and initializes those for you.
+- [Waterfall](#project-name)
+  - [Table of contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Serving the app](#serving-the-app)
+    - [Running the tests](#running-the-tests)
+    - [Building a distribution version](#building-a-distribution-version)
+    - [Serving the distribution version](#serving-the-distribution-version)
+  - [API](#api)
+    - [useBasicFetch](#usebasicfetch)
+      - [Options](#options)
+    - [fetchData](#fetchdata)
+  - [Contributing](#contributing)
+  - [Credits](#credits)
+  - [Built With](#built-with)
+  - [Versioning](#versioning)
+  - [Authors](#authors)
+  - [License](#license)
 
-To improve the Developer Experience, the Waterfall App allows you to set these attributes through a Webflow App. The app also cleans default values and only uses attributes specifically set.
+## Getting Started
 
-The Waterfall app is not yet available in the Webflow App Marketplace. (The developer system is very new and still a lot of work for a solo developer). In order to use Waterfall, you can easily download this package and self-host it for all of your Webflow websites you want to use it for.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+## Installation
 
-## Self-Hosting
+Add the code to the Footer Code (after the `</body>` tag) in the Webflow Project Settings.
 
-### 1. Add the Waterfall Script
-Add the Waterfall script to the `</body>` tag on a specific page or the entire site.
+**Latest Version**
 
-    <script src="https://cdn.jsdelivr.net/npm/well-waterfall@1.0.0/dist/waterfall.js"></script>
+```
+<script src="https://cdn.jsdelivr.net/npm/well-waterfall@0.0.5/dist/waterfall.js?"></script>
+```
 
-**Important Note**
-Waterfall bundles SwiperJS into the package. If you have SwiperJS included in your site already, you should remove it to prevent duplicate instances.
+**Specific (Stable) Version**
 
-### 2. Download Waterfall App
-On this GitHub page, click `<Code>` and Download ZIP to a location on your development machine and unzip the folder.
+```
+<script src="https://cdn.jsdelivr.net/npm/well-waterfall@0.0.5/dist/waterfall.js?"></script>
+```
 
-Open the folder in a Code Editor like VS Code. Then, open a terminal and `cd` into `waterfall/waterfall-app`.
+## Usage
 
-Before the first time you run the app, run the command `npm install` to install dependencies.
+### Add the Waterfall Layout
 
-Whenever you want to use the app in the future, just run the command `npm run dev` to start the app.
+If you're familiar with SwiperJS, you'll notice that this is the same layout found in the documentation with one added div wrapper with the attribute `[waterfall="SWIPER_NAME"]` where `SWIPER_NAME` is a unique identifying string for that swiper.
 
-### 3. Setup and Run Webflow App
-Follow the [Webflow tutorial here](https://developers.webflow.com/data/docs/register-an-app) to set up an App for your Workspace or Website. When setting it up, you can use any website for **Homepage URL** since the app is just running locally. Enable **Designer Extension** only, no need for Data client.
-
-
-## Using the App
-
-
-### 1. Create a Waterfall Container
-Press the first button in the app to create a Waterfall container. All this really is is a `<div>` with attribute `waterfall="NAME"` where `NAME` is a unique identifying string for that Waterfall instance. You can add any class you want to this, the attribute is the only thing needed for functionality.
-
-### 2. Create Waterfall Structure and Add Elements
-
-Nested inside of the Waterfall Container, you will create the traditional SwiperJS structure as either a Collection List if using CMS, or as Elements. The structure should look like the following (shown inside the Waterfall Container):
-
-    <!-- Extra Waterfall Container div wrapping the swiper -->
-    <div waterfall="SWIPER_NAME">
-	    <div class="swiper">
-		    <div class="swiper-wrapper">
-			    <!-- Slides -->
-			    <div  class="swiper-slide">Slide 1</div>
-			    <div  class="swiper-slide">Slide 2</div>
-			    <div  class="swiper-slide">Slide 3</div>
-			    ...
-		    </div>
-	    </div>
+```
+<!-- Slider main container -->
+<div waterfall="SWIPER_NAME">
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div  class="swiper-wrapper">
+        <!-- Slides -->
+        <div  class="swiper-slide">Slide 1</div>
+        <div  class="swiper-slide">Slide 2</div>
+        <div  class="swiper-slide">Slide 3</div>
+        ...
+      </div>
     </div>
+</div>
+```
 
-### 3. Create Modules
+All slider settings will be added as attributes to the element with the [waterfall] attribute. For example, to add navigation, `[navigationMode="true"]` will be added to the attributes of the .swiper element above.
 
-In the Create View (2nd tab), you can create elements for different modules, like Navigation, Pagination, and Scrollbar. This also basically adds one attribute to a div. For example, a next button is just a Div with attribute `waterfall-el='next'`. Customization of behavior is available in the Edit Panel.
+## General Settings
 
-### 4. Customize
-The third tab is the Edit Panel, which allows you to use all of the available SwiperJS properties in a User Interface. Settings have been sensibly grouped. For example, Autoplay, Loop, Rewind, and Speed are all available under 'Playback'. The 'Layout' group contains Slides Per View, Grouping, Grid, Spacing, Width, and Height.
+| attributeName | description                                                                  | type    | default |
+| ------------- | ---------------------------------------------------------------------------- | ------- | ------- |
+| debugMode     | when `true`, prints out debug statements to the console to help find errors. | boolean | false   |
 
+## Navigation
 
-## Limitations
+Navigation allows for buttons to control moving to previous or next slides. To enable navigation, add the attribute `[navigationMode="true"]`.
+Add `[waterfall-el='next']` to an element used to advance to the next slide and `[waterfall-el='prev']` to an element used to rewind to the previous slide.
 
-A few modules and some variables have been left unimplemented, mostly because in a Webflow context they were either difficult to implement or have little use. If there's a module you'd like to be included, email me at kag@kevingerstner.com. Here is a list of modules not implemented:
+**Navigation Settings**
 
- - Manipulation (to be implemented in future version)
- - Parallax (to be implemented in future version)
- - Virtual Slides
- - History Navigation
+NYI (Not Yet Implemented)
 
-## Questions?
+## Autoplay
 
-I spent several months developing this solution for my own Webflow sites. I am a solo dev, so I'm doing my best to maintain the project. If you find any issues or improvements, please contact me at kag@kevingerstner.com or submit a Pull Request. I would love to hear feedback.
+Autoplay advances the slider automatically. To enable autoplay, add the attribute `[autoplayMode="true"]`.
+
+**Autoplay Settings (COMPLETE)**
+|attributeName|description|type|default
+|--|--|--|--|
+|delay|Delay between transitions (in ms). If this parameter is not specified, auto play will be disabled|number|0|
+|disableOnInteraction|Set to `false` and autoplay will not be disabled after user interactions (swipes), it will be restarted every time after interaction|number|0|
+|pauseOnMouseEnter|When enabled autoplay will be paused on pointer (mouse) enter over Swiper container|boolean|false
+|reverseDirection|Enables autoplay in reverse direction|boolean|false
+|stopOnLastSlide|Enable this parameter and autoplay will be stopped when it reaches last slide (has no effect in loop mode)|boolean|false|
+|waitForTransition|NOT IMPLEMENTED|-|-|
+
+## Pagination
+
+Pagination are a list of markers (dots, squares, numbers) that display the current slide. To enable pagination, add the attribute [paginationMode="true"] to the global settings.
+
+Next, add `[waterfall-el="pagination"]` to the wrapper containing the pagination.
+
+Then, add `[waterfall-el="pagination-bullet"]` to the element used as the bullet for the pagination. Also add `[waterfall-pagination-active-class=ACTIVE_CLASS_NAME]` so that the active bullet gets the correct class.
+
+**Pagination Settings (IN PROGRESS)**
+
+| attributeName     | description                                                               | type   | default                           |
+| ----------------- | ------------------------------------------------------------------------- | ------ | --------------------------------- |
+| bulletActiveClass | CSS class name of currently active pagination bullet                      | string | 'swiper-pagination-bullet-active' |
+| el                | String with CSS selector or HTML element of the container with pagination | any    | null                              |
+
+clickable: parseBool(getAttrOrDefault($this, "paginationClickable", true)),
+
+type: "bullets",
+
+dynamicBullets: false,
+
+## Scrollbar
+
+To add a scrollbar, first set `[scrollbar-mode='true']`.
+
+Add `[waterfall-el='scrollbar']` to the scrollbar element (the full scrollbar) and add `[waterfall-el='scrollbar-drag']` to the draggable area of the scrollbar.
+
+**Scrollbar Settings (COMPLETE)**
+
+| attributeName            | description                                                                                             | type    | default                       |
+| ------------------------ | ------------------------------------------------------------------------------------------------------- | ------- | ----------------------------- |
+| dragSize                 | Size of scrollbar draggable element in px                                                               | number  | 'auto'                        |
+| draggable                | Set to `true` to enable make scrollbar draggable that allows you to control slider position             | boolean | false                         |
+| scrollbarEnabled         | Boolean property to use with breakpoints to enable/disable scrollbar on certain breakpoints             | boolean | true                          |
+| scrollbarHide            | Hide scrollbar automatically after user interaction                                                     | boolean | false                         |
+| scrollbarHorizontalClass | CSS class name set to scrollbar in horizontal Swiper                                                    | string  | "swiper-scrollbar-horizontal" |
+| scrollbarLockClass       | Scrollbar element additional CSS class when it is disabled                                              | string  | "swiper-scrollbar-lock"       |
+| scrollbarDisabledClass   | CSS class name added on swiper container and scrollbar element when scrollbar is disabled by breakpoint | string  | "swiper-scrollbar-disabled"   |
+| snapOnRelease            | Set to `true` to snap slider position to slides when you release scrollbar                              | boolean | false                         |
+| scrollbarVerticalClass   | CSS class name set to scrollbar in vertical Swiper                                                      | string  | "swiper-scrollbar-vertical"   |
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+1.  Fork it!
+2.  Create your feature branch: `git checkout -b my-new-feature`
+3.  Add your changes: `git add .`
+4.  Commit your changes: `git commit -am 'Add some feature'`
+5.  Push to the branch: `git push origin my-new-feature`
+6.  Submit a pull request :sunglasses:
+
+## Credits
+
+TODO: Write credits
+
+## Built With
+
+- Dropwizard - Bla bla bla
+- Maven - Maybe
+- Atom - ergaerga
+- Love
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+
+## Authors
+
+- **John Doe** - _Initial work_ - [JohnDoe](https://github.com/JohnDoe)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+[MIT License](https://andreasonny.mit-license.org/2019) © Andrea SonnY
