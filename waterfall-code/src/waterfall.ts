@@ -1,45 +1,31 @@
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
-import {
-  parseAttr,
-  removeNullOrUndefinedKeys,
-  printDebug,
-  parseString,
-} from "./util";
+import { parseAttr, removeNullOrUndefinedKeys, printDebug, parseString } from "./util";
 import { navigationConfig } from "./modules/navigation";
 import { breakpointsConfig } from "./modules/breakpoints";
 import { paginationConfig } from "./modules/pagination";
 import { scrollbarConfig } from "./modules/scrollbar";
 import { autoplayConfig, freeModeConfig } from "./modules/playback";
-import {
-  coverflowEffect,
-  fadeConfig,
-  flipEffect,
-  cardsEffect,
-  cubeEffect,
-} from "./modules/effect";
+import { coverflowEffect, fadeConfig, flipEffect, cardsEffect, cubeEffect } from "./modules/effect";
 import { gridConfig } from "./modules/layout";
 import { generalConfig } from "./modules/general";
 import { initSlideCount } from "./modules/slideCount";
 import { thumbsConfig } from "./modules/thumbs";
 import { Waterfall } from "./types/waterfall";
 import { keyboardConfig, mouseConfig } from "./modules/input";
-import {
-  hashNavigationConfig,
-  historyNavigationConfig,
-} from "./modules/hashhistory";
+import { hashNavigationConfig, historyNavigationConfig } from "./modules/hashhistory";
 import { controllerConfig } from "./modules/controller";
 import { SwiperOptions } from "swiper/types";
 import { accessibilityConfig } from "./modules/accessibility";
+import { addSlides } from "./modules/manipulation";
 
 console.log(`🚿 Hello from Wellflow Waterfall v${APP_VERSION}`);
 
 const waterfalls: Waterfall[] = [];
+window.waterfalls = waterfalls;
 
 // Initialize Thumb Sliders first
-$('[waterfall][waterfall-preload="true"]').each((index, el) =>
-  initConfig(el, index),
-);
+$('[waterfall][waterfall-preload="true"]').each((index, el) => initConfig(el, index));
 
 // Initialize all other sliders
 $("[waterfall]")
@@ -47,9 +33,7 @@ $("[waterfall]")
   .not('[waterfall-postload="true"]')
   .each((index, el) => initConfig(el, index));
 
-$('[waterfall][waterfall-postload="true"]').each((index, el) =>
-  initConfig(el, index),
-);
+$('[waterfall][waterfall-postload="true"]').each((index, el) => initConfig(el, index));
 
 function initConfig(el: HTMLElement, index: number) {
   {
@@ -59,12 +43,8 @@ function initConfig(el: HTMLElement, index: number) {
     if (!name) return;
 
     const debug = Boolean(parseAttr($this, "debug-mode", false) || false);
-    const debugAdvanced = Boolean(
-      parseAttr($this, "advanced-debug-mode", false) || false,
-    );
-    console.log(
-      `Initializing Waterfall: ${name} ${debug ? `[${debugAdvanced ? "ADVANCED " : ""}DEBUG]` : ""}`,
-    );
+    const debugAdvanced = Boolean(parseAttr($this, "advanced-debug-mode", false) || false);
+    console.log(`Initializing Waterfall: ${name} ${debug ? `[${debugAdvanced ? "ADVANCED " : ""}DEBUG]` : ""}`);
 
     // GENERAL CONFIG
     const swiperConfig: any = generalConfig($this);
@@ -138,7 +118,16 @@ function initConfig(el: HTMLElement, index: number) {
     printDebug(debug, "CONFIG", config);
 
     // Initialize swiper
-    const swiper = new Swiper($this.find(".swiper")[0], config);
+    const $swiperEl = $this.find(".swiper");
+    const $slides = $swiperEl.find(".swiper-slide");
+
+    // Check if there are slides, return if none are found
+    if ($slides.length === 0) {
+      console.warn(`Skipping "${name}": no .swiper-slide elements found.`);
+      return;
+    }
+
+    const swiper = new Swiper($swiperEl[0], config);
 
     // Add to sliders array
     waterfalls.push({ name, swiper: swiper });
@@ -146,3 +135,8 @@ function initConfig(el: HTMLElement, index: number) {
 }
 
 initSlideCount();
+
+// MANIPULATION
+document.addEventListener("DOMContentLoaded", function () {
+  addSlides();
+});
