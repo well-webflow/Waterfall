@@ -1,21 +1,22 @@
-import { parseAttr } from '../util';
+import {
+  ATTR_ZOOM_CONTAINER_CLASS,
+  ATTR_ZOOM_LIMIT_TO_ORIGINAL_SIZE,
+  ATTR_ZOOM_MAX_RATIO,
+  ATTR_ZOOM_MIN_RATIO,
+  ATTR_ZOOM_PAN_ON_MOUSE_MOVE,
+  ATTR_ZOOM_TOGGLE,
+  ATTR_ZOOMED_SLIDE_CLASS,
+} from "lib/attributes";
+import { parseAttr } from "../util";
 
 export function zoomConfig($el: JQuery<HTMLElement>) {
   return {
-    containerClass: parseAttr(
-      $el,
-      'zoom-container-class',
-      'swiper-zoom-container',
-    ),
-    limitToOriginalSize: parseAttr($el, 'zoom-limit-to-original-size', false),
-    maxRatio: parseAttr($el, 'zoom-max-ratio', 3),
-    minRatio: parseAttr($el, 'zoom-min-ratio', 1),
-    panOnMouseMove: parseAttr($el, 'zoom-pan-on-mouse-move', false),
-    toggle: parseAttr($el, 'zoom-toggle', true),
-    zoomedSlideClass: parseAttr(
-      $el,
-      'zoomed-slide-class',
-      'swiper-slide-zoomed',
-    ),
+    containerClass: parseAttr($el, ATTR_ZOOM_CONTAINER_CLASS, "swiper-zoom-container"),
+    limitToOriginalSize: parseAttr($el, ATTR_ZOOM_LIMIT_TO_ORIGINAL_SIZE, false),
+    maxRatio: parseAttr($el, ATTR_ZOOM_MAX_RATIO, 3),
+    minRatio: parseAttr($el, ATTR_ZOOM_MIN_RATIO, 1),
+    panOnMouseMove: parseAttr($el, ATTR_ZOOM_PAN_ON_MOUSE_MOVE, false),
+    toggle: parseAttr($el, ATTR_ZOOM_TOGGLE, true),
+    zoomedSlideClass: parseAttr($el, ATTR_ZOOMED_SLIDE_CLASS, "swiper-slide-zoomed"),
   };
 }

@@ -1,36 +1,57 @@
-import { parseAttr } from '../util';
+import {
+  ATTR_LMOBILE_CENTERED_SLIDES,
+  ATTR_LMOBILE_SLIDES_PER_GROUP,
+  ATTR_LMOBILE_SLIDES_PER_VIEW,
+  ATTR_LMOBILE_SPACE_BETWEEN,
+  ATTR_TABLET_CENTERED_SLIDES,
+  ATTR_TABLET_SLIDES_PER_VIEW,
+  ATTR_TABLET_SPACE_BETWEEN,
+  ATTR_LARGE_SLIDES_PER_GROUP,
+  ATTR_DESKTOP_CENTERED_SLIDES,
+  ATTR_DESKTOP_SLIDES_PER_VIEW,
+  ATTR_DESKTOP_SLIDES_PER_GROUP,
+  ATTR_DESKTOP_SPACE_BETWEEN,
+  ATTR_LARGE_CENTERED_SLIDES,
+  ATTR_LARGE_SLIDES_PER_VIEW,
+  ATTR_LARGE_SPACE_BETWEEN,
+  ATTR_XLARGE_CENTERED_SLIDES,
+  ATTR_XLARGE_SLIDES_PER_VIEW,
+  ATTR_XLARGE_SLIDES_PER_GROUP,
+  ATTR_XLARGE_SPACE_BETWEEN,
+} from "../lib/attributes";
+import { parseAttr } from "../util";
 
 export function breakpointsConfig($this: JQuery<HTMLElement>) {
   return {
     478: {
-      centeredSlides: parseAttr($this, 'lmobile-centered-slides', null),
-      slidesPerView: parseAttr($this, 'lmobile-slides-per-view', null),
-      slidesPerGroup: parseAttr($this, 'lmobile-slides-per-group', null),
-      spaceBetween: parseAttr($this, 'lmobile-space-between', null),
+      centeredSlides: parseAttr($this, ATTR_LMOBILE_CENTERED_SLIDES, null),
+      slidesPerView: parseAttr($this, ATTR_LMOBILE_SLIDES_PER_VIEW, null),
+      slidesPerGroup: parseAttr($this, ATTR_LMOBILE_SLIDES_PER_GROUP, null),
+      spaceBetween: parseAttr($this, ATTR_LMOBILE_SPACE_BETWEEN, null),
     },
     767: {
-      centeredSlides: parseAttr($this, 'tablet-centered-slides', null),
-      slidesPerView: parseAttr($this, 'tablet-slides-per-view', null),
-      slidesPerGroup: parseAttr($this, 'tablet-slides-per-group', null),
-      spaceBetween: parseAttr($this, 'tablet-space-between', null),
+      centeredSlides: parseAttr($this, ATTR_TABLET_CENTERED_SLIDES, null),
+      slidesPerView: parseAttr($this, ATTR_TABLET_SLIDES_PER_VIEW, null),
+      slidesPerGroup: parseAttr($this, ATTR_LARGE_SLIDES_PER_GROUP, null),
+      spaceBetween: parseAttr($this, ATTR_TABLET_SPACE_BETWEEN, null),
     },
     991: {
-      centeredSlides: parseAttr($this, 'desktop-centered-slides', null),
-      slidesPerView: parseAttr($this, 'desktop-slides-per-view', null),
-      slidesPerGroup: parseAttr($this, 'desktop-slides-per-group', null),
-      spaceBetween: parseAttr($this, 'desktop-space-between', null),
+      centeredSlides: parseAttr($this, ATTR_DESKTOP_CENTERED_SLIDES, null),
+      slidesPerView: parseAttr($this, ATTR_DESKTOP_SLIDES_PER_VIEW, null),
+      slidesPerGroup: parseAttr($this, ATTR_DESKTOP_SLIDES_PER_GROUP, null),
+      spaceBetween: parseAttr($this, ATTR_DESKTOP_SPACE_BETWEEN, null),
     },
     1280: {
-      centeredSlides: parseAttr($this, 'large-centered-slides', null),
-      slidesPerView: parseAttr($this, 'large-slides-per-view', null),
-      slidesPerGroup: parseAttr($this, 'large-slides-per-group', null),
-      spaceBetween: parseAttr($this, 'large-space-between', null),
+      centeredSlides: parseAttr($this, ATTR_LARGE_CENTERED_SLIDES, null),
+      slidesPerView: parseAttr($this, ATTR_LARGE_SLIDES_PER_VIEW, null),
+      slidesPerGroup: parseAttr($this, ATTR_LARGE_SLIDES_PER_GROUP, null),
+      spaceBetween: parseAttr($this, ATTR_LARGE_SPACE_BETWEEN, null),
     },
     1440: {
-      centeredSlides: parseAttr($this, 'xlarge-centered-slides', null),
-      slidesPerView: parseAttr($this, 'xlarge-slides-per-view', null),
-      slidesPerGroup: parseAttr($this, 'xlarge-slides-per-group', null),
-      spaceBetween: parseAttr($this, 'xlarge-space-between', null),
+      centeredSlides: parseAttr($this, ATTR_XLARGE_CENTERED_SLIDES, null),
+      slidesPerView: parseAttr($this, ATTR_XLARGE_SLIDES_PER_VIEW, null),
+      slidesPerGroup: parseAttr($this, ATTR_XLARGE_SLIDES_PER_GROUP, null),
+      spaceBetween: parseAttr($this, ATTR_XLARGE_SPACE_BETWEEN, null),
     },
   };
 }

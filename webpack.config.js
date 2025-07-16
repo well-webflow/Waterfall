@@ -34,6 +34,9 @@ module.exports = {
     mode: 'development',  // Can be 'development' for debugging
     resolve: {
         extensions: ['.js', '.ts', '.json'], // Add file extensions you use
+        alias: {
+            lib: path.resolve(__dirname, 'src/lib'),
+        },
     },
     plugins: [
         new webpack.DefinePlugin({

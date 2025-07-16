@@ -12,6 +12,9 @@
     "skipLibCheck": true,
     "outDir": "package/dist",
     "baseUrl": "./src",
+    "paths": {
+      "lib/*": ["./lib/*"]
+    },
     "resolveJsonModule": true,
     "sourceMap": true,
     "types": ["jquery"]

@@ -19,31 +19,41 @@ import { SwiperOptions } from "swiper/types";
 import { accessibilityConfig } from "./modules/accessibility";
 import { addSlides } from "./modules/manipulation";
 
+import {
+  ATTR_WATERFALL_PRELOAD,
+  ATTR_WATERFALL,
+  ATTR_WATERFALL_POSTLOAD,
+  ATTR_DEBUG_MODE,
+  ATTR_ADVANCED_DEBUG_MODE,
+  ATTR_PLAYBACK_MODE,
+  ATTR_THUMBS,
+} from "./lib/attributes";
+
 console.log(`🚿 Hello from Wellflow Waterfall v${APP_VERSION}`);
 
 const waterfalls: Waterfall[] = [];
 window.waterfalls = waterfalls;
 
 // Initialize Thumb Sliders first
-$('[waterfall][waterfall-preload="true"]').each((index, el) => initConfig(el, index));
+$(`[${ATTR_WATERFALL}][${ATTR_WATERFALL_PRELOAD}="true"]`).each((index, el) => initConfig(el, index));
 
 // Initialize all other sliders
-$("[waterfall]")
-  .not('[waterfall-preload="true"]')
-  .not('[waterfall-postload="true"]')
+$(`[${ATTR_WATERFALL}]`)
+  .not(`[${ATTR_WATERFALL_PRELOAD}="true"]`)
+  .not(`[${ATTR_WATERFALL_POSTLOAD}="true"]`)
   .each((index, el) => initConfig(el, index));
 
-$('[waterfall][waterfall-postload="true"]').each((index, el) => initConfig(el, index));
+$(`[${ATTR_WATERFALL}][${ATTR_WATERFALL_POSTLOAD}="true"]`).each((index, el) => initConfig(el, index));
 
 function initConfig(el: HTMLElement, index: number) {
   {
     const $this = $(el);
 
-    const name = parseString($this, "waterfall", `Swiper ${index}`);
+    const name = parseString($this, ATTR_WATERFALL, `Swiper ${index}`);
     if (!name) return;
 
-    const debug = Boolean(parseAttr($this, "debug-mode", false) || false);
-    const debugAdvanced = Boolean(parseAttr($this, "advanced-debug-mode", false) || false);
+    const debug = Boolean(parseAttr($this, ATTR_DEBUG_MODE, false) || false);
+    const debugAdvanced = Boolean(parseAttr($this, ATTR_ADVANCED_DEBUG_MODE, false) || false);
     console.log(`Initializing Waterfall: ${name} ${debug ? `[${debugAdvanced ? "ADVANCED " : ""}DEBUG]` : ""}`);
 
     // GENERAL CONFIG
@@ -53,7 +63,7 @@ function initConfig(el: HTMLElement, index: number) {
     swiperConfig.breakpoints = breakpointsConfig($this);
 
     // PLAYBACK
-    const playbackMode = parseAttr($this, "playback-mode", "none");
+    const playbackMode = parseAttr($this, ATTR_PLAYBACK_MODE, "none");
     if (playbackMode === "loop") swiperConfig.loop = true;
     if (playbackMode === "rewind") swiperConfig.rewind = true;
     if (playbackMode === "none") {
@@ -66,11 +76,11 @@ function initConfig(el: HTMLElement, index: number) {
     swiperConfig.navigation = navigationConfig($this, name);
 
     // PAGINATION
-    let pagination = $this.find("[waterfall-el='pagination-bullet']").length;
+    let pagination = $this.find(`[${"waterfall-el='pagination-bullet'"}]`).length;
     if (pagination) swiperConfig.pagination = paginationConfig($this);
 
     // SCROLLBAR
-    const $scrollbar = $this.find("[waterfall-el='scrollbar']");
+    const $scrollbar = $this.find(`[${"waterfall-el='scrollbar'"}]`);
     if ($scrollbar) swiperConfig.scrollbar = scrollbarConfig($this);
 
     // EFFECT
@@ -87,7 +97,7 @@ function initConfig(el: HTMLElement, index: number) {
     swiperConfig.grid = gridConfig($this);
 
     // THUMBS
-    const isThumbs = parseAttr($this, "waterfall-thumbs", null) === true;
+    const isThumbs = parseAttr($this, ATTR_THUMBS, null) === true;
     if (!isThumbs) swiperConfig.thumbs = thumbsConfig($this, waterfalls);
 
     // ZOOM - NOT IMPLEMENTED
