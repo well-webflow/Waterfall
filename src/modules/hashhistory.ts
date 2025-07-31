@@ -8,19 +8,19 @@ import {
 } from "lib/attributes";
 import { parseAttr } from "../util";
 
-export function hashNavigationConfig($this: JQuery<HTMLElement>) {
+export function hashNavigationConfig(el: HTMLElement) {
   return {
     //getSlideIndex
-    replaceState: parseAttr($this, ATTR_HASH_REPLACE_STATE, false),
-    watchState: parseAttr($this, ATTR_HASH_WATCH_STATE, false),
+    replaceState: parseAttr(el, ATTR_HASH_REPLACE_STATE, false),
+    watchState: parseAttr(el, ATTR_HASH_WATCH_STATE, false),
   };
 }
 
-export function historyNavigationConfig($this: JQuery<HTMLElement>) {
+export function historyNavigationConfig(el: HTMLElement) {
   return {
-    keepQuery: parseAttr($this, ATTR_HISTORY_KEEP_QUERY, false),
-    key: parseAttr($this, ATTR_HISTORY_KEY, "slides"),
-    replaceState: parseAttr($this, ATTR_HISTORY_REPLACE_STATE, false),
-    root: parseAttr($this, ATTR_HISTORY_ROOT, ""),
+    keepQuery: parseAttr(el, ATTR_HISTORY_KEEP_QUERY, false),
+    key: parseAttr(el, ATTR_HISTORY_KEY, "slides"),
+    replaceState: parseAttr(el, ATTR_HISTORY_REPLACE_STATE, false),
+    root: parseAttr(el, ATTR_HISTORY_ROOT, ""),
   };
 }

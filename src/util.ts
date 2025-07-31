@@ -1,147 +1,102 @@
-import Swiper from 'swiper';
-import { Waterfall } from 'types/waterfall';
+import Swiper from "swiper";
+import { Waterfall } from "types/waterfall";
 
 export function printDebug(debug: boolean, str: string, el: any) {
   if (!debug) return;
-  console.log(str, ': ', el);
+  console.log(`${str}:`, el);
 }
 
-export function getUniqueClasses(
-  targetElement: JQuery<HTMLElement>,
-  comparisonElement: JQuery<HTMLElement>,
-) {
-  if (!targetElement.length) return ''; // If no element, return an empty string
+// ✅ Get unique classes without jQuery
+export function getUniqueClasses(targetElement: HTMLElement, comparisonElement: HTMLElement): string {
+  if (!targetElement) return "";
 
-  let targetClasses = (targetElement.attr('class') || '').split(/\s+/);
-  let comparisonClasses = (comparisonElement.attr('class') || '').split(/\s+/);
+  const targetClasses = Array.from(targetElement.classList);
+  const comparisonClasses = Array.from(comparisonElement.classList);
 
-  let filtered = targetClasses.filter(
-    (className) => className && !comparisonClasses.includes(className),
-  );
-  // Get the class attribute, split into an array, filter out the classToRemove, and join back into a string
-  return filtered.join(' '); // Join the remaining classes into a string
+  const filtered = targetClasses.filter((className) => className && !comparisonClasses.includes(className));
+
+  return filtered.join(" ");
 }
 
-export function parseString(
-  el: JQuery<HTMLElement>,
-  attrName: string,
-  defaultValue: string,
-) {
-  const attrValue = $(el).attr(attrName)?.trim();
-  if (!attrValue) return undefined;
-  // Nullify the attribute if it matches the default value from SwiperJS
-  if (attrValue === defaultValue) return undefined;
+// ✅ Parse attribute as string (ignoring default value)
+export function parseString(el: HTMLElement, attrName: string, defaultValue: string): string | undefined {
+  const attrValue = el.getAttribute(attrName)?.trim();
+  if (!attrValue || attrValue === defaultValue) return undefined;
   return attrValue;
 }
 
-export function parseNumber(
-  el: JQuery<HTMLElement>,
-  attrName: string,
-  defaultValue: number,
-): number | undefined {
-  const attrValue = $(el).attr(attrName)?.trim();
+// ✅ Parse attribute as number
+export function parseNumber(el: HTMLElement, attrName: string, defaultValue: number): number | undefined {
+  const attrValue = el.getAttribute(attrName)?.trim();
   if (!attrValue) return undefined;
 
   const parsedValue = Number(attrValue);
-  if (isNaN(parsedValue)) return undefined;
+  if (isNaN(parsedValue) || parsedValue === defaultValue) return undefined;
 
-  return parsedValue === defaultValue ? undefined : parsedValue;
+  return parsedValue;
 }
 
-export function parseBoolean(
-  el: JQuery<HTMLElement>,
-  attrName: string,
-  defaultValue: boolean,
-): boolean | undefined {
-  const attrValue = $(el).attr(attrName)?.trim()?.toLowerCase();
+// ✅ Parse attribute as boolean
+export function parseBoolean(el: HTMLElement, attrName: string, defaultValue: boolean): boolean | undefined {
+  const attrValue = el.getAttribute(attrName)?.trim()?.toLowerCase();
   if (!attrValue) return undefined;
 
-  if (attrValue === 'true') return true;
-  if (attrValue === 'false') return false;
+  if (attrValue === "true") return defaultValue === true ? undefined : true;
+  if (attrValue === "false") return defaultValue === false ? undefined : false;
 
-  return attrValue === defaultValue.toString() ? undefined : undefined;
+  return undefined;
 }
 
+// ✅ Generic attribute parser
 export function parseAttr(
-  el: JQuery<HTMLElement>,
+  el: HTMLElement,
   attrName: string,
   defaultValue: string | number | boolean | null,
 ): string | number | boolean | null {
-  const attrValue = $(el).attr(attrName);
+  const attrValue = el.getAttribute(attrName);
   if (!attrValue) return null;
-  // Trim the input to avoid issues with leading/trailing spaces
+
   const trimmedInput = attrValue.trim();
 
-  // Check if input is a number
+  // Number check
   if (!isNaN(Number(trimmedInput))) {
     const parsedNumber = parseFloat(trimmedInput);
-    if (parsedNumber === defaultValue) {
-      return null; // Return null if it matches the default value
-    }
-    return parsedNumber; // Return the parsed number
+    return parsedNumber === defaultValue ? null : parsedNumber;
   }
 
-  // Check if input is a boolean
-  if (trimmedInput.toLowerCase() === 'true') {
-    if (defaultValue === true) {
-      return null; // Return null if it matches the default value
-    }
-    return true;
-  } else if (trimmedInput.toLowerCase() === 'false') {
-    if (defaultValue === false) {
-      return null; // Return null if it matches the default value
-    }
-    return false;
-  }
+  // Boolean check
+  if (trimmedInput.toLowerCase() === "true") return defaultValue === true ? null : true;
+  if (trimmedInput.toLowerCase() === "false") return defaultValue === false ? null : false;
 
-  // Return null if the input matches the default value (as a string)
-  if (trimmedInput === String(defaultValue)) {
-    return null;
-  }
-
-  // Return the input as a string
-  return trimmedInput;
+  // String match check
+  return trimmedInput === String(defaultValue) ? null : trimmedInput;
 }
 
-export function removeNullOrUndefinedKeys(obj: any) {
-  if (typeof obj !== 'object' || obj === null) {
-    return obj; // Return non-objects or null as is
-  }
+function isHTMLElement(value: unknown): value is HTMLElement {
+  return typeof HTMLElement !== "undefined" && value instanceof HTMLElement;
+}
 
-  // Iterate over the keys in the object
+export function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T): T {
+  if (typeof obj !== "object" || obj === null) return obj;
+
   for (const key in obj) {
-    if (obj[key] === null || obj[key] === undefined) {
-      delete obj[key]; // ✅ Remove `null` or `undefined` keys
-    } else if (
-      typeof obj[key] === 'object' &&
-      !(obj[key] instanceof HTMLElement)
-    ) {
-      // Recursively handle nested objects
-      removeNullOrUndefinedKeys(obj[key]);
-      // Remove empty objects after recursion
-      if (Object.keys(obj[key]).length === 0) {
-        delete obj[key];
-      }
+    const value = obj[key];
+    if (value === null || value === undefined) {
+      delete obj[key];
+    } else if (typeof value === "object" && value !== null && !isHTMLElement(value)) {
+      removeNullOrUndefinedKeys(value as Record<string, any>);
+      if (Object.keys(value).length === 0) delete obj[key];
     }
   }
 
   return obj;
 }
 
-export function getSwipersByName(waterfalls: Waterfall[], selector: string) {
-  const strArr = splitByUnderscores(selector);
-  const swipers: Swiper[] = [];
-
-  strArr.forEach((str) => {
-    const waterfall = waterfalls.find((w) => {
-      if (w.name === str) return true;
-      return false;
-    });
-    if (waterfall) swipers.push(waterfall?.swiper);
-  });
-  return swipers;
-}
-
-function splitByUnderscores(str: string) {
-  return str.split('_');
+// ✅ Get swipers by name
+export function getSwipersByName(waterfalls: Waterfall[], selector: string): Swiper[] {
+  return selector.split("_").reduce<Swiper[]>((swipers, name) => {
+    const waterfall = waterfalls.find((w) => w.name === name);
+    if (waterfall) swipers.push(waterfall.swiper);
+    return swipers;
+  }, []);
 }

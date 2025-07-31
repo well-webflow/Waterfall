@@ -1,6 +1,4 @@
 import {
-  ATTR_SCROLLBAR,
-  ATTR_SCROLLBAR_DRAG,
   ATTR_SCROLLBAR_DRAG_SIZE,
   ATTR_SCROLLBAR_DRAGGABLE,
   ATTR_SCROLLBAR_ENABLED,
@@ -10,25 +8,25 @@ import {
   ATTR_SCROLLBAR_SCROLLBAR_DISABLED_CLASS,
   ATTR_SCROLLBAR_SNAP_ON_RELEASE,
   ATTR_SCROLLBAR_VERTICAL_CLASS,
-  ATTR_WATERFALL_ELEMENT,
 } from "lib/attributes";
 import { parseAttr } from "../util";
+import { ATTR_WATERFALL_ELEMENT, EL_SCROLLBAR, EL_SCROLLBAR_DRAG } from "lib/elements";
 
-export function scrollbarConfig($this: JQuery<HTMLElement>) {
-  const $scrollbar = $this.find(`[${ATTR_WATERFALL_ELEMENT}=${ATTR_SCROLLBAR}]`);
-  const $scrollbarDrag = $($scrollbar).find(`[${ATTR_WATERFALL_ELEMENT}=${ATTR_SCROLLBAR_DRAG}]`);
+export function scrollbarConfig(element: HTMLElement) {
+  const scrollbar = element.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_SCROLLBAR}]`);
+  const scrollbarDrag = scrollbar?.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_SCROLLBAR_DRAG}]`);
 
   return {
-    dragClass: $scrollbarDrag.attr("class"),
-    dragSize: parseAttr($this, ATTR_SCROLLBAR_DRAG_SIZE, "auto"),
-    draggable: parseAttr($this, ATTR_SCROLLBAR_DRAGGABLE, false),
-    el: $scrollbar[0],
-    enabled: parseAttr($this, ATTR_SCROLLBAR_ENABLED, null),
-    hide: parseAttr($this, ATTR_SCROLLBAR_HIDE, true),
-    horizontalClass: parseAttr($this, ATTR_SCROLLBAR_HORIZONTAL_CLASS, "swiper-scrollbar-horizontal"),
-    lockClass: parseAttr($this, ATTR_SCROLLBAR_LOCK_CLASS, "swiper-scrollbar-lock"),
-    scrollbarDisabledClass: parseAttr($this, ATTR_SCROLLBAR_SCROLLBAR_DISABLED_CLASS, "swiper-scrollbar-disabled"),
-    snapOnRelease: parseAttr($this, ATTR_SCROLLBAR_SNAP_ON_RELEASE, true), //NOTE documentation says default is false, but is lying lmao
-    verticalClass: parseAttr($this, ATTR_SCROLLBAR_VERTICAL_CLASS, "swiper-scrollbar-vertical"),
+    dragClass: scrollbarDrag?.getAttribute("class") || "",
+    dragSize: parseAttr(element, ATTR_SCROLLBAR_DRAG_SIZE, "auto"),
+    draggable: parseAttr(element, ATTR_SCROLLBAR_DRAGGABLE, false),
+    el: scrollbar || null,
+    enabled: parseAttr(element, ATTR_SCROLLBAR_ENABLED, null),
+    hide: parseAttr(element, ATTR_SCROLLBAR_HIDE, true),
+    horizontalClass: parseAttr(element, ATTR_SCROLLBAR_HORIZONTAL_CLASS, "swiper-scrollbar-horizontal"),
+    lockClass: parseAttr(element, ATTR_SCROLLBAR_LOCK_CLASS, "swiper-scrollbar-lock"),
+    scrollbarDisabledClass: parseAttr(element, ATTR_SCROLLBAR_SCROLLBAR_DISABLED_CLASS, "swiper-scrollbar-disabled"),
+    snapOnRelease: parseAttr(element, ATTR_SCROLLBAR_SNAP_ON_RELEASE, true), // doc says false but actually true
+    verticalClass: parseAttr(element, ATTR_SCROLLBAR_VERTICAL_CLASS, "swiper-scrollbar-vertical"),
   };
 }

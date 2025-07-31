@@ -9,7 +9,7 @@ import {
   ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS,
 } from "lib/attributes";
 
-function getThumbsSwiper(el: JQuery<HTMLElement>, sliders: Waterfall[]): Waterfall | null {
+function getThumbsSwiper(el: HTMLElement, sliders: Waterfall[]): Waterfall | null {
   const sliderName = parseAttr(el, ATTR_THUMBS_NAME, null);
   if (sliderName === null) return null;
 
@@ -20,7 +20,7 @@ function getThumbsSwiper(el: JQuery<HTMLElement>, sliders: Waterfall[]): Waterfa
   return null; // Return null if no match is found
 }
 
-export function thumbsConfig(el: JQuery<HTMLElement>, swipers: Waterfall[]) {
+export function thumbsConfig(el: HTMLElement, swipers: Waterfall[]) {
   const waterfall = getThumbsSwiper(el, swipers);
   if (!waterfall) return;
 

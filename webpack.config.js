@@ -3,10 +3,10 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: "./src/waterfall.ts",
+    entry: "./src/index.ts",
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'waterfall.js',  // Output bundle file
+        filename: 'index.js',  // Output bundle file
         library: 'Waterfall',   // Name of the global variable if your package is used in the browser
         libraryTarget: 'umd',   // Universal module definition, for browser and Node.js
         globalObject: 'this',   // Ensures compatibility in different environments

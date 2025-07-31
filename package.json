@@ -1,8 +1,8 @@
 {
   "name": "well-waterfall",
-  "version": "1.0.6",
+  "version": "1.0.10",
   "description": "An attribute-based wrapper of SwiperJS for Webflow",
-  "main": "waterfall.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
@@ -15,7 +15,7 @@
     "css-loader": "^7.1.2",
     "fs": "^0.0.1-security",
     "style-loader": "^4.0.0",
-    "swiper": "^11.1.14",
+    "swiper": "^11.2.10",
     "webpack": "^5.95.0"
   },
   "devDependencies": {

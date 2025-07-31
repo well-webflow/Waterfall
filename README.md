@@ -2,7 +2,7 @@
 
 # 🚿 Waterfall by Wellflow 🚿
 
-Waterfall is a single-line of code for Webflow that enables developers to use attributes to quickly build sliders based on SwiperJS. This library is a basically an attribute wrapper for SwiperJS 10.9.0.
+Waterfall is a single-line of code for Webflow that enables developers to use attributes to quickly build sliders based on SwiperJS. This library is a basically an attribute wrapper for SwiperJS 11.2.10 (2025-06-28).
 
 While other slider options are paid, Waterfall will always be a free solution (until Webflow implements a better native slider option).
 

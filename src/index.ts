@@ -18,6 +18,7 @@ import { controllerConfig } from "./modules/controller";
 import { SwiperOptions } from "swiper/types";
 import { accessibilityConfig } from "./modules/accessibility";
 import { addSlides } from "./modules/manipulation";
+import { zoomConfig } from "./modules/zoom";
 
 import {
   ATTR_WATERFALL_PRELOAD,
@@ -29,98 +30,108 @@ import {
   ATTR_THUMBS,
 } from "./lib/attributes";
 
+export * from "./lib/attributes";
+export * from "./lib/elements";
+
 console.log(`🚿 Hello from Wellflow Waterfall v${APP_VERSION}`);
 
 const waterfalls: Waterfall[] = [];
 window.waterfalls = waterfalls;
 
+function initAll(selector: string) {
+  document.querySelectorAll(selector).forEach((el, index) => {
+    initConfig(el as HTMLElement, index);
+  });
+}
+
 // Initialize Thumb Sliders first
-$(`[${ATTR_WATERFALL}][${ATTR_WATERFALL_PRELOAD}="true"]`).each((index, el) => initConfig(el, index));
+initAll(`[${ATTR_WATERFALL}][${ATTR_WATERFALL_PRELOAD}="true"]`);
 
 // Initialize all other sliders
-$(`[${ATTR_WATERFALL}]`)
-  .not(`[${ATTR_WATERFALL_PRELOAD}="true"]`)
-  .not(`[${ATTR_WATERFALL_POSTLOAD}="true"]`)
-  .each((index, el) => initConfig(el, index));
+document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el, index) => {
+  if (el.getAttribute(ATTR_WATERFALL_PRELOAD) === "true" || el.getAttribute(ATTR_WATERFALL_POSTLOAD) === "true") return;
 
-$(`[${ATTR_WATERFALL}][${ATTR_WATERFALL_POSTLOAD}="true"]`).each((index, el) => initConfig(el, index));
+  initConfig(el as HTMLElement, index);
+});
+
+// Initialize Postload sliders
+initAll(`[${ATTR_WATERFALL}][${ATTR_WATERFALL_POSTLOAD}="true"]`);
 
 function initConfig(el: HTMLElement, index: number) {
   {
-    const $this = $(el);
-
-    const name = parseString($this, ATTR_WATERFALL, `Swiper ${index}`);
+    const name = parseString(el, ATTR_WATERFALL, `Swiper ${index}`);
     if (!name) return;
 
-    const debug = Boolean(parseAttr($this, ATTR_DEBUG_MODE, false) || false);
-    const debugAdvanced = Boolean(parseAttr($this, ATTR_ADVANCED_DEBUG_MODE, false) || false);
+    const debug = Boolean(parseAttr(el, ATTR_DEBUG_MODE, false) || false);
+    const debugAdvanced = Boolean(parseAttr(el, ATTR_ADVANCED_DEBUG_MODE, false) || false);
     console.log(`Initializing Waterfall: ${name} ${debug ? `[${debugAdvanced ? "ADVANCED " : ""}DEBUG]` : ""}`);
 
     // GENERAL CONFIG
-    const swiperConfig: any = generalConfig($this);
+    const swiperConfig: any = generalConfig(el);
 
     // BREAKPOINTS
-    swiperConfig.breakpoints = breakpointsConfig($this);
+    swiperConfig.breakpoints = breakpointsConfig(el);
 
     // PLAYBACK
-    const playbackMode = parseAttr($this, ATTR_PLAYBACK_MODE, "none");
+    const playbackMode = parseAttr(el, ATTR_PLAYBACK_MODE, "none");
     if (playbackMode === "loop") swiperConfig.loop = true;
     if (playbackMode === "rewind") swiperConfig.rewind = true;
     if (playbackMode === "none") {
       swiperConfig.loop = false;
       swiperConfig.rewind = false;
     }
-    swiperConfig.autoplay = autoplayConfig($this);
+    swiperConfig.autoplay = autoplayConfig(el);
 
     // NAVIGATION
-    swiperConfig.navigation = navigationConfig($this, name);
+    swiperConfig.navigation = navigationConfig(el, name);
 
     // PAGINATION
-    let pagination = $this.find(`[${"waterfall-el='pagination-bullet'"}]`).length;
-    if (pagination) swiperConfig.pagination = paginationConfig($this);
+    const paginationEl = el.querySelector(`[waterfall-el='pagination-bullet']`);
+    if (paginationEl) swiperConfig.pagination = paginationConfig(el);
 
     // SCROLLBAR
-    const $scrollbar = $this.find(`[${"waterfall-el='scrollbar'"}]`);
-    if ($scrollbar) swiperConfig.scrollbar = scrollbarConfig($this);
+    const scrollbarEl = el.querySelector(`[waterfall-el='scrollbar']`);
+    if (scrollbarEl) swiperConfig.scrollbar = scrollbarConfig(el);
 
     // EFFECT
-    swiperConfig.fadeEffect = fadeConfig($this);
-    swiperConfig.coverflowEffect = coverflowEffect($this);
-    swiperConfig.flipEffect = flipEffect($this);
-    swiperConfig.cardsEffect = cardsEffect($this);
-    swiperConfig.cubeEffect = cubeEffect($this);
+    swiperConfig.fadeEffect = fadeConfig(el);
+    swiperConfig.coverflowEffect = coverflowEffect(el);
+    swiperConfig.flipEffect = flipEffect(el);
+    swiperConfig.cardsEffect = cardsEffect(el);
+    swiperConfig.cubeEffect = cubeEffect(el);
 
     // FREE MODE
-    swiperConfig.freeMode = freeModeConfig($this);
+    swiperConfig.freeMode = freeModeConfig(el);
 
     // GRID
-    swiperConfig.grid = gridConfig($this);
+    swiperConfig.grid = gridConfig(el);
 
     // THUMBS
-    const isThumbs = parseAttr($this, ATTR_THUMBS, null) === true;
-    if (!isThumbs) swiperConfig.thumbs = thumbsConfig($this, waterfalls);
+    const isThumbs = parseAttr(el, ATTR_THUMBS, null) === true;
+    if (!isThumbs) swiperConfig.thumbs = thumbsConfig(el, waterfalls);
 
     // ZOOM - NOT IMPLEMENTED
+    swiperConfig.zoom = zoomConfig(el);
 
     // KEYBOARD
-    swiperConfig.keyboard = keyboardConfig($this);
+    swiperConfig.keyboard = keyboardConfig(el);
 
     // MOUSE
-    swiperConfig.mousewheel = mouseConfig($this);
+    swiperConfig.mousewheel = mouseConfig(el);
 
     // VIRTUAL SLIDES - NOT IMPLEMENTED
 
     // HASH NAVIGATION
-    swiperConfig.hashNavigation = hashNavigationConfig($this);
+    swiperConfig.hashNavigation = hashNavigationConfig(el);
 
     // HISTORY NAVIGATION
-    swiperConfig.history = historyNavigationConfig($this);
+    swiperConfig.history = historyNavigationConfig(el);
 
     // CONTROLLER
-    swiperConfig.controller = controllerConfig($this, waterfalls);
+    swiperConfig.controller = controllerConfig(el, waterfalls);
 
     // A11Y
-    swiperConfig.a11y = accessibilityConfig($this);
+    swiperConfig.a11y = accessibilityConfig(el);
 
     // Clean up the config and debug
     if (debugAdvanced) printDebug(debug, "CONFIG (UNCLEANED)", swiperConfig);
@@ -128,19 +139,15 @@ function initConfig(el: HTMLElement, index: number) {
     printDebug(debug, "CONFIG", config);
 
     // Initialize swiper
-    const $swiperEl = $this.find(".swiper");
-    const $slides = $swiperEl.find(".swiper-slide");
-
-    // Check if there are slides, return if none are found
-    if ($slides.length === 0) {
+    const swiperEl = el.querySelector(".swiper");
+    const slides = swiperEl?.querySelectorAll(".swiper-slide") || [];
+    if (slides.length === 0) {
       console.warn(`Skipping "${name}": no .swiper-slide elements found.`);
       return;
     }
-
-    const swiper = new Swiper($swiperEl[0], config);
-
-    // Add to sliders array
-    waterfalls.push({ name, swiper: swiper });
+    // INIT SWIPER
+    const swiper = new Swiper(swiperEl as HTMLElement, config);
+    waterfalls.push({ name, swiper });
   }
 }
 
