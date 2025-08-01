@@ -194,9 +194,7 @@ export const ATTR_NAVIGATION_NAVIGATION_DISABLED_CLASS = "waterfall-navigation-n
 // Pagination
 export const ATTR_PAGINATION_TYPE = "waterfall-pagination-type";
 export const ATTR_PAGINATION_BULLET_CLASS = "waterfall-pagination-bullet-class";
-export const ATTR_PAGINATION_BULLET_ACTIVE = "waterfall-pagination-bullet-active";
 export const ATTR_PAGINATION_BULLET_ACTIVE_CLASS = "waterfall-pagination-bullet-active-class";
-export const ATTR_PAGINATION_BULLET_ELEMENT = "waterfall-pagination-bullet-element";
 export const ATTR_PAGINATION_CLICKABLE = "waterfall-pagination-clickable";
 export const ATTR_PAGINATION_CLICKABLE_CLASS = "waterfall-pagination-clickable-class";
 export const ATTR_PAGINATION_CURRENT_CLASS = "waterfall-pagination-current-class";

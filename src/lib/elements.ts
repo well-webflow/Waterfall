@@ -2,6 +2,7 @@ export const ATTR_WATERFALL_ELEMENT = "waterfall-el";
 // Pagination
 export const EL_PAGINATION = "pagination";
 export const EL_PAGINATION_BULLET = "pagination-bullet";
+export const EL_PAGINATION_BULLET_ACTIVE = "pagination-bullet-active";
 // Navigation
 export const EL_NAVIGATION = "waterfall-navigation";
 export const EL_NAVIGATION_NEXT = "navigation-next";

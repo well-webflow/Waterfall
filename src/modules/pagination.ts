@@ -1,6 +1,5 @@
 import {
   ATTR_NAVIGATION_LOCK_CLASS,
-  ATTR_PAGINATION_BULLET_ACTIVE,
   ATTR_PAGINATION_CLICKABLE,
   ATTR_PAGINATION_CLICKABLE_CLASS,
   ATTR_PAGINATION_CURRENT_CLASS,
@@ -19,21 +18,24 @@ import {
   ATTR_PAGINATION_VERTICAL_CLASS,
 } from "lib/attributes";
 import { getUniqueClasses, parseAttr } from "../util";
-import { ATTR_WATERFALL_ELEMENT, EL_PAGINATION, EL_PAGINATION_BULLET } from "lib/elements";
+import { ATTR_WATERFALL_ELEMENT, EL_PAGINATION, EL_PAGINATION_BULLET, EL_PAGINATION_BULLET_ACTIVE } from "lib/elements";
 
 export function paginationConfig(element: HTMLElement) {
   const paginationType = parseAttr(element, ATTR_PAGINATION_TYPE, "");
 
   const paginationBullet = element.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_PAGINATION_BULLET}]`);
+
   const paginationBulletActive = element.querySelector<HTMLElement>(
-    `[${ATTR_WATERFALL_ELEMENT}=${ATTR_PAGINATION_BULLET_ACTIVE}]`,
+    `[${ATTR_WATERFALL_ELEMENT}=${EL_PAGINATION_BULLET_ACTIVE}]`,
   );
   const paginationEl = element.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_PAGINATION}]`);
 
   return {
     bulletActiveClass:
-      paginationBulletActive && paginationBullet ? getUniqueClasses(paginationBulletActive, paginationBullet) : "",
-    bulletClass: paginationBullet?.getAttribute("class") || "",
+      paginationBulletActive && paginationBullet
+        ? getUniqueClasses(paginationBulletActive, paginationBullet)
+        : "swiper-pagination-bullet-active",
+    bulletClass: paginationBullet?.getAttribute("class")?.trim() || "swiper-pagination-bullet",
     bulletElement: paginationBullet?.tagName?.toLowerCase() || "span",
     clickable: parseAttr(element, ATTR_PAGINATION_CLICKABLE, false),
     clickableClass: parseAttr(element, ATTR_PAGINATION_CLICKABLE_CLASS, "swiper-pagination-clickable"),

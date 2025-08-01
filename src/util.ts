@@ -6,16 +6,15 @@ export function printDebug(debug: boolean, str: string, el: any) {
   console.log(`${str}:`, el);
 }
 
-// ✅ Get unique classes without jQuery
 export function getUniqueClasses(targetElement: HTMLElement, comparisonElement: HTMLElement): string {
-  if (!targetElement) return "";
+  if (!targetElement.classList || !comparisonElement.classList) return "";
 
-  const targetClasses = Array.from(targetElement.classList);
-  const comparisonClasses = Array.from(comparisonElement.classList);
+  const targetClasses = Array.from(targetElement.classList || []);
+  const comparisonClasses = Array.from(comparisonElement.classList || []);
 
   const filtered = targetClasses.filter((className) => className && !comparisonClasses.includes(className));
 
-  return filtered.join(" ");
+  return filtered.length > 0 ? filtered.join(" ") : "";
 }
 
 // ✅ Parse attribute as string (ignoring default value)
