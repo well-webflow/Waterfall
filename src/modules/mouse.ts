@@ -1,7 +1,4 @@
 import {
-  ATTR_KEYBOARD_ENABLED,
-  ATTR_KEYBOARD_ONLY_IN_VIEWPORT,
-  ATTR_KEYBOARD_PAGE_UP_DOWN,
   ATTR_MOUSE_ENABLED,
   ATTR_MOUSE_EVENTS_TARGET,
   ATTR_MOUSE_FORCE_TO_AXIS,
@@ -14,16 +11,8 @@ import {
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
 
-export function keyboardConfig(el: HTMLElement) {
-  return {
-    enabled: parseBoolean(el, ATTR_KEYBOARD_ENABLED, false),
-    onlyInViewport: parseBoolean(el, ATTR_KEYBOARD_ONLY_IN_VIEWPORT, true),
-    pageUpDown: parseBoolean(el, ATTR_KEYBOARD_PAGE_UP_DOWN, true),
-  };
-}
-
-export function mouseConfig(el: HTMLElement) {
-  return {
+export function mouseConfig(config: any, el: HTMLElement) {
+  config.mousewheel = {
     enabled: parseBoolean(el, ATTR_MOUSE_ENABLED, false),
     eventsTarget: parseString(el, ATTR_MOUSE_EVENTS_TARGET, "container"),
     forceToAxis: parseBoolean(el, ATTR_MOUSE_FORCE_TO_AXIS, false),

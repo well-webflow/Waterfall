@@ -30,8 +30,11 @@ export function parseNumber(el: HTMLElement, attrName: string, defaultValue?: nu
   if (!attrValue) return undefined;
 
   const parsedValue = Number(attrValue);
-  if (isNaN(parsedValue) || parsedValue === defaultValue) return undefined;
-
+  const validAndUnique = isNaN(parsedValue) || parsedValue === defaultValue;
+  if (validAndUnique) {
+    console.error(parsedValue + " is not a number or same as default " + defaultValue + " | " + validAndUnique);
+    return undefined;
+  }
   return parsedValue;
 }
 

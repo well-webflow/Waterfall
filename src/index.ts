@@ -1,26 +1,34 @@
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
+
+import { SwiperOptions } from "swiper/types";
+import { Waterfall } from "./types/waterfall";
+
 import { removeNullOrUndefinedKeys, parseString, parseBoolean } from "./util";
 import { navigationConfig } from "./modules/navigation";
 import { breakpointsConfig } from "./modules/breakpoints";
 import { paginationConfig } from "./modules/pagination";
 import { scrollbarConfig } from "./modules/scrollbar";
-import { autoplayConfig, freeModeConfig } from "./modules/playback";
-import { coverflowEffect, fadeConfig, flipEffect, cardsEffect, cubeEffect } from "./modules/effect";
-import { gridConfig } from "./modules/layout";
+import { playbackConfig } from "./modules/playback";
+import { effectConfig } from "./modules/effect";
+import { layoutConfig } from "./modules/layout";
 import { generalConfig } from "./modules/general";
 import { initSlideCount } from "./modules/slideCount";
 import { thumbsConfig } from "./modules/thumbs";
-import { Waterfall } from "./types/waterfall";
-import { keyboardConfig, mouseConfig } from "./modules/input";
+import { keyboardConfig } from "./modules/keyboard";
 import { hashNavigationConfig, historyNavigationConfig } from "./modules/hashhistory";
 import { controllerConfig } from "./modules/controller";
-import { SwiperOptions } from "swiper/types";
 import { accessibilityConfig } from "./modules/accessibility";
 import { addSlides } from "./modules/manipulation";
 import { zoomConfig } from "./modules/zoom";
+import { touchConfig } from "./modules/touch";
+import { mouseConfig } from "./modules/mouse";
+import { freeModeConfig } from "./modules/freeMode";
+import lazyLoadConfig from "./modules/lazyLoad";
+import advancedConfig from "./modules/advanced";
+import observerConfig from "./modules/observer";
 
-import { ATTR_WATERFALL, ATTR_DEBUG_MODE, ATTR_PLAYBACK_MODE, ATTR_THUMBS, ATTR_CONTROLLER } from "./lib/attributes";
+import { ATTR_WATERFALL, ATTR_DEBUG_MODE, ATTR_THUMBS, ATTR_CONTROLLER } from "./lib/attributes";
 
 export * from "./lib/attributes";
 export * from "./lib/elements";
@@ -59,76 +67,35 @@ function initConfig(el: HTMLElement, index: number) {
     const debug = Boolean(parseBoolean(el, ATTR_DEBUG_MODE, false) || false);
     console.log(`Initializing Waterfall: ${name} ${debug ? `[DEBUG]` : ""}`);
 
-    // GENERAL CONFIG
-    const swiperConfig: any = generalConfig(el);
+    let swiperConfig: any = {};
 
-    // BREAKPOINTS
-    swiperConfig.breakpoints = breakpointsConfig(el);
-
-    // PLAYBACK
-    const playbackMode = parseString(el, ATTR_PLAYBACK_MODE, "none");
-    if (playbackMode === "loop") swiperConfig.loop = true;
-    if (playbackMode === "rewind") swiperConfig.rewind = true;
-    if (playbackMode === "none") {
-      swiperConfig.loop = false;
-      swiperConfig.rewind = false;
-    }
-    swiperConfig.autoplay = autoplayConfig(el);
-
-    // NAVIGATION
-    swiperConfig.navigation = navigationConfig(el, name);
-
-    // PAGINATION
-    const paginationEl = el.querySelector(`[waterfall-el='pagination-bullet']`);
-    if (paginationEl) swiperConfig.pagination = paginationConfig(el);
-
-    // SCROLLBAR
-    const scrollbarEl = el.querySelector(`[waterfall-el='scrollbar']`);
-    if (scrollbarEl) swiperConfig.scrollbar = scrollbarConfig(el);
-
-    // EFFECT
-    swiperConfig.fadeEffect = fadeConfig(el);
-    swiperConfig.coverflowEffect = coverflowEffect(el);
-    swiperConfig.flipEffect = flipEffect(el);
-    swiperConfig.cardsEffect = cardsEffect(el);
-    swiperConfig.cubeEffect = cubeEffect(el);
-
-    // FREE MODE
-    swiperConfig.freeMode = freeModeConfig(el);
-
-    // GRID
-    swiperConfig.grid = gridConfig(el);
-
-    // THUMBS
-    swiperConfig.thumbs = thumbsConfig(el, waterfalls, debug);
-
-    // ZOOM - NOT IMPLEMENTED
-    swiperConfig.zoom = zoomConfig(el);
-
-    // KEYBOARD
-    swiperConfig.keyboard = keyboardConfig(el);
-
-    // MOUSE
-    swiperConfig.mousewheel = mouseConfig(el);
-
+    generalConfig(swiperConfig, el);
+    breakpointsConfig(swiperConfig, el);
+    playbackConfig(swiperConfig, el);
+    navigationConfig(swiperConfig, el, name);
+    paginationConfig(swiperConfig, el);
+    scrollbarConfig(swiperConfig, el);
+    effectConfig(swiperConfig, el);
+    freeModeConfig(swiperConfig, el);
+    layoutConfig(swiperConfig, el);
+    thumbsConfig(swiperConfig, el, waterfalls, debug);
+    keyboardConfig(swiperConfig, el);
+    mouseConfig(swiperConfig, el);
+    touchConfig(swiperConfig, el);
     // VIRTUAL SLIDES - NOT IMPLEMENTED
-
-    // HASH NAVIGATION
-    swiperConfig.hashNavigation = hashNavigationConfig(el);
-
-    // HISTORY NAVIGATION
-    swiperConfig.history = historyNavigationConfig(el);
-
-    // CONTROLLER
-    swiperConfig.controller = controllerConfig(el, waterfalls, debug);
-
-    // A11Y
-    swiperConfig.a11y = accessibilityConfig(el);
+    hashNavigationConfig(swiperConfig, el);
+    historyNavigationConfig(swiperConfig, el);
+    controllerConfig(swiperConfig, el, waterfalls, debug);
+    accessibilityConfig(swiperConfig, el);
+    lazyLoadConfig(swiperConfig, el);
+    observerConfig(swiperConfig, el);
+    zoomConfig(swiperConfig, el);
+    advancedConfig(swiperConfig, el);
 
     // Clean up the config and debug
-    if (debug) console.log(`${name} Config (UNCLEANED):", ${swiperConfig}`);
+    if (debug) console.warn(`${name} Config:`);
+    if (debug) console.log(swiperConfig);
     const config: SwiperOptions = removeNullOrUndefinedKeys(swiperConfig);
-    if (debug) console.log(`${name} CONFIG: ${config}`);
 
     // Initialize swiper
     const swiperEl = el.querySelector(".swiper");
@@ -142,6 +109,7 @@ function initConfig(el: HTMLElement, index: number) {
   }
 }
 
+// SLIDE COUNT
 initSlideCount();
 
 // MANIPULATION

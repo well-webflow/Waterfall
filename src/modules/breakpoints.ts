@@ -1,4 +1,4 @@
-import { parseBoolean, parseNumber } from "../util";
+import { parseBoolean, parseNumber, parseString } from "../util";
 import {
   ATTR_LMOBILE_CENTERED_SLIDES,
   ATTR_LMOBILE_SLIDES_PER_GROUP,
@@ -19,10 +19,13 @@ import {
   ATTR_XLARGE_SLIDES_PER_VIEW,
   ATTR_XLARGE_SLIDES_PER_GROUP,
   ATTR_XLARGE_SPACE_BETWEEN,
+  ATTR_BREAKPOINTS_BASE,
 } from "../lib/attributes";
 
-export function breakpointsConfig(el: HTMLElement) {
-  return {
+export function breakpointsConfig(config: any, el: HTMLElement) {
+  config.breakpointsBase = parseString(el, ATTR_BREAKPOINTS_BASE, "window");
+
+  config.breakpoints = {
     478: {
       centeredSlides: parseBoolean(el, ATTR_LMOBILE_CENTERED_SLIDES),
       slidesPerView: parseNumber(el, ATTR_LMOBILE_SLIDES_PER_VIEW),

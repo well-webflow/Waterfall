@@ -12,11 +12,12 @@ import {
 import { ATTR_WATERFALL_ELEMENT, EL_SCROLLBAR, EL_SCROLLBAR_DRAG } from "lib/elements";
 import { parseBoolean, parseString } from "../util";
 
-export function scrollbarConfig(element: HTMLElement) {
+export function scrollbarConfig(config: any, element: HTMLElement) {
   const scrollbar = element.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_SCROLLBAR}]`);
+  if (!scrollbar) return;
   const scrollbarDrag = scrollbar?.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_SCROLLBAR_DRAG}]`);
 
-  return {
+  config.scrollbar = {
     dragClass: scrollbarDrag?.getAttribute("class") || "",
     dragSize: parseString(element, ATTR_SCROLLBAR_DRAG_SIZE, "auto"),
     draggable: parseBoolean(element, ATTR_SCROLLBAR_DRAGGABLE, false),

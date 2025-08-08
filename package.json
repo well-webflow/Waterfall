@@ -1,6 +1,6 @@
 {
   "name": "well-waterfall",
-  "version": "1.0.21",
+  "version": "1.0.31",
   "description": "An attribute-based wrapper of SwiperJS for Webflow",
   "main": "dist/index.js",
   "scripts": {

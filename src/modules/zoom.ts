@@ -9,8 +9,8 @@ import {
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
 
-export function zoomConfig(el: HTMLElement) {
-  return {
+export function zoomConfig(config: any, el: HTMLElement) {
+  config.zoom = {
     containerClass: parseString(el, ATTR_ZOOM_CONTAINER_CLASS, "swiper-zoom-container"),
     limitToOriginalSize: parseBoolean(el, ATTR_ZOOM_LIMIT_TO_ORIGINAL_SIZE, false),
     maxRatio: parseNumber(el, ATTR_ZOOM_MAX_RATIO, 3),

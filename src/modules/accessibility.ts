@@ -18,8 +18,8 @@ import {
   ATTR_A11Y_SLIDE_ROLE,
 } from "../lib/attributes";
 
-export function accessibilityConfig(el: HTMLElement) {
-  let config: A11yOptions = {
+export function accessibilityConfig(config: any, el: HTMLElement) {
+  config.a11y = {
     containerMessage: parseString(el, ATTR_A11Y_CONTAINER_MESSAGE, ""),
     containerRole: parseString(el, ATTR_A11Y_CONTAINER_ROLE, ""),
     containerRoleDescriptionMessage: parseString(el, ATTR_A11Y_CONTAINER_ROLE_DESCRIPTION_MESSAGE, ""),

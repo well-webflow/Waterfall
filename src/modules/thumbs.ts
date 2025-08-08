@@ -9,10 +9,9 @@ import {
   ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS,
 } from "lib/attributes";
 
-export function thumbsConfig(el: HTMLElement, swipers: Waterfall[], debug: boolean) {
+export function thumbsConfig(config: any, el: HTMLElement, swipers: Waterfall[], debug: boolean) {
   const thumbsName = parseString(el, ATTR_THUMBS, "");
   if (!thumbsName || thumbsName === "") {
-    if (debug) console.log(`[Thumbs] No thumbs attribute found on element:`, el);
     return;
   }
 
@@ -23,7 +22,7 @@ export function thumbsConfig(el: HTMLElement, swipers: Waterfall[], debug: boole
     return;
   }
 
-  let config: ThumbsOptions = {
+  config.thumbs = {
     autoScrollOffset: parseNumber(el, ATTR_THUMBS_AUTO_SCROLL_OFFSET, 0),
     multipleActiveThumbs: parseBoolean(el, ATTR_THUMBS_MULTIPLE_ACTIVE_THUMBS, false),
     slideThumbActiveClass: parseString(el, ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS, "swiper-slide-thumb-active"),
