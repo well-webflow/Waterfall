@@ -1,59 +1,66 @@
-import { ATTR_MANIPULATION_ADD_SLIDE } from "../lib/attributes";
+import {
+  ATTR_MANIPULATION_ADD_SLIDE,
+  ATTR_MANIPULATION_APPEND_SLIDE,
+  ATTR_MANIPULATION_PREPEND_SLIDE,
+  ATTR_MANIPULATION_REMOVE_SLIDE,
+} from "../lib/attributes";
 
-export function addSlides() {
-  // Ensure the waterfall object is defined
+// Generic handler
+function handleSlideManipulation(attr: string, action: "append" | "prepend" | "remove") {
   if (!Array.isArray(window.waterfalls)) {
-    console.error(
-      "[SlideAdder] window.waterfalls is not an array or not defined.",
-    );
+    console.error("window.waterfalls is not an array or not defined.");
     return;
   }
 
-  // Track the .w-dyn-list elements that originally contained matched slides
-  const dynListsToRemove: Set<Element> = new Set();
+  const dynListsToRemove = new Set<Element>();
 
-  // Find all elements with the wtf-add-slide attribute and add them to the corresponding Waterfall
-  const addSlideElements = document.querySelectorAll(
-    `[${ATTR_MANIPULATION_ADD_SLIDE}]`,
-  );
+  document.querySelectorAll(`[${attr}]`).forEach((el) => {
+    const targetName = el.getAttribute(attr);
+    const matchedWaterfall = window.waterfalls.find((wf) => wf.name === targetName);
 
-  addSlideElements.forEach((el) => {
-    // Get the target Waterfall name from the attribute
-    const targetName = el.getAttribute(ATTR_MANIPULATION_ADD_SLIDE);
-    // Find the matchhing Waterfall by name
-    const matchedWaterfall = window.waterfalls.find(
-      (wf) => wf.name === targetName,
-    );
     if (!matchedWaterfall) {
-      console.warn(
-        `[SlideAdder] No Waterfall found with name: "${targetName}"`,
-      );
+      console.warn(`[MANIPULATION] No Waterfall found with name: "${targetName}"`);
       return;
     }
 
     const swiper = matchedWaterfall.swiper;
-    if (!swiper || typeof swiper.appendSlide !== "function") {
-      console.error(
-        `[SlideAdder] Invalid Swiper instance in Waterfall "${targetName}"`,
-      );
+    if (!swiper) {
+      console.error(`[MANIPULATION] Invalid Swiper instance in Waterfall "${targetName}"`);
       return;
     }
 
-    // Remove the wtf-add-slide attribute
-    el.removeAttribute(ATTR_MANIPULATION_ADD_SLIDE);
+    el.removeAttribute(attr);
 
-    // Add to swiper
-    swiper.appendSlide(el.outerHTML);
-
-    // Track parent .w-dyn-list
-    const dynList = el.closest(".w-dyn-list");
-    if (dynList) {
-      dynListsToRemove.add(dynList);
+    if (action === "append" && typeof swiper.appendSlide === "function") {
+      swiper.appendSlide(el.outerHTML);
+    } else if (action === "prepend" && typeof swiper.prependSlide === "function") {
+      swiper.prependSlide(el.outerHTML);
+    } else if (action === "remove" && typeof swiper.removeSlide === "function") {
+      // Find the index of the slide in the swiper
+      const slideIndex = Array.from(swiper.slides).findIndex((slide) => slide.outerHTML === el.outerHTML);
+      if (slideIndex !== -1) {
+        swiper.removeSlide(slideIndex);
+      } else {
+        console.warn(`[MANIPULATION] Slide not found in Swiper for removal: ${targetName}`);
+      }
     }
+
+    const dynList = el.closest(".w-dyn-list");
+    if (dynList) dynListsToRemove.add(dynList);
   });
 
-  // Cleanup matched .w-dyn-list containers
-  dynListsToRemove.forEach((list) => {
-    list.remove();
-  });
+  dynListsToRemove.forEach((list) => list.remove());
+}
+
+export function addSlides() {
+  handleSlideManipulation(ATTR_MANIPULATION_ADD_SLIDE, "append");
+}
+export function appendSlides() {
+  handleSlideManipulation(ATTR_MANIPULATION_APPEND_SLIDE, "append");
+}
+export function prependSlides() {
+  handleSlideManipulation(ATTR_MANIPULATION_PREPEND_SLIDE, "prepend");
+}
+export function removeSlides() {
+  handleSlideManipulation(ATTR_MANIPULATION_REMOVE_SLIDE, "remove");
 }

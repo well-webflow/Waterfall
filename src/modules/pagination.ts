@@ -17,11 +17,11 @@ import {
   ATTR_PAGINATION_TYPE,
   ATTR_PAGINATION_VERTICAL_CLASS,
 } from "lib/attributes";
-import { getUniqueClasses, parseAttr } from "../util";
+import { getUniqueClasses, parseBoolean, parseNumber, parseString } from "../util";
 import { ATTR_WATERFALL_ELEMENT, EL_PAGINATION, EL_PAGINATION_BULLET, EL_PAGINATION_BULLET_ACTIVE } from "lib/elements";
 
 export function paginationConfig(element: HTMLElement) {
-  const paginationType = parseAttr(element, ATTR_PAGINATION_TYPE, "");
+  const paginationType = parseString(element, ATTR_PAGINATION_TYPE);
 
   const paginationBullet = element.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_PAGINATION_BULLET}]`);
 
@@ -37,37 +37,37 @@ export function paginationConfig(element: HTMLElement) {
         : "swiper-pagination-bullet-active",
     bulletClass: paginationBullet?.getAttribute("class")?.trim() || "swiper-pagination-bullet",
     bulletElement: paginationBullet?.tagName?.toLowerCase() || "span",
-    clickable: parseAttr(element, ATTR_PAGINATION_CLICKABLE, false),
-    clickableClass: parseAttr(element, ATTR_PAGINATION_CLICKABLE_CLASS, "swiper-pagination-clickable"),
-    currentClass: parseAttr(element, ATTR_PAGINATION_CURRENT_CLASS, "swiper-pagination-current"),
-    dynamicBullets: parseAttr(element, ATTR_PAGINATION_DYNAMIC_BULLETS, "swiper-pagination-current"),
-    dynamicMainBullets: parseAttr(element, ATTR_PAGINATION_DYNAMIC_MAIN_BULLETS, 1),
+    clickable: parseBoolean(element, ATTR_PAGINATION_CLICKABLE, false),
+    clickableClass: parseString(element, ATTR_PAGINATION_CLICKABLE_CLASS, "swiper-pagination-clickable"),
+    currentClass: parseString(element, ATTR_PAGINATION_CURRENT_CLASS, "swiper-pagination-current"),
+    dynamicBullets: parseString(element, ATTR_PAGINATION_DYNAMIC_BULLETS, "swiper-pagination-current"),
+    dynamicMainBullets: parseNumber(element, ATTR_PAGINATION_DYNAMIC_MAIN_BULLETS, 1),
     el: paginationEl || null,
-    enabled: parseAttr(element, ATTR_PAGINATION_ENABLED, null),
-    hiddenClass: parseAttr(element, ATTR_PAGINATION_HIDDEN_CLASS, "swiper-pagination-hidden"),
-    hideOnClick: parseAttr(element, ATTR_PAGINATION_HIDE_ON_CLICK, true),
-    horizontalClass: parseAttr(element, ATTR_PAGINATION_HORIZONTAL_CLASS, "swiper-pagination-horizontal"),
-    lockClass: parseAttr(element, ATTR_NAVIGATION_LOCK_CLASS, "swiper-pagination-lock"),
-    modifierClass: parseAttr(element, ATTR_PAGINATION_MODIFIER_CLASS, "swiper-pagination-"),
-    paginationDisabledClass: parseAttr(
+    enabled: parseBoolean(element, ATTR_PAGINATION_ENABLED),
+    hiddenClass: parseString(element, ATTR_PAGINATION_HIDDEN_CLASS, "swiper-pagination-hidden"),
+    hideOnClick: parseBoolean(element, ATTR_PAGINATION_HIDE_ON_CLICK, true),
+    horizontalClass: parseString(element, ATTR_PAGINATION_HORIZONTAL_CLASS, "swiper-pagination-horizontal"),
+    lockClass: parseString(element, ATTR_NAVIGATION_LOCK_CLASS, "swiper-pagination-lock"),
+    modifierClass: parseString(element, ATTR_PAGINATION_MODIFIER_CLASS, "swiper-pagination-"),
+    paginationDisabledClass: parseString(
       element,
       ATTR_PAGINATION_PAGINATION_DISABLED_CLASS,
       "swiper-pagination-disabled",
     ),
-    progressbarFillClass: parseAttr(
+    progressbarFillClass: parseString(
       element,
       ATTR_PAGINATION_PROGRESSBAR_FILL_CLASS,
       "swiper-pagination-progressbar-fill",
     ),
-    progressbarOpposite: parseAttr(
+    progressbarOpposite: parseString(
       element,
       ATTR_PAGINATION_PROGRESSBAR_OPPOSITE,
       "swiper-pagination-progressbar-opposite",
     ),
     renderBullet: customRenderBullet(),
-    totalClass: parseAttr(element, ATTR_PAGINATION_TOTAL_CLASS, "swiper-pagination-total"),
+    totalClass: parseString(element, ATTR_PAGINATION_TOTAL_CLASS, "swiper-pagination-total"),
     type: getPaginationType(),
-    verticalClass: parseAttr(element, ATTR_PAGINATION_VERTICAL_CLASS, "swiper-pagination-vertical"),
+    verticalClass: parseString(element, ATTR_PAGINATION_VERTICAL_CLASS, "swiper-pagination-vertical"),
   };
 
   function customRenderBullet() {

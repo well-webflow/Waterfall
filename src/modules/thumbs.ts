@@ -1,28 +1,27 @@
 import { ThumbsOptions } from "swiper/types";
-import { parseAttr, parseBoolean, parseNumber, parseString } from "../util";
+import { parseBoolean, parseNumber, parseString } from "../util";
 import { Waterfall } from "types/waterfall";
 import {
+  ATTR_THUMBS,
   ATTR_THUMBS_AUTO_SCROLL_OFFSET,
   ATTR_THUMBS_CONTAINER_CLASS,
   ATTR_THUMBS_MULTIPLE_ACTIVE_THUMBS,
-  ATTR_THUMBS_NAME,
   ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS,
 } from "lib/attributes";
 
-function getThumbsSwiper(el: HTMLElement, sliders: Waterfall[]): Waterfall | null {
-  const sliderName = parseAttr(el, ATTR_THUMBS_NAME, null);
-  if (sliderName === null) return null;
+export function thumbsConfig(el: HTMLElement, swipers: Waterfall[], debug: boolean) {
+  const thumbsName = parseString(el, ATTR_THUMBS, "");
+  if (!thumbsName || thumbsName === "") {
+    if (debug) console.log(`[Thumbs] No thumbs attribute found on element:`, el);
+    return;
+  }
 
-  const foundSlider = sliders.find((slider: Waterfall) => slider.name === sliderName);
+  const waterfall = swipers.find((slider: Waterfall) => slider.name === thumbsName);
 
-  if (foundSlider) return foundSlider;
-  console.log("A matching thumbs waterfall was not found for ", sliderName);
-  return null; // Return null if no match is found
-}
-
-export function thumbsConfig(el: HTMLElement, swipers: Waterfall[]) {
-  const waterfall = getThumbsSwiper(el, swipers);
-  if (!waterfall) return;
+  if (!waterfall) {
+    if (debug) console.warn("A matching thumbs waterfall was not found for ", thumbsName);
+    return;
+  }
 
   let config: ThumbsOptions = {
     autoScrollOffset: parseNumber(el, ATTR_THUMBS_AUTO_SCROLL_OFFSET, 0),

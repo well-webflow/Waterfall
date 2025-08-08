@@ -6,21 +6,21 @@ import {
   ATTR_HISTORY_REPLACE_STATE,
   ATTR_HISTORY_ROOT,
 } from "lib/attributes";
-import { parseAttr } from "../util";
+import { parseBoolean, parseString } from "../util";
 
 export function hashNavigationConfig(el: HTMLElement) {
   return {
     //getSlideIndex
-    replaceState: parseAttr(el, ATTR_HASH_REPLACE_STATE, false),
-    watchState: parseAttr(el, ATTR_HASH_WATCH_STATE, false),
+    replaceState: parseBoolean(el, ATTR_HASH_REPLACE_STATE, false),
+    watchState: parseBoolean(el, ATTR_HASH_WATCH_STATE, false),
   };
 }
 
 export function historyNavigationConfig(el: HTMLElement) {
   return {
-    keepQuery: parseAttr(el, ATTR_HISTORY_KEEP_QUERY, false),
-    key: parseAttr(el, ATTR_HISTORY_KEY, "slides"),
-    replaceState: parseAttr(el, ATTR_HISTORY_REPLACE_STATE, false),
-    root: parseAttr(el, ATTR_HISTORY_ROOT, ""),
+    keepQuery: parseBoolean(el, ATTR_HISTORY_KEEP_QUERY, false),
+    key: parseString(el, ATTR_HISTORY_KEY, "slides"),
+    replaceState: parseBoolean(el, ATTR_HISTORY_REPLACE_STATE, false),
+    root: parseString(el, ATTR_HISTORY_ROOT, ""),
   };
 }

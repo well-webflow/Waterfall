@@ -1,3 +1,4 @@
+import { parseBoolean, parseNumber } from "../util";
 import {
   ATTR_LMOBILE_CENTERED_SLIDES,
   ATTR_LMOBILE_SLIDES_PER_GROUP,
@@ -19,39 +20,38 @@ import {
   ATTR_XLARGE_SLIDES_PER_GROUP,
   ATTR_XLARGE_SPACE_BETWEEN,
 } from "../lib/attributes";
-import { parseAttr } from "../util";
 
 export function breakpointsConfig(el: HTMLElement) {
   return {
     478: {
-      centeredSlides: parseAttr(el, ATTR_LMOBILE_CENTERED_SLIDES, null),
-      slidesPerView: parseAttr(el, ATTR_LMOBILE_SLIDES_PER_VIEW, null),
-      slidesPerGroup: parseAttr(el, ATTR_LMOBILE_SLIDES_PER_GROUP, null),
-      spaceBetween: parseAttr(el, ATTR_LMOBILE_SPACE_BETWEEN, null),
+      centeredSlides: parseBoolean(el, ATTR_LMOBILE_CENTERED_SLIDES),
+      slidesPerView: parseNumber(el, ATTR_LMOBILE_SLIDES_PER_VIEW),
+      slidesPerGroup: parseNumber(el, ATTR_LMOBILE_SLIDES_PER_GROUP),
+      spaceBetween: parseNumber(el, ATTR_LMOBILE_SPACE_BETWEEN),
     },
     767: {
-      centeredSlides: parseAttr(el, ATTR_TABLET_CENTERED_SLIDES, null),
-      slidesPerView: parseAttr(el, ATTR_TABLET_SLIDES_PER_VIEW, null),
-      slidesPerGroup: parseAttr(el, ATTR_LARGE_SLIDES_PER_GROUP, null),
-      spaceBetween: parseAttr(el, ATTR_TABLET_SPACE_BETWEEN, null),
+      centeredSlides: parseBoolean(el, ATTR_TABLET_CENTERED_SLIDES),
+      slidesPerView: parseNumber(el, ATTR_TABLET_SLIDES_PER_VIEW),
+      slidesPerGroup: parseNumber(el, ATTR_LARGE_SLIDES_PER_GROUP),
+      spaceBetween: parseNumber(el, ATTR_TABLET_SPACE_BETWEEN),
     },
     991: {
-      centeredSlides: parseAttr(el, ATTR_DESKTOP_CENTERED_SLIDES, null),
-      slidesPerView: parseAttr(el, ATTR_DESKTOP_SLIDES_PER_VIEW, null),
-      slidesPerGroup: parseAttr(el, ATTR_DESKTOP_SLIDES_PER_GROUP, null),
-      spaceBetween: parseAttr(el, ATTR_DESKTOP_SPACE_BETWEEN, null),
+      centeredSlides: parseBoolean(el, ATTR_DESKTOP_CENTERED_SLIDES),
+      slidesPerView: parseNumber(el, ATTR_DESKTOP_SLIDES_PER_VIEW),
+      slidesPerGroup: parseNumber(el, ATTR_DESKTOP_SLIDES_PER_GROUP),
+      spaceBetween: parseNumber(el, ATTR_DESKTOP_SPACE_BETWEEN),
     },
     1280: {
-      centeredSlides: parseAttr(el, ATTR_LARGE_CENTERED_SLIDES, null),
-      slidesPerView: parseAttr(el, ATTR_LARGE_SLIDES_PER_VIEW, null),
-      slidesPerGroup: parseAttr(el, ATTR_LARGE_SLIDES_PER_GROUP, null),
-      spaceBetween: parseAttr(el, ATTR_LARGE_SPACE_BETWEEN, null),
+      centeredSlides: parseBoolean(el, ATTR_LARGE_CENTERED_SLIDES),
+      slidesPerView: parseNumber(el, ATTR_LARGE_SLIDES_PER_VIEW),
+      slidesPerGroup: parseNumber(el, ATTR_LARGE_SLIDES_PER_GROUP),
+      spaceBetween: parseNumber(el, ATTR_LARGE_SPACE_BETWEEN),
     },
     1440: {
-      centeredSlides: parseAttr(el, ATTR_XLARGE_CENTERED_SLIDES, null),
-      slidesPerView: parseAttr(el, ATTR_XLARGE_SLIDES_PER_VIEW, null),
-      slidesPerGroup: parseAttr(el, ATTR_XLARGE_SLIDES_PER_GROUP, null),
-      spaceBetween: parseAttr(el, ATTR_XLARGE_SPACE_BETWEEN, null),
+      centeredSlides: parseBoolean(el, ATTR_XLARGE_CENTERED_SLIDES),
+      slidesPerView: parseNumber(el, ATTR_XLARGE_SLIDES_PER_VIEW),
+      slidesPerGroup: parseNumber(el, ATTR_XLARGE_SLIDES_PER_GROUP),
+      spaceBetween: parseNumber(el, ATTR_XLARGE_SPACE_BETWEEN),
     },
   };
 }

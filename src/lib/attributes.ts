@@ -23,29 +23,28 @@ export const ATTR_A11Y_SCROLL_ON_FOCUS = "waterfall-a11y-scroll-on-focus";
 export const ATTR_A11Y_SLIDE_LABEL_MESSAGE = "waterfall-a11y-slide-label-message";
 export const ATTR_A11Y_SLIDE_ROLE = "waterfall-a11y-slide-role";
 // Breakpoints
-export const ATTR_LMOBILE_CENTERED_SLIDES = "waterfall-lmobile-centered-slides";
-export const ATTR_LMOBILE_SLIDES_PER_VIEW = "waterfall-lmobile-slides-per-view";
-export const ATTR_LMOBILE_SLIDES_PER_GROUP = "waterfall-lmobile-slides-per-group";
-export const ATTR_LMOBILE_SPACE_BETWEEN = "waterfall-lmobile-space-between";
-export const ATTR_TABLET_CENTERED_SLIDES = "waterfall-tablet-centered-slides";
-export const ATTR_TABLET_SLIDES_PER_VIEW = "waterfall-tablet-slides-per-view";
-export const ATTR_TABLET_SLIDES_PER_GROUP = "waterfall-tablet-slides-per-group";
-export const ATTR_TABLET_SPACE_BETWEEN = "waterfall-tablet-space-between";
-export const ATTR_DESKTOP_CENTERED_SLIDES = "waterfall-desktop-centered-slides";
-export const ATTR_DESKTOP_SLIDES_PER_VIEW = "waterfall-desktop-slides-per-view";
-export const ATTR_DESKTOP_SLIDES_PER_GROUP = "waterfall-desktop-slides-per-group";
-export const ATTR_DESKTOP_SPACE_BETWEEN = "waterfall-desktop-space-between";
-export const ATTR_LARGE_CENTERED_SLIDES = "waterfall-large-centered-slides";
-export const ATTR_LARGE_SLIDES_PER_VIEW = "waterfall-large-slides-per-view";
-export const ATTR_LARGE_SLIDES_PER_GROUP = "waterfall-large-slides-per-group";
-export const ATTR_LARGE_SPACE_BETWEEN = "waterfall-large-space-between";
-export const ATTR_XLARGE_CENTERED_SLIDES = "waterfall-xlarge-centered-slides";
-export const ATTR_XLARGE_SLIDES_PER_VIEW = "waterfall-xlarge-slides-per-view";
-export const ATTR_XLARGE_SLIDES_PER_GROUP = "waterfall-xlarge-slides-per-group";
-export const ATTR_XLARGE_SPACE_BETWEEN = "waterfall-xlarge-space-between";
+export const ATTR_LMOBILE_CENTERED_SLIDES = "waterfall-centered-slides-lmobile";
+export const ATTR_LMOBILE_SLIDES_PER_VIEW = "waterfall-slides-per-view-lmobile";
+export const ATTR_LMOBILE_SLIDES_PER_GROUP = "waterfall-slides-per-group-lmobile";
+export const ATTR_LMOBILE_SPACE_BETWEEN = "waterfall-space-between-lmobile";
+export const ATTR_TABLET_CENTERED_SLIDES = "waterfall-centered-slides-tablet";
+export const ATTR_TABLET_SLIDES_PER_VIEW = "waterfall-slides-per-view-tablet";
+export const ATTR_TABLET_SLIDES_PER_GROUP = "waterfall-slides-per-group-tablet";
+export const ATTR_TABLET_SPACE_BETWEEN = "waterfall-space-between-tablet";
+export const ATTR_DESKTOP_CENTERED_SLIDES = "waterfall-centered-slides-desktop";
+export const ATTR_DESKTOP_SLIDES_PER_VIEW = "waterfall-slides-per-view-desktop";
+export const ATTR_DESKTOP_SLIDES_PER_GROUP = "waterfall-slides-per-group-desktop";
+export const ATTR_DESKTOP_SPACE_BETWEEN = "waterfall-space-between-desktop";
+export const ATTR_LARGE_CENTERED_SLIDES = "waterfall-centered-slides-large";
+export const ATTR_LARGE_SLIDES_PER_VIEW = "waterfall-slides-per-view-large";
+export const ATTR_LARGE_SLIDES_PER_GROUP = "waterfall-slides-per-group-large";
+export const ATTR_LARGE_SPACE_BETWEEN = "waterfall-space-between-large";
+export const ATTR_XLARGE_CENTERED_SLIDES = "waterfall-centered-slides-xlarge";
+export const ATTR_XLARGE_SLIDES_PER_VIEW = "waterfall-slides-per-view-xlarge";
+export const ATTR_XLARGE_SLIDES_PER_GROUP = "waterfall-slides-per-group-xlarge";
+export const ATTR_XLARGE_SPACE_BETWEEN = "waterfall-space-between-xlarge";
 // Controller
 export const ATTR_CONTROLLER = "waterfall-controller";
-export const ATTR_CONTROLLER_CONTROL = "waterfall-controller-control";
 export const ATTR_CONTROLLER_BY = "waterfall-controller-by";
 export const ATTR_CONTROLLER_INVERSE = "waterfall-controller-inverse";
 // Effect
@@ -182,8 +181,6 @@ export const ATTR_MOUSE_THRESHOLD_TIME = "waterfall-mouse-threshold-time";
 // Grid
 export const ATTR_GRID_ROWS = "waterfall-grid-rows";
 export const ATTR_GRID_FILL = "waterfall-grid-fill";
-// Manipulation
-export const ATTR_MANIPULATION_ADD_SLIDE = "waterfall-wtf-add-slide";
 // Navigation
 export const ATTR_NAVIGATION_DISABLED_CLASS = "waterfall-navigation-disabled-class";
 export const ATTR_NAVIGATION_ENABLED = "waterfall-navigation-enabled";
@@ -241,11 +238,17 @@ export const ATTR_SCROLLBAR_SCROLLBAR_DISABLED_CLASS = "waterfall-scrollbar-scro
 export const ATTR_SCROLLBAR_VERTICAL_CLASS = "waterfall-scrollbar-vertical-class";
 export const ATTR_SCROLLBAR_SNAP_ON_RELEASE = "waterfall-scrollbar-snap-on-release";
 // Thumbs
-export const ATTR_THUMBS_NAME = "waterfall-thumbs-name";
+export const ATTR_THUMBS = "waterfall-thumbs";
 export const ATTR_THUMBS_AUTO_SCROLL_OFFSET = "waterfall-thumbs-auto-scroll-offset";
 export const ATTR_THUMBS_MULTIPLE_ACTIVE_THUMBS = "waterfall-thumbs-multiple-active-thumbs";
 export const ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS = "waterfall-slide-thumb-active-class";
 export const ATTR_THUMBS_CONTAINER_CLASS = "waterfall-thumbs-container-class";
+// Manipulation
+export const ATTR_MANIPULATION_ADD_SLIDE = "waterfall-add-slide";
+export const ATTR_MANIPULATION_APPEND_SLIDE = "waterfall-append-slide";
+export const ATTR_MANIPULATION_PREPEND_SLIDE = "waterfall-prepend-slide";
+export const ATTR_MANIPULATION_REMOVE_SLIDE = "waterfall-remove-slide";
+export const ATTR_MANIPULATION_REMOVE_ALL_SLIDES = "waterfall-remove-all-slides";
 // Zoom
 export const ATTR_ZOOM = "waterfall-zoom";
 export const ATTR_ZOOM_ENABLED = "waterfall-zoom-enabled";
@@ -259,4 +262,3 @@ export const ATTR_ZOOMED_SLIDE_CLASS = "waterfall-zoomed-slide-class";
 export const ATTR_ZOOM_FADE = "waterfall-zoom-fade";
 // Extras ??? //FIXME - this probably should be removed
 export const ATTR_PLAYBACK_MODE = "waterfall-playback-mode";
-export const ATTR_THUMBS = "waterfall-waterfall-thumbs";

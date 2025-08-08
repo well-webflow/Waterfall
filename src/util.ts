@@ -18,14 +18,14 @@ export function getUniqueClasses(targetElement: HTMLElement, comparisonElement: 
 }
 
 // ✅ Parse attribute as string (ignoring default value)
-export function parseString(el: HTMLElement, attrName: string, defaultValue: string): string | undefined {
+export function parseString(el: HTMLElement, attrName: string, defaultValue?: string): string | undefined {
   const attrValue = el.getAttribute(attrName)?.trim();
   if (!attrValue || attrValue === defaultValue) return undefined;
   return attrValue;
 }
 
 // ✅ Parse attribute as number
-export function parseNumber(el: HTMLElement, attrName: string, defaultValue: number): number | undefined {
+export function parseNumber(el: HTMLElement, attrName: string, defaultValue?: number): number | undefined {
   const attrValue = el.getAttribute(attrName)?.trim();
   if (!attrValue) return undefined;
 
@@ -36,7 +36,7 @@ export function parseNumber(el: HTMLElement, attrName: string, defaultValue: num
 }
 
 // ✅ Parse attribute as boolean
-export function parseBoolean(el: HTMLElement, attrName: string, defaultValue: boolean): boolean | undefined {
+export function parseBoolean(el: HTMLElement, attrName: string, defaultValue?: boolean): boolean | undefined {
   const attrValue = el.getAttribute(attrName)?.trim()?.toLowerCase();
   if (!attrValue) return undefined;
 
@@ -44,31 +44,6 @@ export function parseBoolean(el: HTMLElement, attrName: string, defaultValue: bo
   if (attrValue === "false") return defaultValue === false ? undefined : false;
 
   return undefined;
-}
-
-// ✅ Generic attribute parser
-export function parseAttr(
-  el: HTMLElement,
-  attrName: string,
-  defaultValue: string | number | boolean | null,
-): string | number | boolean | null {
-  const attrValue = el.getAttribute(attrName);
-  if (!attrValue) return null;
-
-  const trimmedInput = attrValue.trim();
-
-  // Number check
-  if (!isNaN(Number(trimmedInput))) {
-    const parsedNumber = parseFloat(trimmedInput);
-    return parsedNumber === defaultValue ? null : parsedNumber;
-  }
-
-  // Boolean check
-  if (trimmedInput.toLowerCase() === "true") return defaultValue === true ? null : true;
-  if (trimmedInput.toLowerCase() === "false") return defaultValue === false ? null : false;
-
-  // String match check
-  return trimmedInput === String(defaultValue) ? null : trimmedInput;
 }
 
 function isHTMLElement(value: unknown): value is HTMLElement {
@@ -91,11 +66,15 @@ export function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T)
   return obj;
 }
 
-// ✅ Get swipers by name
-export function getSwipersByName(waterfalls: Waterfall[], selector: string): Swiper[] {
-  return selector.split("_").reduce<Swiper[]>((swipers, name) => {
-    const waterfall = waterfalls.find((w) => w.name === name);
-    if (waterfall) swipers.push(waterfall.swiper);
-    return swipers;
-  }, []);
+export function getSwipersByName(waterfalls: Waterfall[], selector: string, debug: boolean): Swiper[] {
+  const matchedSwipers = waterfalls
+    .filter((w) => {
+      const match = w.name === selector;
+      return match;
+    })
+    .map((w) => w.swiper);
+
+  debug && console.log(`📊 Found ${matchedSwipers.length} matching swiper(s) for "${selector}"`);
+
+  return matchedSwipers;
 }

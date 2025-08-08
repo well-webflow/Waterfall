@@ -1,6 +1,6 @@
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
-import { parseAttr, removeNullOrUndefinedKeys, printDebug, parseString } from "./util";
+import { removeNullOrUndefinedKeys, parseString, parseBoolean } from "./util";
 import { navigationConfig } from "./modules/navigation";
 import { breakpointsConfig } from "./modules/breakpoints";
 import { paginationConfig } from "./modules/pagination";
@@ -20,15 +20,7 @@ import { accessibilityConfig } from "./modules/accessibility";
 import { addSlides } from "./modules/manipulation";
 import { zoomConfig } from "./modules/zoom";
 
-import {
-  ATTR_WATERFALL_PRELOAD,
-  ATTR_WATERFALL,
-  ATTR_WATERFALL_POSTLOAD,
-  ATTR_DEBUG_MODE,
-  ATTR_ADVANCED_DEBUG_MODE,
-  ATTR_PLAYBACK_MODE,
-  ATTR_THUMBS,
-} from "./lib/attributes";
+import { ATTR_WATERFALL, ATTR_DEBUG_MODE, ATTR_PLAYBACK_MODE, ATTR_THUMBS, ATTR_CONTROLLER } from "./lib/attributes";
 
 export * from "./lib/attributes";
 export * from "./lib/elements";
@@ -38,33 +30,34 @@ console.log(`🚿 Hello from Wellflow Waterfall v${APP_VERSION}`);
 const waterfalls: Waterfall[] = [];
 window.waterfalls = waterfalls;
 
-function initAll(selector: string) {
-  document.querySelectorAll(selector).forEach((el, index) => {
-    initConfig(el as HTMLElement, index);
+function initAll(selector: string, startIndex: number): number {
+  let index = startIndex;
+  document.querySelectorAll(selector).forEach((el) => {
+    initConfig(el as HTMLElement, index++);
   });
+  return index; // Return updated index
 }
 
-// Initialize Thumb Sliders first
-initAll(`[${ATTR_WATERFALL}][${ATTR_WATERFALL_PRELOAD}="true"]`);
+let indexCounter = 0;
 
 // Initialize all other sliders
-document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el, index) => {
-  if (el.getAttribute(ATTR_WATERFALL_PRELOAD) === "true" || el.getAttribute(ATTR_WATERFALL_POSTLOAD) === "true") return;
-
-  initConfig(el as HTMLElement, index);
+document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el) => {
+  if (el.hasAttribute(ATTR_THUMBS) || el.hasAttribute(ATTR_CONTROLLER)) return;
+  initConfig(el as HTMLElement, indexCounter++);
 });
 
-// Initialize Postload sliders
-initAll(`[${ATTR_WATERFALL}][${ATTR_WATERFALL_POSTLOAD}="true"]`);
+// Initialize Controller Sliders last
+indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_THUMBS}]`, indexCounter);
+indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_CONTROLLER}]`, indexCounter);
 
+// Config
 function initConfig(el: HTMLElement, index: number) {
   {
     const name = parseString(el, ATTR_WATERFALL, `Swiper ${index}`);
     if (!name) return;
 
-    const debug = Boolean(parseAttr(el, ATTR_DEBUG_MODE, false) || false);
-    const debugAdvanced = Boolean(parseAttr(el, ATTR_ADVANCED_DEBUG_MODE, false) || false);
-    console.log(`Initializing Waterfall: ${name} ${debug ? `[${debugAdvanced ? "ADVANCED " : ""}DEBUG]` : ""}`);
+    const debug = Boolean(parseBoolean(el, ATTR_DEBUG_MODE, false) || false);
+    console.log(`Initializing Waterfall: ${name} ${debug ? `[DEBUG]` : ""}`);
 
     // GENERAL CONFIG
     const swiperConfig: any = generalConfig(el);
@@ -73,7 +66,7 @@ function initConfig(el: HTMLElement, index: number) {
     swiperConfig.breakpoints = breakpointsConfig(el);
 
     // PLAYBACK
-    const playbackMode = parseAttr(el, ATTR_PLAYBACK_MODE, "none");
+    const playbackMode = parseString(el, ATTR_PLAYBACK_MODE, "none");
     if (playbackMode === "loop") swiperConfig.loop = true;
     if (playbackMode === "rewind") swiperConfig.rewind = true;
     if (playbackMode === "none") {
@@ -107,8 +100,7 @@ function initConfig(el: HTMLElement, index: number) {
     swiperConfig.grid = gridConfig(el);
 
     // THUMBS
-    const isThumbs = parseAttr(el, ATTR_THUMBS, null) === true;
-    if (!isThumbs) swiperConfig.thumbs = thumbsConfig(el, waterfalls);
+    swiperConfig.thumbs = thumbsConfig(el, waterfalls, debug);
 
     // ZOOM - NOT IMPLEMENTED
     swiperConfig.zoom = zoomConfig(el);
@@ -128,15 +120,15 @@ function initConfig(el: HTMLElement, index: number) {
     swiperConfig.history = historyNavigationConfig(el);
 
     // CONTROLLER
-    swiperConfig.controller = controllerConfig(el, waterfalls);
+    swiperConfig.controller = controllerConfig(el, waterfalls, debug);
 
     // A11Y
     swiperConfig.a11y = accessibilityConfig(el);
 
     // Clean up the config and debug
-    if (debugAdvanced) printDebug(debug, "CONFIG (UNCLEANED)", swiperConfig);
+    if (debug) console.log(`${name} Config (UNCLEANED):", ${swiperConfig}`);
     const config: SwiperOptions = removeNullOrUndefinedKeys(swiperConfig);
-    printDebug(debug, "CONFIG", config);
+    if (debug) console.log(`${name} CONFIG: ${config}`);
 
     // Initialize swiper
     const swiperEl = el.querySelector(".swiper");
@@ -145,7 +137,6 @@ function initConfig(el: HTMLElement, index: number) {
       console.warn(`Skipping "${name}": no .swiper-slide elements found.`);
       return;
     }
-    // INIT SWIPER
     const swiper = new Swiper(swiperEl as HTMLElement, config);
     waterfalls.push({ name, swiper });
   }
