@@ -245,9 +245,11 @@ export const ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS = "waterfall-slide-thumb-activ
 export const ATTR_THUMBS_CONTAINER_CLASS = "waterfall-thumbs-container-class";
 // Manipulation
 export const ATTR_MANIPULATION_ADD_SLIDE = "waterfall-add-slide";
+export const ATTR_MANIPULATION_ADD_INDEX = "waterfall-add-index";
 export const ATTR_MANIPULATION_APPEND_SLIDE = "waterfall-append-slide";
 export const ATTR_MANIPULATION_PREPEND_SLIDE = "waterfall-prepend-slide";
 export const ATTR_MANIPULATION_REMOVE_SLIDE = "waterfall-remove-slide";
+export const ATTR_MANIPULATION_REMOVE_INDEX = "waterfall-remove-index";
 export const ATTR_MANIPULATION_REMOVE_ALL_SLIDES = "waterfall-remove-all-slides";
 // Zoom
 export const ATTR_ZOOM = "waterfall-zoom";

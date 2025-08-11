@@ -19,7 +19,7 @@ import { keyboardConfig } from "./modules/keyboard";
 import { hashNavigationConfig, historyNavigationConfig } from "./modules/hashhistory";
 import { controllerConfig } from "./modules/controller";
 import { accessibilityConfig } from "./modules/accessibility";
-import { addSlides } from "./modules/manipulation";
+import { manipulateSlides } from "./modules/manipulation";
 import { zoomConfig } from "./modules/zoom";
 import { touchConfig } from "./modules/touch";
 import { mouseConfig } from "./modules/mouse";
@@ -65,7 +65,7 @@ function initConfig(el: HTMLElement, index: number) {
     if (!name) return;
 
     const debug = Boolean(parseBoolean(el, ATTR_DEBUG_MODE, false) || false);
-    console.log(`Initializing Waterfall: ${name} ${debug ? `[DEBUG]` : ""}`);
+    if (debug) console.warn(`Initializing Waterfall: ${name}`);
 
     let swiperConfig: any = {};
 
@@ -93,8 +93,7 @@ function initConfig(el: HTMLElement, index: number) {
     advancedConfig(swiperConfig, el);
 
     // Clean up the config and debug
-    if (debug) console.warn(`${name} Config:`);
-    if (debug) console.log(swiperConfig);
+    if (debug) console.warn(swiperConfig);
     const config: SwiperOptions = removeNullOrUndefinedKeys(swiperConfig);
 
     // Initialize swiper
@@ -109,10 +108,8 @@ function initConfig(el: HTMLElement, index: number) {
   }
 }
 
+// MANIPULATION
+manipulateSlides();
+
 // SLIDE COUNT
 initSlideCount();
-
-// MANIPULATION
-document.addEventListener("DOMContentLoaded", function () {
-  addSlides();
-});

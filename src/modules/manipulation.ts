@@ -1,12 +1,13 @@
 import {
+  ATTR_MANIPULATION_ADD_INDEX,
   ATTR_MANIPULATION_ADD_SLIDE,
   ATTR_MANIPULATION_APPEND_SLIDE,
   ATTR_MANIPULATION_PREPEND_SLIDE,
+  ATTR_MANIPULATION_REMOVE_INDEX,
   ATTR_MANIPULATION_REMOVE_SLIDE,
 } from "../lib/attributes";
 
-// Generic handler
-function handleSlideManipulation(attr: string, action: "append" | "prepend" | "remove") {
+function handleSlideManipulation(attr: string, action: "append" | "prepend" | "remove" | "add") {
   if (!Array.isArray(window.waterfalls)) {
     console.error("window.waterfalls is not an array or not defined.");
     return;
@@ -29,15 +30,16 @@ function handleSlideManipulation(attr: string, action: "append" | "prepend" | "r
       return;
     }
 
-    el.removeAttribute(attr);
-
-    if (action === "append" && typeof swiper.appendSlide === "function") {
+    if (action === "append") {
       swiper.appendSlide(el.outerHTML);
-    } else if (action === "prepend" && typeof swiper.prependSlide === "function") {
+    } else if (action === "prepend") {
       swiper.prependSlide(el.outerHTML);
-    } else if (action === "remove" && typeof swiper.removeSlide === "function") {
-      // Find the index of the slide in the swiper
-      const slideIndex = Array.from(swiper.slides).findIndex((slide) => slide.outerHTML === el.outerHTML);
+    } else if (action === "add") {
+      let index = Number(el.getAttribute(ATTR_MANIPULATION_ADD_INDEX));
+      if (!index) index = 1;
+      swiper.addSlide(index, [el.outerHTML]);
+    } else if (action === "remove") {
+      const slideIndex = Number(el.getAttribute(ATTR_MANIPULATION_REMOVE_INDEX));
       if (slideIndex !== -1) {
         swiper.removeSlide(slideIndex);
       } else {
@@ -45,22 +47,22 @@ function handleSlideManipulation(attr: string, action: "append" | "prepend" | "r
       }
     }
 
+    // Remove the original slide
+    el.remove();
+
     const dynList = el.closest(".w-dyn-list");
     if (dynList) dynListsToRemove.add(dynList);
+
+    // Update the swiper
+    swiper.update();
   });
 
   dynListsToRemove.forEach((list) => list.remove());
 }
 
-export function addSlides() {
-  handleSlideManipulation(ATTR_MANIPULATION_ADD_SLIDE, "append");
-}
-export function appendSlides() {
+export function manipulateSlides() {
+  handleSlideManipulation(ATTR_MANIPULATION_ADD_SLIDE, "add");
   handleSlideManipulation(ATTR_MANIPULATION_APPEND_SLIDE, "append");
-}
-export function prependSlides() {
   handleSlideManipulation(ATTR_MANIPULATION_PREPEND_SLIDE, "prepend");
-}
-export function removeSlides() {
   handleSlideManipulation(ATTR_MANIPULATION_REMOVE_SLIDE, "remove");
 }
