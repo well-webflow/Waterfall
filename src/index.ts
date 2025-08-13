@@ -27,6 +27,7 @@ import { freeModeConfig } from "./modules/freeMode";
 import lazyLoadConfig from "./modules/lazyLoad";
 import advancedConfig from "./modules/advanced";
 import observerConfig from "./modules/observer";
+import parallaxConfig from "./modules/parallax";
 
 import { ATTR_WATERFALL, ATTR_DEBUG_MODE, ATTR_THUMBS, ATTR_CONTROLLER } from "./lib/attributes";
 
@@ -90,6 +91,7 @@ function initConfig(el: HTMLElement, index: number) {
     lazyLoadConfig(swiperConfig, el);
     observerConfig(swiperConfig, el);
     zoomConfig(swiperConfig, el);
+    parallaxConfig(swiperConfig, el);
     advancedConfig(swiperConfig, el);
 
     // Clean up the config and debug

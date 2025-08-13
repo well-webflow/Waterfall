@@ -262,5 +262,14 @@ export const ATTR_ZOOM_PAN_ON_MOUSE_MOVE = "waterfall-zoom-pan-on-mouse-move";
 export const ATTR_ZOOM_TOGGLE = "waterfall-zoom-toggle";
 export const ATTR_ZOOMED_SLIDE_CLASS = "waterfall-zoomed-slide-class";
 export const ATTR_ZOOM_FADE = "waterfall-zoom-fade";
+// Parallax
+export const ATTR_PARALLAX_ENABLED = "waterfall-parallax-enabled";
+export const ATTR_PARALLAX = "data-swiper-parallax";
+export const ATTR_PARALLAX_X = "data-swiper-parallax-x";
+export const ATTR_PARALLAX_Y = "data-swiper-parallax-y";
+export const ATTR_PARALLAX_SCALE = "data-swiper-parallax-scale";
+export const ATTR_PARALLAX_OPACITY = "data-swiper-parallax-opacity";
+export const ATTR_PARALLAX_DURATION = "data-swiper-parallax-duration";
+
 // Extras ??? //FIXME - this probably should be removed
 export const ATTR_PLAYBACK_MODE = "waterfall-playback-mode";
