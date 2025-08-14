@@ -15,15 +15,16 @@ import {
   ATTR_SPACE_BETWEEN,
   ATTR_WIDTH,
 } from "lib/attributes";
-import { parseBoolean, parseNumber, parseString } from "../util";
+import { parseAny, parseBoolean, parseNumber, parseString } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export function layoutConfig(config: any, el: HTMLElement) {
+export function layoutConfig(config: SwiperOptions, el: HTMLElement) {
   config.autoHeight = parseBoolean(el, ATTR_AUTO_HEIGHT, false);
   config.centerInsufficientSlides = parseBoolean(el, ATTR_CENTER_INSUFFICIENT_SLIDES, false);
   config.centeredSlides = parseBoolean(el, ATTR_CENTERED_SLIDES, false);
-  config.direction = parseString(el, ATTR_DIRECTION, "horizontal");
+  config.direction = parseAny(el, ATTR_DIRECTION, "horizontal");
   config.grid = {
-    fill: parseString(el, ATTR_GRID_FILL, "column"),
+    fill: parseAny(el, ATTR_GRID_FILL, "column"),
     rows: parseNumber(el, ATTR_GRID_ROWS, 1),
   };
   config.height = parseNumber(el, ATTR_HEIGHT);

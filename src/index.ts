@@ -68,7 +68,7 @@ function initConfig(el: HTMLElement, index: number) {
     const debug = Boolean(parseBoolean(el, ATTR_DEBUG_MODE, false) || false);
     if (debug) console.warn(`Initializing Waterfall: ${name}`);
 
-    let swiperConfig: any = {};
+    let swiperConfig: SwiperOptions = {};
 
     generalConfig(swiperConfig, el);
     breakpointsConfig(swiperConfig, el);

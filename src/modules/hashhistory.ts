@@ -7,8 +7,9 @@ import {
   ATTR_HISTORY_ROOT,
 } from "lib/attributes";
 import { parseBoolean, parseString } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export function hashNavigationConfig(config: any, el: HTMLElement) {
+export function hashNavigationConfig(config: SwiperOptions, el: HTMLElement) {
   config.hashNavigation = {
     //getSlideIndex
     replaceState: parseBoolean(el, ATTR_HASH_REPLACE_STATE, false),
@@ -16,7 +17,7 @@ export function hashNavigationConfig(config: any, el: HTMLElement) {
   };
 }
 
-export function historyNavigationConfig(config: any, el: HTMLElement) {
+export function historyNavigationConfig(config: SwiperOptions, el: HTMLElement) {
   config.history = {
     keepQuery: parseBoolean(el, ATTR_HISTORY_KEEP_QUERY, false),
     key: parseString(el, ATTR_HISTORY_KEY, "slides"),

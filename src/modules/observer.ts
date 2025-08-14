@@ -8,8 +8,9 @@ import {
   ATTR_WATCH_SLIDES_PROGRESS,
 } from "lib/attributes";
 import { parseBoolean } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export default function observerConfig(config: any, el: HTMLElement) {
+export default function observerConfig(config: SwiperOptions, el: HTMLElement) {
   config.observeParents = parseBoolean(el, ATTR_OBSERVE_SLIDE_PARENTS, false);
   config.observeSlideChildren = parseBoolean(el, ATTR_OBSERVE_SLIDE_CHILDREN, false);
   config.observer = parseBoolean(el, ATTR_OBSERVER, false);

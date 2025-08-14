@@ -14,14 +14,16 @@ import {
   ATTR_PAGINATION_PAGINATION_DISABLED_CLASS,
   ATTR_PAGINATION_PROGRESSBAR_FILL_CLASS,
   ATTR_PAGINATION_PROGRESSBAR_OPPOSITE,
+  ATTR_PAGINATION_PROGRESSBAR_OPPOSITE_CLASS,
   ATTR_PAGINATION_TOTAL_CLASS,
   ATTR_PAGINATION_TYPE,
   ATTR_PAGINATION_VERTICAL_CLASS,
 } from "lib/attributes";
-import { getUniqueClasses, parseBoolean, parseNumber, parseString } from "../util";
+import { parseBoolean, parseNumber, parseString } from "../util";
 import { ATTR_WATERFALL_ELEMENT, EL_PAGINATION, EL_PAGINATION_BULLET, EL_PAGINATION_BULLET_ACTIVE } from "lib/elements";
+import { SwiperOptions } from "swiper/types";
 
-export function paginationConfig(config: any, element: HTMLElement) {
+export function paginationConfig(config: SwiperOptions, element: HTMLElement) {
   const paginationEl = element.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_PAGINATION}]`);
   if (!paginationEl) return;
 
@@ -36,7 +38,7 @@ export function paginationConfig(config: any, element: HTMLElement) {
     clickable: parseBoolean(element, ATTR_PAGINATION_CLICKABLE, false),
     clickableClass: parseString(element, ATTR_PAGINATION_CLICKABLE_CLASS, "swiper-pagination-clickable"),
     currentClass: parseString(element, ATTR_PAGINATION_CURRENT_CLASS, "swiper-pagination-current"),
-    dynamicBullets: parseString(element, ATTR_PAGINATION_DYNAMIC_BULLETS, "swiper-pagination-current"),
+    dynamicBullets: parseBoolean(element, ATTR_PAGINATION_DYNAMIC_BULLETS, false),
     dynamicMainBullets: parseNumber(element, ATTR_PAGINATION_DYNAMIC_MAIN_BULLETS, 1),
     el: paginationEl || null,
     enabled: parseBoolean(element, ATTR_PAGINATION_ENABLED),
@@ -55,9 +57,10 @@ export function paginationConfig(config: any, element: HTMLElement) {
       ATTR_PAGINATION_PROGRESSBAR_FILL_CLASS,
       "swiper-pagination-progressbar-fill",
     ),
-    progressbarOpposite: parseString(
+    progressbarOpposite: parseBoolean(element, ATTR_PAGINATION_PROGRESSBAR_OPPOSITE, false),
+    progressbarOppositeClass: parseString(
       element,
-      ATTR_PAGINATION_PROGRESSBAR_OPPOSITE,
+      ATTR_PAGINATION_PROGRESSBAR_OPPOSITE_CLASS,
       "swiper-pagination-progressbar-opposite",
     ),
     renderBullet: customRenderBullet(),
@@ -67,14 +70,13 @@ export function paginationConfig(config: any, element: HTMLElement) {
   };
 
   function customRenderBullet() {
-    let renderBullet: RenderBulletFunction | null = null;
     if (paginationType === "numberBullets") {
-      renderBullet = (index, className) => `<span class="${className}">${index + 1}</span>`;
+      return (index: number, className: string) => `<span class="${className}">${index + 1}</span>`;
     }
     if (paginationType === "bullets") {
-      renderBullet = (index, className) => `<span class="${className}"></span>`;
+      return (index: number, className: string) => `<span class="${className}"></span>`;
     }
-    return renderBullet;
+    return undefined;
   }
 
   function getPaginationType() {
@@ -86,4 +88,3 @@ export function paginationConfig(config: any, element: HTMLElement) {
   }
 }
 
-type RenderBulletFunction = (index: number, className: string) => string;

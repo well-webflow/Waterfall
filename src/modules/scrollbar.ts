@@ -10,16 +10,17 @@ import {
   ATTR_SCROLLBAR_VERTICAL_CLASS,
 } from "lib/attributes";
 import { ATTR_WATERFALL_ELEMENT, EL_SCROLLBAR, EL_SCROLLBAR_DRAG } from "lib/elements";
-import { parseBoolean, parseString } from "../util";
+import { parseAny, parseBoolean, parseString } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export function scrollbarConfig(config: any, element: HTMLElement) {
+export function scrollbarConfig(config: SwiperOptions, element: HTMLElement) {
   const scrollbar = element.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_SCROLLBAR}]`);
   if (!scrollbar) return;
   const scrollbarDrag = scrollbar?.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_SCROLLBAR_DRAG}]`);
 
   config.scrollbar = {
     dragClass: scrollbarDrag?.getAttribute("class") || "",
-    dragSize: parseString(element, ATTR_SCROLLBAR_DRAG_SIZE, "auto"),
+    dragSize: parseAny(element, ATTR_SCROLLBAR_DRAG_SIZE, "auto"),
     draggable: parseBoolean(element, ATTR_SCROLLBAR_DRAGGABLE, false),
     el: scrollbar || null,
     enabled: parseBoolean(element, ATTR_SCROLLBAR_ENABLED),

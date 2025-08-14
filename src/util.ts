@@ -24,6 +24,12 @@ export function parseString(el: HTMLElement, attrName: string, defaultValue?: st
   return attrValue;
 }
 
+export function parseAny(el: HTMLElement, attrName: string, defaultValue?: any): any | undefined {
+  const attrValue = el.getAttribute(attrName)?.trim();
+  if (!attrValue || attrValue === defaultValue) return undefined;
+  return attrValue;
+}
+
 // ✅ Parse attribute as number
 export function parseNumber(el: HTMLElement, attrName: string, defaultValue?: number): number | undefined {
   const attrValue = el.getAttribute(attrName)?.trim();

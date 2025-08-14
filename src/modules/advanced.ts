@@ -14,8 +14,9 @@ import {
   ATTR_USER_AGENT,
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export default function advancedConfig(config: any, el: HTMLElement) {
+export default function advancedConfig(config: SwiperOptions, el: HTMLElement) {
   // NOTE Not using Create Elements because they should be created in Webflow instead
   config.createElements = parseBoolean(el, ATTR_CREATE_ELEMENTS, false);
   // NOTE This option breaks several properties when used

@@ -23,8 +23,9 @@ import {
   ATTR_STOP_ON_LAST_SLIDE,
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export function playbackConfig(config: any, el: HTMLElement) {
+export function playbackConfig(config: SwiperOptions, el: HTMLElement) {
   // Set Loop, Rewind, or None
   const playbackMode = parseString(el, ATTR_PLAYBACK_MODE, "none");
   if (playbackMode === "loop") config.loop = true;

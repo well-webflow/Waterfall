@@ -1,4 +1,4 @@
-import { A11yOptions } from "swiper/types";
+import { A11yOptions, SwiperOptions } from "swiper/types";
 import { parseBoolean, parseString } from "../util";
 import {
   ATTR_A11Y_CONTAINER_MESSAGE,
@@ -18,7 +18,7 @@ import {
   ATTR_A11Y_SLIDE_ROLE,
 } from "../lib/attributes";
 
-export function accessibilityConfig(config: any, el: HTMLElement) {
+export function accessibilityConfig(config: SwiperOptions, el: HTMLElement) {
   config.a11y = {
     containerMessage: parseString(el, ATTR_A11Y_CONTAINER_MESSAGE, ""),
     containerRole: parseString(el, ATTR_A11Y_CONTAINER_ROLE, ""),

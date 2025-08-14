@@ -28,9 +28,10 @@ import {
   ATTR_TOUCH_START_FORCE_PREVENT_DEFAULT,
   ATTR_TOUCH_START_PREVENT_DEFAULT,
 } from "lib/attributes";
-import { parseBoolean, parseNumber, parseString } from "../util";
+import { parseAny, parseBoolean, parseNumber, parseString } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export function touchConfig(config: any, el: HTMLElement) {
+export function touchConfig(config: SwiperOptions, el: HTMLElement) {
   config.allowTouchMove = parseBoolean(el, ATTR_ALLOW_TOUCH_MOVE, true);
   config.edgeSwipeDetection = parseBoolean(el, ATTR_EDGE_SWIPE_DETECTION, false);
   config.edgeSwipeThreshold = parseNumber(el, ATTR_EDGE_SWIPE_THRESHOLD, 20);
@@ -57,7 +58,7 @@ export function touchConfig(config: any, el: HTMLElement) {
   config.slideToClickedSlide = parseBoolean(el, ATTR_SLIDE_TO_CLICKED_SLIDE, false);
   config.threshold = parseNumber(el, ATTR_THRESHOLD, 5);
   config.touchAngle = parseNumber(el, ATTR_TOUCH_ANGLE, 45);
-  config.touchEventsTarget = parseString(el, ATTR_TOUCH_EVENTS_TARGET, "wrapper");
+  config.touchEventsTarget = parseAny(el, ATTR_TOUCH_EVENTS_TARGET, "wrapper");
   config.touchMoveStopPropagation = parseBoolean(el, ATTR_TOUCH_MOVE_STOP_PROPAGATION, false);
   config.touchRatio = parseNumber(el, ATTR_TOUCH_RATIO, 1);
   config.touchReleaseOnEdges = parseBoolean(el, ATTR_TOUCH_RELEASE_ON_EDGES, false);

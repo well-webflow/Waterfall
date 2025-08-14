@@ -18,13 +18,14 @@ import {
   ATTR_EFFECT,
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export function effectConfig(config: any, el: HTMLElement) {
+export function effectConfig(config: SwiperOptions, el: HTMLElement) {
   const effect = parseString(el, ATTR_EFFECT, "slide");
   config.effect = effect;
 
   if (effect === "fade") {
-    config.fadeEffect = { crossFade: "true" };
+    config.fadeEffect = { crossFade: true };
   } else if (effect === "coverflow") {
     config.coverflowEffect = {
       depth: parseNumber(el, ATTR_COVERFLOW_DEPTH, 100),

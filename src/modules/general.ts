@@ -15,8 +15,9 @@ import {
   ATTR_WRAPPER_CLASS,
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export function generalConfig(config: any, el: HTMLElement) {
+export function generalConfig(config: SwiperOptions, el: HTMLElement) {
   config.containerModifierClass = parseString(el, ATTR_CONTAINER_MODIFIER_CLASS, "swiper-");
   config.initialSlide = parseNumber(el, ATTR_INITIAL_SLIDE, 0);
   config.nested = parseBoolean(el, ATTR_NESTED, false);

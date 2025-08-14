@@ -21,8 +21,9 @@ import {
   ATTR_XLARGE_SPACE_BETWEEN,
   ATTR_BREAKPOINTS_BASE,
 } from "../lib/attributes";
+import { SwiperOptions } from "swiper/types";
 
-export function breakpointsConfig(config: any, el: HTMLElement) {
+export function breakpointsConfig(config: SwiperOptions, el: HTMLElement) {
   config.breakpointsBase = parseString(el, ATTR_BREAKPOINTS_BASE, "window");
 
   config.breakpoints = {

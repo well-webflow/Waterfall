@@ -8,8 +8,9 @@ import {
   ATTR_ZOOMED_SLIDE_CLASS,
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export function zoomConfig(config: any, el: HTMLElement) {
+export function zoomConfig(config: SwiperOptions, el: HTMLElement) {
   config.zoom = {
     containerClass: parseString(el, ATTR_ZOOM_CONTAINER_CLASS, "swiper-zoom-container"),
     limitToOriginalSize: parseBoolean(el, ATTR_ZOOM_LIMIT_TO_ORIGINAL_SIZE, false),

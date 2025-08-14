@@ -9,8 +9,9 @@ import {
   ATTR_FREE_MODE_STICKY,
 } from "lib/attributes";
 import { parseBoolean, parseNumber } from "../util";
+import { SwiperOptions } from "swiper/types";
 
-export function freeModeConfig(config: any, el: HTMLElement) {
+export function freeModeConfig(config: SwiperOptions, el: HTMLElement) {
   config.freeMode = {
     enabled: parseBoolean(el, ATTR_FREE_MODE_ENABLED, false),
     minimumVelocity: parseNumber(el, ATTR_FREE_MODE_MINIMUM_VELOCITY, 0.02),

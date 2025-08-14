@@ -206,6 +206,7 @@ export const ATTR_PAGINATION_MODIFIER_CLASS = "waterfall-pagination-modifier-cla
 export const ATTR_PAGINATION_PAGINATION_DISABLED_CLASS = "waterfall-pagination-pagination-disabled-class";
 export const ATTR_PAGINATION_PROGRESSBAR_FILL_CLASS = "waterfall-pagination-progressbar-fill-class";
 export const ATTR_PAGINATION_PROGRESSBAR_OPPOSITE = "waterfall-pagination-progressbar-opposite";
+export const ATTR_PAGINATION_PROGRESSBAR_OPPOSITE_CLASS = "waterfall-pagination-progressbar-opposite-class";
 export const ATTR_PAGINATION_TOTAL_CLASS = "waterfall-pagination-total-class";
 export const ATTR_PAGINATION_VERTICAL_CLASS = "waterfall-pagination-vertical-class";
 // Playback

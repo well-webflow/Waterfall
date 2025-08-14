@@ -1,4 +1,4 @@
-import { ThumbsOptions } from "swiper/types";
+import { SwiperOptions } from "swiper/types";
 import { parseBoolean, parseNumber, parseString } from "../util";
 import { Waterfall } from "types/waterfall";
 import {
@@ -9,7 +9,7 @@ import {
   ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS,
 } from "lib/attributes";
 
-export function thumbsConfig(config: any, el: HTMLElement, swipers: Waterfall[], debug: boolean) {
+export function thumbsConfig(config: SwiperOptions, el: HTMLElement, swipers: Waterfall[], debug: boolean) {
   const thumbsName = parseString(el, ATTR_THUMBS, "");
   if (!thumbsName || thumbsName === "") {
     return;
