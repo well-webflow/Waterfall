@@ -14,7 +14,7 @@ body:
     validations:
       required: true
 
-  - type: select
+  - type: dropdown
     id: app
     attributes:
       label: app
