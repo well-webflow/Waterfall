@@ -1,8 +1,17 @@
 {
   "name": "well-waterfall",
-  "version": "1.1.11",
-  "description": "An attribute-based wrapper of SwiperJS for Webflow",
-  "main": "dist/index.js",
+  "version": "1.2.6",
+  "description": "Create Swipers in Webflow with attributes",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build",
@@ -29,6 +38,7 @@
     "prettier": "^3.4.2",
     "typescript": "^5.7.3",
     "vite": "^7.1.2",
-    "vite-plugin-css-injected-by-js": "^3.5.2"
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vite-plugin-dts": "^4.5.4"
   }
 }

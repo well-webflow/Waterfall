@@ -18,6 +18,8 @@
     },
     "resolveJsonModule": true,
     "sourceMap": true,
+    "declaration": true,
+    "declarationDir": "dist",
     "types": ["jquery", "vite/client"]
   },
   "include": ["src/**/*", "src/**/*.tsx", "src/types/**/*.d.ts"],

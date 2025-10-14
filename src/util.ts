@@ -84,3 +84,9 @@ export function getSwipersByName(waterfalls: Waterfall[], selector: string, debu
 
   return matchedSwipers;
 }
+
+export function fixWebflowCMSListARIARole() {
+  document.querySelectorAll('[waterfall] .swiper-wrapper[role="list"]').forEach((wrapper) => {
+    wrapper.removeAttribute("role");
+  });
+}

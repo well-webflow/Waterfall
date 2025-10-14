@@ -2,6 +2,7 @@
 export const ATTR_WATERFALL = "waterfall";
 export const ATTR_WATERFALL_PRELOAD = "waterfall-preload";
 export const ATTR_WATERFALL_POSTLOAD = "waterfall-postload";
+export const ATTR_WATERFALL_CONTENT = "waterfall-content";
 // Debug
 export const ATTR_DEBUG_MODE = "waterfall-debug-mode";
 export const ATTR_ADVANCED_DEBUG_MODE = "waterfall-advanced-debug-mode";

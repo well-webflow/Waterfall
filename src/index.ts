@@ -4,7 +4,7 @@ import "swiper/css/bundle";
 import { SwiperOptions } from "swiper/types";
 import { Waterfall } from "./types/waterfall";
 
-import { removeNullOrUndefinedKeys, parseString, parseBoolean } from "./util";
+import { removeNullOrUndefinedKeys, parseString, parseBoolean, fixWebflowCMSListARIARole } from "./util";
 import { navigationConfig } from "./modules/navigation";
 import { breakpointsConfig } from "./modules/breakpoints";
 import { paginationConfig } from "./modules/pagination";
@@ -115,3 +115,6 @@ manipulateSlides();
 
 // SLIDE COUNT
 initSlideCount();
+
+// ARIA ROLE FIX FOR WEBFLOW CMS LIST
+fixWebflowCMSListARIARole();

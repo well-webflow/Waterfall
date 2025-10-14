@@ -39,11 +39,17 @@ export function playbackConfig(config: SwiperOptions, el: HTMLElement) {
   config.loopPreventsSliding = parseBoolean(el, ATTR_LOOP_PREVENTS_SLIDING, true);
   // Autoplay
   const autoplayMode = parseBoolean(el, ATTR_AUTOPLAY, false);
+
+  // Smooth Autoplay
+  const smoothAutoplay = parseBoolean(el, ATTR_SMOOTH_AUTOPLAY, false);
+  let delay = parseNumber(el, ATTR_DELAY, undefined);
+  if (smoothAutoplay) delay = 0;
+
   if (autoplayMode) {
     // Add CSS for Smooth Autoplay
     setSmoothAutoplay();
     config.autoplay = {
-      delay: parseNumber(el, ATTR_DELAY, 3000),
+      delay,
       disableOnInteraction: parseBoolean(el, ATTR_DISABLE_ON_INTERACTION, false), // documentation says default is true, doesn't appear to be correct
       reverseDirection: parseBoolean(el, ATTR_REVERSE_DIRECTION, false),
       pauseOnMouseEnter: parseBoolean(el, ATTR_PAUSE_ON_MOUSE_ENTER, false),
