@@ -1,0 +1,12 @@
+import { default as Swiper } from 'swiper';
+import { Waterfall } from 'types/waterfall';
+export declare function printDebug(debug: boolean, str: string, el: any): void;
+export declare function getUniqueClasses(targetElement: HTMLElement, comparisonElement: HTMLElement): string;
+export declare function parseString(el: HTMLElement, attrName: string, defaultValue?: string): string | undefined;
+export declare function parseSlidesPerView(el: HTMLElement, attrName: string, defaultValue?: number): number | "auto" | undefined;
+export declare function parseAny(el: HTMLElement, attrName: string, defaultValue?: any): any | undefined;
+export declare function parseNumber(el: HTMLElement, attrName: string, defaultValue?: number): number | undefined;
+export declare function parseBoolean(el: HTMLElement, attrName: string, defaultValue?: boolean): boolean | undefined;
+export declare function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T): T;
+export declare function getSwipersByName(waterfalls: Waterfall[], selector: string, debug: boolean): Swiper[];
+export declare function fixWebflowCMSListARIARole(): void;

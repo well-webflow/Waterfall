@@ -2,14 +2,14 @@
   "name": "well-waterfall",
   "version": "1.2.8",
   "description": "Create Swipers in Webflow with attributes",
-  "main": "dist/index.umd.js",
-  "module": "dist/index.es.js",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
+      "import": "./dist/index.js"
     }
   },
   "scripts": {
