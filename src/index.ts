@@ -49,15 +49,26 @@ function initAll(selector: string, startIndex: number): number {
 
 let indexCounter = 0;
 
-// Initialize all other sliders
-document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el) => {
-  if (el.hasAttribute(ATTR_THUMBS) || el.hasAttribute(ATTR_CONTROLLER)) return;
-  initConfig(el as HTMLElement, indexCounter++);
-});
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize all other sliders
+  document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el) => {
+    if (el.hasAttribute(ATTR_THUMBS) || el.hasAttribute(ATTR_CONTROLLER)) return;
+    initConfig(el as HTMLElement, indexCounter++);
+  });
 
-// Initialize Controller Sliders last
-indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_THUMBS}]`, indexCounter);
-indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_CONTROLLER}]`, indexCounter);
+  // Initialize Controller Sliders last
+  indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_THUMBS}]`, indexCounter);
+  indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_CONTROLLER}]`, indexCounter);
+
+  // MANIPULATION
+  manipulateSlides();
+
+  // SLIDE COUNT
+  initSlideCount();
+
+  // ARIA ROLE FIX FOR WEBFLOW CMS LIST
+  fixWebflowCMSListARIARole();
+});
 
 // Config
 function initConfig(el: HTMLElement, index: number) {
@@ -100,7 +111,9 @@ function initConfig(el: HTMLElement, index: number) {
 
     // Initialize swiper
     const swiperEl = el.querySelector(".swiper");
+    if (debug) console.log("SWIPER: ", swiperEl);
     const slides = swiperEl?.querySelectorAll(".swiper-slide") || [];
+    if (debug) console.log("SWIPER SLIDES: ", slides);
     if (slides.length === 0) {
       console.warn(`Skipping "${name}": no .swiper-slide elements found.`);
       return;
@@ -109,12 +122,3 @@ function initConfig(el: HTMLElement, index: number) {
     waterfalls.push({ name, swiper });
   }
 }
-
-// MANIPULATION
-manipulateSlides();
-
-// SLIDE COUNT
-initSlideCount();
-
-// ARIA ROLE FIX FOR WEBFLOW CMS LIST
-fixWebflowCMSListARIARole();

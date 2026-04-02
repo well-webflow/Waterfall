@@ -24,6 +24,22 @@ export function parseString(el: HTMLElement, attrName: string, defaultValue?: st
   return attrValue;
 }
 
+export function parseSlidesPerView(
+  el: HTMLElement,
+  attrName: string,
+  defaultValue?: number,
+): number | "auto" | undefined {
+  const attrValue = el.getAttribute(attrName)?.trim();
+  if (!attrValue) return undefined;
+
+  if (attrValue.toLowerCase() === "auto") return "auto";
+
+  const parsedValue = Number(attrValue);
+  const validAndUnique = isNaN(parsedValue) || parsedValue === defaultValue;
+  if (validAndUnique) return undefined;
+  return parsedValue;
+}
+
 export function parseAny(el: HTMLElement, attrName: string, defaultValue?: any): any | undefined {
   const attrValue = el.getAttribute(attrName)?.trim();
   if (!attrValue || attrValue === defaultValue) return undefined;

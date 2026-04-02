@@ -15,7 +15,7 @@ import {
   ATTR_SPACE_BETWEEN,
   ATTR_WIDTH,
 } from "lib/attributes";
-import { parseAny, parseBoolean, parseNumber, parseString } from "../util";
+import { parseAny, parseBoolean, parseNumber, parseSlidesPerView, parseString } from "../util";
 import { SwiperOptions } from "swiper/types";
 
 export function layoutConfig(config: SwiperOptions, el: HTMLElement) {
@@ -33,7 +33,7 @@ export function layoutConfig(config: SwiperOptions, el: HTMLElement) {
   config.slidesPerGroup = parseNumber(el, ATTR_SLIDES_PER_GROUP, 1);
   config.slidesPerGroupAuto = parseBoolean(el, ATTR_SLIDES_PER_GROUP_AUTO, false);
   config.slidesPerGroupSkip = parseNumber(el, ATTR_SLIDES_PER_GROUP_SKIP, 0);
-  config.slidesPerView = parseNumber(el, ATTR_SLIDES_PER_VIEW, 1);
+  config.slidesPerView = parseSlidesPerView(el, ATTR_SLIDES_PER_VIEW, 1);
   config.spaceBetween = parseNumber(el, ATTR_SPACE_BETWEEN, 0);
   config.width = parseNumber(el, ATTR_WIDTH);
 }
