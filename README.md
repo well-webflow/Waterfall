@@ -2,9 +2,7 @@
 
 # 🚿 Waterfall by Wellflow 🚿
 
-Waterfall is a Javascript library for Webflow that enables developers to build sliders based on SwiperJS with attributes. The Wellflow app also helps create, edit, and manage Waterfalls with an easy to use interface with full documentation.
-
-Other slider libraries are too expensive or have limited options. Waterfall is free, and includes nearly all of the options you can find in SwiperJS. Here's what sets Waterfall apart from other Slider solutions:
+Waterfall is a free-forever Javascript library for Webflow that enables developers to build sliders with attributes. Wellflow app also helps create, edit, and manage Waterfalls with an easy to use interface with full documentation.
 
 1.  **Free to Use.** Waterfall is free to use - no monthly subscription.
 2.  **No Custom Code.** The Wellflow App provides endless customization options without needing to write any code.
@@ -36,13 +34,13 @@ Add the code to the Footer Code (after the `</body>` tag) in the Webflow Project
 **Latest Version**
 
 ```
-<script src="https://cdn.jsdelivr.net/npm/well-waterfall"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall"></script>
 ```
 
 **Specific Version (Stable - Recommended)**
 
 ```
-<script src="https://cdn.jsdelivr.net/npm/well-waterfall@1.2.0"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.2.9"></script>
 ```
 
 ## Supported SwiperJS Settings

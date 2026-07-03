@@ -6,7 +6,7 @@ export const ATTR_WATERFALL_CONTENT = "waterfall-content";
 // Debug
 export const ATTR_DEBUG_MODE = "waterfall-debug-mode";
 export const ATTR_ADVANCED_DEBUG_MODE = "waterfall-advanced-debug-mode";
-// A11Y
+// A11Y`
 export const ATTR_A11Y = "waterfall-a11y";
 export const ATTR_A11Y_CONTAINER_MESSAGE = "waterfall-a11y-container-message";
 export const ATTR_A11Y_CONTAINER_ROLE = "waterfall-a11y-container-role";
