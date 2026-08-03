@@ -5030,7 +5030,7 @@ function Pe(e, t) {
       return;
     }
     const o = a.cloneNode(!0);
-    if (o.removeAttribute(e), t === "add" ? o.removeAttribute(pt) : t === "remove" && o.removeAttribute(mt), t === "append")
+    if (o.removeAttribute(e), t === "add" ? o.removeAttribute(pt) : t === "remove" && o.removeAttribute(mt), o.classList.contains("swiper-slide") || o.classList.add("swiper-slide"), t === "append")
       u.appendSlide(o.outerHTML);
     else if (t === "prepend")
       u.prependSlide(o.outerHTML);

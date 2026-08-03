@@ -38,6 +38,11 @@ function handleSlideManipulation(attr: string, action: "append" | "prepend" | "r
       clone.removeAttribute(ATTR_MANIPULATION_REMOVE_INDEX);
     }
 
+    // Ensure the element has the swiper-slide class
+    if (!clone.classList.contains("swiper-slide")) {
+      clone.classList.add("swiper-slide");
+    }
+
     if (action === "append") {
       swiper.appendSlide(clone.outerHTML);
     } else if (action === "prepend") {
