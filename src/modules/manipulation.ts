@@ -37,7 +37,7 @@ function handleSlideManipulation(attr: string, action: "append" | "prepend" | "r
     } else if (action === "add") {
       let index = Number(el.getAttribute(ATTR_MANIPULATION_ADD_INDEX));
       if (!index) index = 1;
-      swiper.addSlide(index, [el.outerHTML]);
+      swiper.addSlide(index, el.outerHTML);
     } else if (action === "remove") {
       const slideIndex = Number(el.getAttribute(ATTR_MANIPULATION_REMOVE_INDEX));
       if (slideIndex !== -1) {

@@ -60,9 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
   indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_THUMBS}]`, indexCounter);
   indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_CONTROLLER}]`, indexCounter);
 
-  // MANIPULATION
-  manipulateSlides();
-
   // SLIDE COUNT
   initSlideCount();
 
@@ -104,6 +101,9 @@ function initConfig(el: HTMLElement, index: number) {
     zoomConfig(swiperConfig, el);
     parallaxConfig(swiperConfig, el);
     advancedConfig(swiperConfig, el);
+
+    // MANIPULATION - Add or remove slides
+    manipulateSlides();
 
     // Clean up the config and debug
     if (debug) console.warn(swiperConfig);
