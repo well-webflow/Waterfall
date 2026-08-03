@@ -45,7 +45,13 @@ function handleSlideManipulation(attr: string, action: "append" | "prepend" | "r
     } else if (action === "add") {
       let index = Number(el.getAttribute(ATTR_MANIPULATION_ADD_INDEX));
       if (!index) index = 1;
-      swiper.addSlide(index, clone.outerHTML);
+      // Parse HTML string into DOM element (addSlide doesn't handle strings properly)
+      const tempDOM = document.createElement("div");
+      tempDOM.innerHTML = clone.outerHTML;
+      const slideElement = tempDOM.children[0] as HTMLElement;
+      if (slideElement) {
+        swiper.addSlide(index, slideElement);
+      }
     } else if (action === "remove") {
       const slideIndex = Number(el.getAttribute(ATTR_MANIPULATION_REMOVE_INDEX));
       if (slideIndex !== -1) {
