@@ -6,7 +6,7 @@ import {
   ATTR_MANIPULATION_REMOVE_INDEX,
   ATTR_MANIPULATION_REMOVE_SLIDE,
 } from "../lib/attributes";
-import { getWaterfallByName } from "../util";
+import { findWaterfallByName } from "../util";
 
 function handleSlideManipulation(attr: string, action: "append" | "prepend" | "remove" | "add") {
   if (!Array.isArray(window.waterfalls)) {
@@ -19,18 +19,11 @@ function handleSlideManipulation(attr: string, action: "append" | "prepend" | "r
   document.querySelectorAll(`[${attr}]`).forEach((el) => {
     const targetName = el.getAttribute(attr);
     if (!targetName) return;
-    const matchedWaterfall = getWaterfallByName(window.waterfalls, targetName);
 
-    if (!matchedWaterfall) {
-      console.warn(`[MANIPULATION] No Waterfall found with name: "${targetName}"`);
-      return;
-    }
+    const matchedWaterfall = findWaterfallByName(window.waterfalls, targetName);
+    if (!matchedWaterfall) return;
 
     const swiper = matchedWaterfall.swiper;
-    if (!swiper) {
-      console.error(`[MANIPULATION] Invalid Swiper instance in Waterfall "${targetName}"`);
-      return;
-    }
 
     const clone = el.cloneNode(true) as Element;
     clone.removeAttribute(attr);

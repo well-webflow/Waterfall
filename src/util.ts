@@ -92,6 +92,19 @@ export function getWaterfallByName(waterfalls: Waterfall[], name: string): Water
   return waterfalls.find((w) => w.name?.toLowerCase() === name?.toLowerCase());
 }
 
+export function findWaterfallByName(waterfalls: Waterfall[], name: string): Waterfall | null {
+  const waterfall = getWaterfallByName(waterfalls, name);
+  if (!waterfall) {
+    console.warn(`[MANIPULATION] No Waterfall found with name: "${name}"`);
+    return null;
+  }
+  if (!waterfall.swiper) {
+    console.error(`[MANIPULATION] Invalid Swiper instance in Waterfall "${name}"`);
+    return null;
+  }
+  return waterfall;
+}
+
 export function getWaterfallsByName(waterfalls: Waterfall[], selector: string, debug: boolean): Swiper[] {
   const matchedWaterfalls = waterfalls
     .filter((w) => {
