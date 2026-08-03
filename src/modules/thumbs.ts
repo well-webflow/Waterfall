@@ -1,5 +1,5 @@
 import { SwiperOptions } from "swiper/types";
-import { parseBoolean, parseNumber, parseString } from "../util";
+import { getWaterfallByName, parseBoolean, parseNumber, parseString } from "../util";
 import { Waterfall } from "types/waterfall";
 import {
   ATTR_THUMBS,
@@ -15,7 +15,7 @@ export function thumbsConfig(config: SwiperOptions, el: HTMLElement, swipers: Wa
     return;
   }
 
-  const waterfall = swipers.find((slider: Waterfall) => slider.name === thumbsName);
+  const waterfall = getWaterfallByName(swipers, thumbsName);
 
   if (!waterfall) {
     if (debug) console.warn("A matching thumbs waterfall was not found for ", thumbsName);

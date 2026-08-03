@@ -8,5 +8,6 @@ export declare function parseAny(el: HTMLElement, attrName: string, defaultValue
 export declare function parseNumber(el: HTMLElement, attrName: string, defaultValue?: number): number | undefined;
 export declare function parseBoolean(el: HTMLElement, attrName: string, defaultValue?: boolean): boolean | undefined;
 export declare function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T): T;
+export declare function getWaterfallByName(waterfalls: Waterfall[], name: string): Waterfall | undefined;
 export declare function getSwipersByName(waterfalls: Waterfall[], selector: string, debug: boolean): Swiper[];
 export declare function fixWebflowCMSListARIARole(): void;

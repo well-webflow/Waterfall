@@ -88,17 +88,21 @@ export function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T)
   return obj;
 }
 
-export function getSwipersByName(waterfalls: Waterfall[], selector: string, debug: boolean): Swiper[] {
-  const matchedSwipers = waterfalls
+export function getWaterfallByName(waterfalls: Waterfall[], name: string): Waterfall | undefined {
+  return waterfalls.find((w) => w.name?.toLowerCase() === name?.toLowerCase());
+}
+
+export function getWaterfallsByName(waterfalls: Waterfall[], selector: string, debug: boolean): Swiper[] {
+  const matchedWaterfalls = waterfalls
     .filter((w) => {
-      const match = w.name === selector;
+      const match = w.name?.toLowerCase() === selector?.toLowerCase();
       return match;
     })
     .map((w) => w.swiper);
 
-  debug && console.log(`📊 Found ${matchedSwipers.length} matching swiper(s) for "${selector}"`);
+  debug && console.log(`📊 Found ${matchedWaterfalls.length} matching waterfall(s) for "${selector}"`);
 
-  return matchedSwipers;
+  return matchedWaterfalls;
 }
 
 export function fixWebflowCMSListARIARole() {

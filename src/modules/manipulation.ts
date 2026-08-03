@@ -6,6 +6,7 @@ import {
   ATTR_MANIPULATION_REMOVE_INDEX,
   ATTR_MANIPULATION_REMOVE_SLIDE,
 } from "../lib/attributes";
+import { getWaterfallByName } from "../util";
 
 function handleSlideManipulation(attr: string, action: "append" | "prepend" | "remove" | "add") {
   if (!Array.isArray(window.waterfalls)) {
@@ -17,7 +18,8 @@ function handleSlideManipulation(attr: string, action: "append" | "prepend" | "r
 
   document.querySelectorAll(`[${attr}]`).forEach((el) => {
     const targetName = el.getAttribute(attr);
-    const matchedWaterfall = window.waterfalls.find((wf) => wf.name === targetName);
+    if (!targetName) return;
+    const matchedWaterfall = getWaterfallByName(window.waterfalls, targetName);
 
     if (!matchedWaterfall) {
       console.warn(`[MANIPULATION] No Waterfall found with name: "${targetName}"`);
