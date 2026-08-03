@@ -30,14 +30,22 @@ function handleSlideManipulation(attr: string, action: "append" | "prepend" | "r
       return;
     }
 
+    const clone = el.cloneNode(true) as Element;
+    clone.removeAttribute(attr);
+    if (action === "add") {
+      clone.removeAttribute(ATTR_MANIPULATION_ADD_INDEX);
+    } else if (action === "remove") {
+      clone.removeAttribute(ATTR_MANIPULATION_REMOVE_INDEX);
+    }
+
     if (action === "append") {
-      swiper.appendSlide(el.outerHTML);
+      swiper.appendSlide(clone.outerHTML);
     } else if (action === "prepend") {
-      swiper.prependSlide(el.outerHTML);
+      swiper.prependSlide(clone.outerHTML);
     } else if (action === "add") {
       let index = Number(el.getAttribute(ATTR_MANIPULATION_ADD_INDEX));
       if (!index) index = 1;
-      swiper.addSlide(index, el.outerHTML);
+      swiper.addSlide(index, clone.outerHTML);
     } else if (action === "remove") {
       const slideIndex = Number(el.getAttribute(ATTR_MANIPULATION_REMOVE_INDEX));
       if (slideIndex !== -1) {
