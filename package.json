@@ -1,17 +1,23 @@
 {
   "name": "well-waterfall",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "Create Swipers in Webflow with attributes",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/well-waterfall.umd.js",
+  "module": "./dist/well-waterfall.es.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/well-waterfall.umd.js",
+  "jsdelivr": "./dist/well-waterfall.umd.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/well-waterfall.es.js",
+      "default": "./dist/well-waterfall.umd.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build",
@@ -23,11 +29,8 @@
   "keywords": [],
   "author": "kevingerstner",
   "license": "ISC",
-  "dependencies": {
-    "fs": "^0.0.1-security",
-    "swiper": "^14.0.7"
-  },
   "devDependencies": {
+    "swiper": "^14.0.7",
     "@types/jquery": "^3.5.32",
     "@types/node": "^22.10.5",
     "@typescript-eslint/eslint-plugin": "^8.26.1",

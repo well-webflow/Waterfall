@@ -4761,9 +4761,9 @@ function yt(e) {
 function At(e, t) {
   return e.find((s) => s.name?.toLowerCase() === t?.toLowerCase());
 }
-function Ca(e, t) {
-  const s = At(e, t);
-  return s ? s.swiper ? s : (console.error(`[MANIPULATION] Invalid Swiper instance in Waterfall "${t}"`), null) : (console.warn(`[MANIPULATION] No Waterfall found with name: "${t}"`), null);
+function Ca(e, t, s) {
+  const a = At(e, t);
+  return a ? a.swiper ? a : (console.error(`[MANIPULATION] Invalid Swiper instance in Waterfall "${t}"`), null) : (console.warn(`[MANIPULATION] No Waterfall found with name: "${t}"`, s), null);
 }
 function Ma(e, t, s) {
   const a = e.filter((n) => n.name?.toLowerCase() === t?.toLowerCase()).map((n) => n.swiper);
@@ -5028,7 +5028,7 @@ function Pe(e, t) {
   document.querySelectorAll(`[${e}]`).forEach((a) => {
     const n = a.getAttribute(e);
     if (!n) return;
-    const i = Ca(window.waterfalls, n);
+    const i = Ca(window.waterfalls, n, a);
     if (!i) return;
     const u = i.swiper, o = a.cloneNode(!0);
     if (o.removeAttribute(e), t === "add" ? o.removeAttribute(pt) : t === "remove" && o.removeAttribute(mt), o.classList.contains("swiper-slide") || o.classList.add("swiper-slide"), t === "append")
@@ -5111,7 +5111,7 @@ function mo(e, t) {
     enabled: D(t, Dr, !1)
   };
 }
-console.log("🚿 Hello from Wellflow Waterfall v1.2.11");
+console.log("🚿 Hello from Wellflow Waterfall v1.2.12");
 const De = [];
 window.waterfalls = De;
 function ht(e, t) {
@@ -5411,4 +5411,4 @@ export {
   Hr as EL_SCROLLBAR_DRAG,
   Vr as EL_SLIDE_COUNT
 };
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=well-waterfall.es.js.map

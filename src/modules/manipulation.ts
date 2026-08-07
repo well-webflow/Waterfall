@@ -20,7 +20,7 @@ function handleSlideManipulation(attr: string, action: "append" | "prepend" | "r
     const targetName = el.getAttribute(attr);
     if (!targetName) return;
 
-    const matchedWaterfall = findWaterfallByName(window.waterfalls, targetName);
+    const matchedWaterfall = findWaterfallByName(window.waterfalls, targetName, el);
     if (!matchedWaterfall) return;
 
     const swiper = matchedWaterfall.swiper;

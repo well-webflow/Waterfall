@@ -9,6 +9,6 @@ export declare function parseNumber(el: HTMLElement, attrName: string, defaultVa
 export declare function parseBoolean(el: HTMLElement, attrName: string, defaultValue?: boolean): boolean | undefined;
 export declare function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T): T;
 export declare function getWaterfallByName(waterfalls: Waterfall[], name: string): Waterfall | undefined;
-export declare function findWaterfallByName(waterfalls: Waterfall[], name: string): Waterfall | null;
+export declare function findWaterfallByName(waterfalls: Waterfall[], name: string, element?: Element): Waterfall | null;
 export declare function getWaterfallsByName(waterfalls: Waterfall[], selector: string, debug: boolean): Swiper[];
 export declare function fixWebflowCMSListARIARole(): void;

@@ -92,10 +92,14 @@ export function getWaterfallByName(waterfalls: Waterfall[], name: string): Water
   return waterfalls.find((w) => w.name?.toLowerCase() === name?.toLowerCase());
 }
 
-export function findWaterfallByName(waterfalls: Waterfall[], name: string): Waterfall | null {
+export function findWaterfallByName(
+  waterfalls: Waterfall[],
+  name: string,
+  element?: Element,
+): Waterfall | null {
   const waterfall = getWaterfallByName(waterfalls, name);
   if (!waterfall) {
-    console.warn(`[MANIPULATION] No Waterfall found with name: "${name}"`);
+    console.warn(`[MANIPULATION] No Waterfall found with name: "${name}"`, element);
     return null;
   }
   if (!waterfall.swiper) {
