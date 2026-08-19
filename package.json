@@ -1,6 +1,6 @@
 {
   "name": "well-waterfall",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "Create Swipers in Webflow with attributes",
   "type": "module",
   "main": "./dist/well-waterfall.umd.js",
