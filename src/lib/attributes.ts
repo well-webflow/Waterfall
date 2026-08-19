@@ -272,6 +272,8 @@ export const ATTR_PARALLAX_Y = "data-swiper-parallax-y";
 export const ATTR_PARALLAX_SCALE = "data-swiper-parallax-scale";
 export const ATTR_PARALLAX_OPACITY = "data-swiper-parallax-opacity";
 export const ATTR_PARALLAX_DURATION = "data-swiper-parallax-duration";
+// Callbacks
+export const ATTR_CALLBACK_SLIDE_CHANGE = "waterfall-callback-slide-change";
 
 // Extras ??? //FIXME - this probably should be removed
 export const ATTR_PLAYBACK_MODE = "waterfall-playback-mode";

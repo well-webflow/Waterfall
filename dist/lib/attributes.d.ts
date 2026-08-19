@@ -251,4 +251,5 @@ export declare const ATTR_PARALLAX_Y = "data-swiper-parallax-y";
 export declare const ATTR_PARALLAX_SCALE = "data-swiper-parallax-scale";
 export declare const ATTR_PARALLAX_OPACITY = "data-swiper-parallax-opacity";
 export declare const ATTR_PARALLAX_DURATION = "data-swiper-parallax-duration";
+export declare const ATTR_CALLBACK_SLIDE_CHANGE = "waterfall-callback-slide-change";
 export declare const ATTR_PLAYBACK_MODE = "waterfall-playback-mode";

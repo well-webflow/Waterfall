@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waterfall Demo - SwiperJS Core Features</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #333;
+        padding: 40px 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .subtitle {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.2em;
+        margin-bottom: 60px;
+      }
+
+      .demo-section {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .demo-section h2 {
+        color: #667eea;
+        margin-bottom: 10px;
+        font-size: 2em;
+      }
+
+      .demo-section p {
+        color: #666;
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 400px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .swiper-slide:nth-child(2n) {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .swiper-slide:nth-child(3n) {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+
+      .swiper-slide:nth-child(4n) {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      }
+
+      .swiper-slide:nth-child(5n) {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      }
+
+      /* Navigation buttons */
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: white !important;
+        background: rgba(0, 0, 0, 0.5);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        background: rgba(0, 0, 0, 0.7);
+        transform: scale(1.1);
+      }
+
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
+        font-size: 22px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .swiper-button-disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+
+      /* Pagination */
+      .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background: white;
+        opacity: 0.5;
+      }
+
+      .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: #667eea;
+      }
+
+      /* Scrollbar */
+      .swiper-scrollbar {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .swiper-scrollbar-drag {
+        background: #667eea;
+      }
+
+      /* Grid demo specific styles */
+      .grid-demo .swiper {
+        height: 600px;
+      }
+
+      .grid-demo .swiper-slide {
+        height: 200px;
+      }
+
+      /* Thumbs demo specific styles */
+      .thumbs-demo .swiper-main {
+        height: 400px;
+        margin-bottom: 10px;
+      }
+
+      .thumbs-demo .swiper-thumbs {
+        height: 100px;
+      }
+
+      .thumbs-demo .swiper-thumbs .swiper-slide {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+
+      .thumbs-demo .swiper-thumbs .swiper-slide-thumb-active {
+        opacity: 1;
+        border: 3px solid #667eea;
+      }
+
+      /* Effects demo - smaller height for better visibility */
+      .effects-demo .swiper {
+        height: 300px;
+      }
+
+      /* Vertical slider */
+      .vertical-demo .swiper {
+        height: 500px;
+      }
+
+      /* Image slides for zoom demo */
+      .zoom-demo .swiper-slide {
+        background: #000;
+      }
+
+      .zoom-demo .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .zoom-demo .swiper-zoom-container {
+        cursor: zoom-in;
+      }
+
+      /* Parallax demo */
+      .parallax-demo .swiper-slide {
+        flex-direction: column;
+        padding: 40px;
+      }
+
+      .parallax-demo .slide-title {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+
+      .parallax-demo .slide-text {
+        font-size: 18px;
+        max-width: 600px;
+        text-align: center;
+      }
+
+      /* Free mode demo */
+      .freemode-demo .swiper-slide {
+        width: 300px;
+        height: 400px;
+      }
+
+      .feature-badge {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+
+      .code-snippet {
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+        font-family: "Courier New", monospace;
+        font-size: 0.9em;
+        margin-top: 20px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚿 Waterfall Demo</h1>
+      <p class="subtitle">Showcasing SwiperJS Core Features with Waterfall Attributes</p>
+
+      <!-- 1. Basic Slider with Navigation -->
+      <div class="demo-section">
+        <h2>1. Basic Slider with Navigation</h2>
+        <p>
+          <span class="feature-badge">Navigation</span><span class="feature-badge">Loop</span
+          ><span class="feature-badge">Autoplay</span>
+        </p>
+        <p>A classic slider with previous/next navigation buttons, continuous loop, and autoplay.</p>
+
+        <div
+          waterfall="basic-slider"
+          waterfall-navigation-enabled="true"
+          waterfall-loop-mode="true"
+          waterfall-autoplay-mode="true"
+          waterfall-delay="3000"
+          waterfall-speed="600"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              <div class="swiper-slide">Slide 4</div>
+              <div class="swiper-slide">Slide 5</div>
+            </div>
+            <div class="swiper-button-prev" waterfall-el="navigation-prev"></div>
+            <div class="swiper-button-next" waterfall-el="navigation-next"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="basic-slider" waterfall-navigation-enabled="true" waterfall-loop-mode="true"
+          waterfall-autoplay-mode="true" waterfall-delay="3000"&gt;
+        </div>
+      </div>
+
+      <!-- 2. Pagination Bullets -->
+      <div class="demo-section">
+        <h2>2. Pagination with Clickable Bullets</h2>
+        <p>
+          <span class="feature-badge">Pagination</span><span class="feature-badge">Clickable</span
+          ><span class="feature-badge">Dynamic Bullets</span>
+        </p>
+        <p>Navigate between slides using clickable pagination bullets with dynamic highlighting.</p>
+
+        <div
+          waterfall="pagination-slider"
+          waterfall-pagination-enabled="true"
+          waterfall-pagination-clickable="true"
+          waterfall-pagination-dynamic-bullets="true"
+          waterfall-speed="800"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              <div class="swiper-slide">Slide 4</div>
+              <div class="swiper-slide">Slide 5</div>
+              <div class="swiper-slide">Slide 6</div>
+              <div class="swiper-slide">Slide 7</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="pagination-slider" waterfall-pagination-enabled="true"
+          waterfall-pagination-clickable="true" waterfall-pagination-dynamic-bullets="true"&gt;
+        </div>
+      </div>
+
+      <!-- 3. Progress Bar Pagination -->
+      <div class="demo-section">
+        <h2>3. Progress Bar Pagination</h2>
+        <p>
+          <span class="feature-badge">Pagination</span><span class="feature-badge">Progressbar</span
+          ><span class="feature-badge">Autoplay</span>
+        </p>
+        <p>Visual progress bar showing your position in the slider.</p>
+
+        <div
+          waterfall="progressbar-slider"
+          waterfall-pagination-enabled="true"
+          waterfall-pagination-type="progressbar"
+          waterfall-autoplay-mode="true"
+          waterfall-delay="2500"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              <div class="swiper-slide">Slide 4</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="progressbar-slider" waterfall-pagination-type="progressbar"
+          waterfall-autoplay-mode="true"&gt;
+        </div>
+      </div>
+
+      <!-- 4. Multiple Slides Per View -->
+      <div class="demo-section">
+        <h2>4. Multiple Slides Per View</h2>
+        <p>
+          <span class="feature-badge">Slides Per View</span><span class="feature-badge">Space Between</span
+          ><span class="feature-badge">Responsive</span>
+        </p>
+        <p>Display multiple slides at once with responsive breakpoints.</p>
+
+        <div
+          waterfall="multi-slide"
+          waterfall-slides-per-view="3"
+          waterfall-space-between="30"
+          waterfall-slides-per-view-tablet="2"
+          waterfall-space-between-tablet="20"
+          waterfall-slides-per-view-lmobile="1"
+          waterfall-space-between-lmobile="10"
+          waterfall-pagination-enabled="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              <div class="swiper-slide">Slide 4</div>
+              <div class="swiper-slide">Slide 5</div>
+              <div class="swiper-slide">Slide 6</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="multi-slide" waterfall-slides-per-view="3" waterfall-space-between="30"
+          waterfall-slides-per-view-tablet="2"&gt;
+        </div>
+      </div>
+
+      <!-- 5. Centered Slides -->
+      <div class="demo-section">
+        <h2>5. Centered Slides Mode</h2>
+        <p><span class="feature-badge">Centered Slides</span><span class="feature-badge">Loop</span></p>
+        <p>Keep the active slide centered with smooth infinite scrolling.</p>
+
+        <div
+          waterfall="centered-slider"
+          waterfall-centered-slides="true"
+          waterfall-slides-per-view="2.5"
+          waterfall-space-between="20"
+          waterfall-loop-mode="true"
+          waterfall-pagination-enabled="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              <div class="swiper-slide">Slide 4</div>
+              <div class="swiper-slide">Slide 5</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="centered-slider" waterfall-centered-slides="true" waterfall-slides-per-view="2.5"
+          waterfall-loop-mode="true"&gt;
+        </div>
+      </div>
+
+      <!-- 6. Fade Effect -->
+      <div class="demo-section effects-demo">
+        <h2>6. Fade Effect</h2>
+        <p>
+          <span class="feature-badge">Effects</span><span class="feature-badge">Fade</span
+          ><span class="feature-badge">Autoplay</span>
+        </p>
+        <p>Smooth crossfade transition between slides.</p>
+
+        <div
+          waterfall="fade-slider"
+          waterfall-effect="fade"
+          waterfall-effect-crossfade="true"
+          waterfall-autoplay-mode="true"
+          waterfall-delay="2000"
+          waterfall-pagination-enabled="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Fade Slide 1</div>
+              <div class="swiper-slide">Fade Slide 2</div>
+              <div class="swiper-slide">Fade Slide 3</div>
+              <div class="swiper-slide">Fade Slide 4</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="fade-slider" waterfall-effect="fade" waterfall-effect-crossfade="true"
+          waterfall-autoplay-mode="true"&gt;
+        </div>
+      </div>
+
+      <!-- 7. Cube Effect -->
+      <div class="demo-section effects-demo">
+        <h2>7. Cube Effect</h2>
+        <p>
+          <span class="feature-badge">Effects</span><span class="feature-badge">Cube</span
+          ><span class="feature-badge">3D</span>
+        </p>
+        <p>3D cube rotation effect for dramatic transitions.</p>
+
+        <div
+          waterfall="cube-slider"
+          waterfall-effect="cube"
+          waterfall-cube-shadow="true"
+          waterfall-cube-slide-shadows="true"
+          waterfall-speed="1000"
+          waterfall-pagination-enabled="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Cube 1</div>
+              <div class="swiper-slide">Cube 2</div>
+              <div class="swiper-slide">Cube 3</div>
+              <div class="swiper-slide">Cube 4</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="cube-slider" waterfall-effect="cube" waterfall-cube-shadow="true"
+          waterfall-cube-slide-shadows="true"&gt;
+        </div>
+      </div>
+
+      <!-- 8. Coverflow Effect -->
+      <div class="demo-section">
+        <h2>8. Coverflow Effect</h2>
+        <p>
+          <span class="feature-badge">Effects</span><span class="feature-badge">Coverflow</span
+          ><span class="feature-badge">3D</span>
+        </p>
+        <p>Album cover-style 3D carousel with depth and rotation.</p>
+
+        <div
+          waterfall="coverflow-slider"
+          waterfall-effect="coverflow"
+          waterfall-coverflow-rotate="50"
+          waterfall-coverflow-stretch="0"
+          waterfall-coverflow-depth="100"
+          waterfall-coverflow-modifier="1"
+          waterfall-coverflow-slide-shadows="true"
+          waterfall-centered-slides="true"
+          waterfall-slides-per-view="3"
+          waterfall-pagination-enabled="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Cover 1</div>
+              <div class="swiper-slide">Cover 2</div>
+              <div class="swiper-slide">Cover 3</div>
+              <div class="swiper-slide">Cover 4</div>
+              <div class="swiper-slide">Cover 5</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="coverflow-slider" waterfall-effect="coverflow" waterfall-centered-slides="true"
+          waterfall-slides-per-view="3"&gt;
+        </div>
+      </div>
+
+      <!-- 9. Grid Layout -->
+      <div class="demo-section grid-demo">
+        <h2>9. Grid Layout</h2>
+        <p><span class="feature-badge">Grid</span><span class="feature-badge">Multiple Rows</span></p>
+        <p>Display slides in a grid with multiple rows.</p>
+
+        <div
+          waterfall="grid-slider"
+          waterfall-slides-per-view="3"
+          waterfall-grid-rows="3"
+          waterfall-grid-fill="row"
+          waterfall-space-between="20"
+          waterfall-pagination-enabled="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Grid 1</div>
+              <div class="swiper-slide">Grid 2</div>
+              <div class="swiper-slide">Grid 3</div>
+              <div class="swiper-slide">Grid 4</div>
+              <div class="swiper-slide">Grid 5</div>
+              <div class="swiper-slide">Grid 6</div>
+              <div class="swiper-slide">Grid 7</div>
+              <div class="swiper-slide">Grid 8</div>
+              <div class="swiper-slide">Grid 9</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="grid-slider" waterfall-slides-per-view="3" waterfall-grid-rows="3"
+          waterfall-grid-fill="row"&gt;
+        </div>
+      </div>
+
+      <!-- 10. Vertical Slider -->
+      <div class="demo-section vertical-demo">
+        <h2>10. Vertical Direction</h2>
+        <p>
+          <span class="feature-badge">Vertical</span><span class="feature-badge">Mousewheel</span
+          ><span class="feature-badge">Keyboard</span>
+        </p>
+        <p>Scroll vertically with mousewheel and keyboard support.</p>
+
+        <div
+          waterfall="vertical-slider"
+          waterfall-direction="vertical"
+          waterfall-mouse-enabled="true"
+          waterfall-keyboard-enabled="true"
+          waterfall-pagination-enabled="true"
+          waterfall-slides-per-view="1"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Vertical 1</div>
+              <div class="swiper-slide">Vertical 2</div>
+              <div class="swiper-slide">Vertical 3</div>
+              <div class="swiper-slide">Vertical 4</div>
+              <div class="swiper-slide">Vertical 5</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="vertical-slider" waterfall-direction="vertical" waterfall-mouse-enabled="true"
+          waterfall-keyboard-enabled="true"&gt;
+        </div>
+      </div>
+
+      <!-- 11. Free Mode -->
+      <div class="demo-section freemode-demo">
+        <h2>11. Free Mode with Momentum</h2>
+        <p><span class="feature-badge">Free Mode</span><span class="feature-badge">Momentum</span></p>
+        <p>Scroll freely with physics-based momentum. Drag and release!</p>
+
+        <div
+          waterfall="freemode-slider"
+          waterfall-free-mode-enabled="true"
+          waterfall-free-mode-momentum="true"
+          waterfall-free-mode-sticky="false"
+          waterfall-slides-per-view="auto"
+          waterfall-space-between="20"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Free 1</div>
+              <div class="swiper-slide">Free 2</div>
+              <div class="swiper-slide">Free 3</div>
+              <div class="swiper-slide">Free 4</div>
+              <div class="swiper-slide">Free 5</div>
+              <div class="swiper-slide">Free 6</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="freemode-slider" waterfall-free-mode-enabled="true" waterfall-free-mode-momentum="true"&gt;
+        </div>
+      </div>
+
+      <!-- 12. Scrollbar -->
+      <div class="demo-section">
+        <h2>12. Draggable Scrollbar</h2>
+        <p><span class="feature-badge">Scrollbar</span><span class="feature-badge">Draggable</span></p>
+        <p>Navigate using a draggable scrollbar.</p>
+
+        <div
+          waterfall="scrollbar-slider"
+          waterfall-scrollbar-enabled="true"
+          waterfall-scrollbar-draggable="true"
+          waterfall-slides-per-view="3"
+          waterfall-space-between="20"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Scroll 1</div>
+              <div class="swiper-slide">Scroll 2</div>
+              <div class="swiper-slide">Scroll 3</div>
+              <div class="swiper-slide">Scroll 4</div>
+              <div class="swiper-slide">Scroll 5</div>
+              <div class="swiper-slide">Scroll 6</div>
+              <div class="swiper-slide">Scroll 7</div>
+            </div>
+            <div class="swiper-scrollbar" waterfall-el="scrollbar"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="scrollbar-slider" waterfall-scrollbar-enabled="true"
+          waterfall-scrollbar-draggable="true"&gt;
+        </div>
+      </div>
+
+      <!-- 13. Thumbs Gallery -->
+      <div class="demo-section thumbs-demo">
+        <h2>13. Thumbnail Gallery</h2>
+        <p>
+          <span class="feature-badge">Thumbs</span><span class="feature-badge">Gallery</span
+          ><span class="feature-badge">Two-way Control</span>
+        </p>
+        <p>Main slider controlled by thumbnail navigation below.</p>
+
+        <!-- Main Slider -->
+        <div waterfall="thumbs-main" waterfall-thumbs="thumbs-nav" waterfall-space-between="10">
+          <div class="swiper swiper-main">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Gallery 1</div>
+              <div class="swiper-slide">Gallery 2</div>
+              <div class="swiper-slide">Gallery 3</div>
+              <div class="swiper-slide">Gallery 4</div>
+              <div class="swiper-slide">Gallery 5</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thumbnail Navigation -->
+        <div
+          waterfall="thumbs-nav"
+          waterfall-slides-per-view="5"
+          waterfall-space-between="10"
+          waterfall-free-mode-enabled="true"
+          waterfall-watch-slides-progress="true"
+        >
+          <div class="swiper swiper-thumbs">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Thumb 1</div>
+              <div class="swiper-slide">Thumb 2</div>
+              <div class="swiper-slide">Thumb 3</div>
+              <div class="swiper-slide">Thumb 4</div>
+              <div class="swiper-slide">Thumb 5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="thumbs-main" waterfall-thumbs="thumbs-nav"&gt; &lt;div waterfall="thumbs-nav"
+          waterfall-watch-slides-progress="true"&gt;
+        </div>
+      </div>
+
+      <!-- 14. Parallax -->
+      <div class="demo-section parallax-demo">
+        <h2>14. Parallax Effect</h2>
+        <p><span class="feature-badge">Parallax</span><span class="feature-badge">Multi-layer</span></p>
+        <p>Create depth with parallax scrolling elements at different speeds.</p>
+
+        <div
+          waterfall="parallax-slider"
+          waterfall-parallax-enabled="true"
+          waterfall-speed="800"
+          waterfall-pagination-enabled="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="slide-title" data-swiper-parallax="-300">Parallax Title</div>
+                <div class="slide-text" data-swiper-parallax="-200">
+                  This text moves at a different speed creating a beautiful depth effect
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="slide-title" data-swiper-parallax="-300">Layer Effects</div>
+                <div class="slide-text" data-swiper-parallax="-200">
+                  Elements move independently for stunning visual depth
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="slide-title" data-swiper-parallax="-300">Amazing Design</div>
+                <div class="slide-text" data-swiper-parallax="-200">
+                  Create engaging presentations with parallax scrolling
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="parallax-slider" waterfall-parallax-enabled="true"&gt; &lt;div
+          data-swiper-parallax="-300"&gt;Title&lt;/div&gt;
+        </div>
+      </div>
+
+      <!-- 15. Hash Navigation -->
+      <div class="demo-section">
+        <h2>15. Hash Navigation</h2>
+        <p><span class="feature-badge">Hash Navigation</span><span class="feature-badge">URL Sync</span></p>
+        <p>Slides sync with URL hash for bookmarkable navigation.</p>
+
+        <div
+          waterfall="hash-slider"
+          waterfall-hash-watch-state="true"
+          waterfall-pagination-enabled="true"
+          waterfall-navigation-enabled="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" data-hash="slide1">Hash Slide 1</div>
+              <div class="swiper-slide" data-hash="slide2">Hash Slide 2</div>
+              <div class="swiper-slide" data-hash="slide3">Hash Slide 3</div>
+              <div class="swiper-slide" data-hash="slide4">Hash Slide 4</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+            <div class="swiper-button-prev" waterfall-el="navigation-prev"></div>
+            <div class="swiper-button-next" waterfall-el="navigation-next"></div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          &lt;div waterfall="hash-slider" waterfall-hash-watch-state="true"&gt; &lt;div class="swiper-slide"
+          data-hash="slide1"&gt;Content&lt;/div&gt;
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div
+        class="demo-section"
+        style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white"
+      >
+        <h2 style="color: white">🚿 Waterfall by Wellflow</h2>
+        <p style="color: rgba(255, 255, 255, 0.9)">Free-forever JavaScript library for Webflow</p>
+        <p style="color: rgba(255, 255, 255, 0.9); margin-top: 20px">
+          Built with ❤️ using SwiperJS 11.2.10<br />
+          No monthly subscription • No custom code required • Full documentation
+        </p>
+      </div>
+    </div>
+
+    <!-- Waterfall Library -->
+    <script src="http://localhost:3000/well-waterfall.umd.js"></script>
+  </body>
+</html>

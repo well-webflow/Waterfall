@@ -28,11 +28,13 @@ import lazyLoadConfig from "./modules/lazyLoad";
 import advancedConfig from "./modules/advanced";
 import observerConfig from "./modules/observer";
 import parallaxConfig from "./modules/parallax";
+import { callbacksConfig } from "./modules/callbacks";
 
 import { ATTR_WATERFALL, ATTR_DEBUG_MODE, ATTR_THUMBS, ATTR_CONTROLLER } from "./lib/attributes";
 
 export * from "./lib/attributes";
 export * from "./lib/elements";
+export type { SlideChangeCallbackParams } from "./modules/callbacks";
 
 console.log(`🚿 Hello from Wellflow Waterfall v${APP_VERSION}`);
 
@@ -100,6 +102,7 @@ function initConfig(el: HTMLElement, index: number) {
     observerConfig(swiperConfig, el);
     zoomConfig(swiperConfig, el);
     parallaxConfig(swiperConfig, el);
+    callbacksConfig(swiperConfig, el);
     advancedConfig(swiperConfig, el);
 
     // MANIPULATION - Add or remove slides
