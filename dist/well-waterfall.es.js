@@ -5132,7 +5132,7 @@ function go(e, t) {
     };
   }
 }
-console.log("🚿 Hello from Wellflow Waterfall v1.2.12");
+console.log("🚿 Hello from Wellflow Waterfall v1.2.14");
 const De = [];
 window.waterfalls = De;
 function ht(e, t) {
