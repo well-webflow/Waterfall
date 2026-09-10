@@ -62,7 +62,7 @@ export function initAutoplayControl(el: HTMLElement, name: string, swiper: Swipe
   controlButton.addEventListener("click", () => {
     if (!swiper.autoplay) return;
 
-    if (isPlaying) {
+    if (swiper.autoplay.running) {
       swiper.autoplay.stop();
       isPlaying = false;
     } else {
