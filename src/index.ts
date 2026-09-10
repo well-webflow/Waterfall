@@ -29,6 +29,7 @@ import advancedConfig from "./modules/advanced";
 import observerConfig from "./modules/observer";
 import parallaxConfig from "./modules/parallax";
 import { callbacksConfig } from "./modules/callbacks";
+import { initAutoplayControl } from "./modules/autoplayControl";
 
 import { ATTR_WATERFALL, ATTR_DEBUG_MODE, ATTR_THUMBS, ATTR_CONTROLLER } from "./lib/attributes";
 
@@ -123,5 +124,8 @@ function initConfig(el: HTMLElement, index: number) {
     }
     const swiper = new Swiper(swiperEl as HTMLElement, config);
     waterfalls.push({ name, swiper });
+
+    // Initialize autoplay control
+    initAutoplayControl(el, name, swiper);
   }
 }

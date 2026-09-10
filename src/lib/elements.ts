@@ -12,3 +12,7 @@ export const EL_SCROLLBAR = "scrollbar";
 export const EL_SCROLLBAR_DRAG = "scrollbar-drag";
 // Slide Count
 export const EL_SLIDE_COUNT = "slide-count";
+// Autoplay Control
+export const EL_AUTOPLAY_CONTROL = "autoplay-control";
+export const EL_AUTOPLAY_CONTROL_PAUSE = "autoplay-control-pause";
+export const EL_AUTOPLAY_CONTROL_PLAY = "autoplay-control-play";
