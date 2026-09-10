@@ -5144,12 +5144,11 @@ function yo(e, t, s) {
   );
   if (!i || !u || !o) return;
   const r = G(e, ar, "playing");
-  let m = r === "playing";
-  function f() {
-    m ? (u.style.display = "block", o.style.display = "none") : (u.style.display = "none", o.style.display = "block");
+  function m(f) {
+    f ? (u.style.display = "block", o.style.display = "none") : (u.style.display = "none", o.style.display = "block");
   }
-  f(), r === "paused" && s.autoplay && s.autoplay.stop(), i.addEventListener("click", () => {
-    s.autoplay && (m ? (s.autoplay.stop(), m = !1) : (s.autoplay.start(), m = !0), f());
+  s.autoplay && (r === "paused" ? (s.autoplay.stop(), m(!1)) : (s.autoplay.start(), m(!0))), i.addEventListener("click", () => {
+    s.autoplay && (s.autoplay.running ? (s.autoplay.stop(), m(!1)) : (s.autoplay.start(), m(!0)));
   });
 }
 console.log("🚿 Hello from Wellflow Waterfall v1.2.14");
