@@ -86,11 +86,21 @@ export function initAutoplayControl(el: HTMLElement, name: string, swiper: Swipe
     const playIconBefore = playIcon.style.display;
 
     if (playing) {
-      pauseIcon.style.display = "block";
-      playIcon.style.display = "none";
+      // Force pause icon to show
+      pauseIcon.style.setProperty("display", "block", "important");
+      pauseIcon.style.setProperty("visibility", "visible", "important");
+
+      // Force play icon to hide
+      playIcon.style.setProperty("display", "none", "important");
+      playIcon.style.setProperty("visibility", "hidden", "important");
     } else {
-      pauseIcon.style.display = "none";
-      playIcon.style.display = "block";
+      // Force play icon to show
+      playIcon.style.setProperty("display", "block", "important");
+      playIcon.style.setProperty("visibility", "visible", "important");
+
+      // Force pause icon to hide
+      pauseIcon.style.setProperty("display", "none", "important");
+      pauseIcon.style.setProperty("visibility", "hidden", "important");
     }
 
     console.log(`[Waterfall Autoplay Control] ${name} - Display styles:`, {
