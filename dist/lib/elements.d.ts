@@ -8,3 +8,6 @@ export declare const EL_NAVIGATION_PREV = "navigation-prev";
 export declare const EL_SCROLLBAR = "scrollbar";
 export declare const EL_SCROLLBAR_DRAG = "scrollbar-drag";
 export declare const EL_SLIDE_COUNT = "slide-count";
+export declare const EL_AUTOPLAY_CONTROL = "autoplay-control";
+export declare const EL_AUTOPLAY_CONTROL_PAUSE = "autoplay-control-pause";
+export declare const EL_AUTOPLAY_CONTROL_PLAY = "autoplay-control-play";

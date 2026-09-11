@@ -219,6 +219,9 @@ export const ATTR_REVERSE_DIRECTION = "waterfall-reverse-direction";
 export const ATTR_PAUSE_ON_MOUSE_ENTER = "waterfall-pause-on-mouse-enter";
 export const ATTR_STOP_ON_LAST_SLIDE = "waterfall-stop-on-last-slide";
 export const ATTR_WAIT_FOR_TRANSITION = "waterfall-wait-for-transition";
+// Autoplay Control
+export const ATTR_AUTOPLAY_CONTROL_ENABLED = "waterfall-autoplay-control-enabled";
+export const ATTR_AUTOPLAY_CONTROL_DEFAULT_STATE = "waterfall-autoplay-control-default-state";
 // Free Mode
 export const ATTR_FREE_MODE_ENABLED = "waterfall-free-mode-enabled";
 export const ATTR_FREE_MODE_MINIMUM_VELOCITY = "waterfall-free-mode-minimum-velocity";
