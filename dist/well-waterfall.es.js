@@ -5214,7 +5214,7 @@ function bo(e, t, s) {
     }, 50);
   }), console.log(`%c[Waterfall Autoplay Control] ${t} - ✅ Initialization complete`, "color: #43e97b; font-weight: bold");
 }
-console.log("🚿 Hello from Wellflow Waterfall v1.2.14");
+console.log("🚿 Hello from Wellflow Waterfall v1.3.0");
 const De = [];
 window.waterfalls = De;
 function Et(e, t) {
