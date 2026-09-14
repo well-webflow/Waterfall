@@ -68,8 +68,12 @@ export function parseBoolean(el: HTMLElement, attrName: string, defaultValue?: b
   return undefined;
 }
 
-function isHTMLElement(value: unknown): value is HTMLElement {
-  return typeof HTMLElement !== "undefined" && value instanceof HTMLElement;
+// Only recurse into plain config objects. Class instances (Swiper, HTMLElement) and arrays
+// must be left untouched — deleting their null fields breaks them (e.g. Swiper's touchEventsData.pointerId).
+function isPlainObject(value: unknown): value is Record<string, any> {
+  if (typeof value !== "object" || value === null) return false;
+  const proto = Object.getPrototypeOf(value);
+  return proto === Object.prototype || proto === null;
 }
 
 export function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T): T {
@@ -79,7 +83,7 @@ export function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T)
     const value = obj[key];
     if (value === null || value === undefined) {
       delete obj[key];
-    } else if (typeof value === "object" && value !== null && !isHTMLElement(value)) {
+    } else if (isPlainObject(value)) {
       removeNullOrUndefinedKeys(value as Record<string, any>);
       if (Object.keys(value).length === 0) delete obj[key];
     }

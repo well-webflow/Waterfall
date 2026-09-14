@@ -84,13 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Update thumbs after all swipers are initialized to ensure click handlers are set up
-  waterfalls.forEach((waterfall) => {
-    if (waterfall.swiper.thumbs && waterfall.swiper.thumbs.swiper) {
-      waterfall.swiper.thumbs.update(true);
-    }
-  });
-
   // SLIDE COUNT
   initSlideCount();
 
