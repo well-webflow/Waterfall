@@ -42,26 +42,54 @@ console.log(`🚿 Hello from Wellflow Waterfall v${APP_VERSION}`);
 const waterfalls: Waterfall[] = [];
 window.waterfalls = waterfalls;
 
-function initAll(selector: string, startIndex: number): number {
-  let index = startIndex;
-  document.querySelectorAll(selector).forEach((el) => {
-    initConfig(el as HTMLElement, index++);
-  });
-  return index; // Return updated index
-}
-
 let indexCounter = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize all other sliders
-  document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el) => {
-    if (el.hasAttribute(ATTR_THUMBS) || el.hasAttribute(ATTR_CONTROLLER)) return;
-    initConfig(el as HTMLElement, indexCounter++);
+  // Collect all sliders that are referenced by thumbs or controller attributes
+  const thumbsReferences = new Set<string>();
+  document.querySelectorAll(`[${ATTR_WATERFALL}][${ATTR_THUMBS}]`).forEach((el) => {
+    const thumbsName = parseString(el as HTMLElement, ATTR_THUMBS, "");
+    if (thumbsName) thumbsReferences.add(thumbsName);
   });
 
-  // Initialize Controller Sliders last
-  indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_THUMBS}]`, indexCounter);
-  indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_CONTROLLER}]`, indexCounter);
+  const controllerReferences = new Set<string>();
+  document.querySelectorAll(`[${ATTR_WATERFALL}][${ATTR_CONTROLLER}]`).forEach((el) => {
+    const controllerName = parseString(el as HTMLElement, ATTR_CONTROLLER, "");
+    if (controllerName) controllerReferences.add(controllerName);
+  });
+
+  // Step 1: Initialize sliders that are referenced by thumbs (thumbnail sliders must exist first)
+  document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el) => {
+    const name = parseString(el as HTMLElement, ATTR_WATERFALL, "") || "";
+    if (thumbsReferences.has(name)) {
+      initConfig(el as HTMLElement, indexCounter++);
+      console.log(`✅ Initialized Waterfall slider "${name}" that is referenced by a thumbnail slider.`);
+    }
+  });
+
+  // Step 2: Initialize sliders that are referenced by controller (but not already initialized)
+  document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el) => {
+    const name = parseString(el as HTMLElement, ATTR_WATERFALL, "") || "";
+    if (controllerReferences.has(name) && !waterfalls.find((w) => w.name === name)) {
+      initConfig(el as HTMLElement, indexCounter++);
+      console.log(`✅ Initialized Waterfall slider "${name}" that is referenced by a controller slider.`);
+    }
+  });
+
+  // Step 3: Initialize all remaining sliders
+  document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el) => {
+    const name = parseString(el as HTMLElement, ATTR_WATERFALL, "") || "";
+    if (!waterfalls.find((w) => w.name === name)) {
+      initConfig(el as HTMLElement, indexCounter++);
+    }
+  });
+
+  // Update thumbs after all swipers are initialized to ensure click handlers are set up
+  waterfalls.forEach((waterfall) => {
+    if (waterfall.swiper.thumbs && waterfall.swiper.thumbs.swiper) {
+      waterfall.swiper.thumbs.update(true);
+    }
+  });
 
   // SLIDE COUNT
   initSlideCount();

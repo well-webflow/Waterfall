@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controller Demo - Waterfall</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        /* Main Slider */
+        .main-slider {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .main-slider .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .main-slider .swiper-slide:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .main-slider .swiper-slide:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .main-slider .swiper-slide:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .main-slider .swiper-slide:nth-child(5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        /* Thumbnail Slider */
+        .thumb-slider {
+            width: 100%;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .thumb-slider .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0.5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .thumb-slider .swiper-slide:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .thumb-slider .swiper-slide:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .thumb-slider .swiper-slide:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .thumb-slider .swiper-slide:nth-child(5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .thumb-slider .swiper-slide:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .thumb-slider .swiper-slide-thumb-active,
+        .thumb-slider .swiper-slide-active {
+            opacity: 1;
+            border-color: #667eea;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .status p {
+            margin: 5px 0;
+        }
+
+        .status .success {
+            color: #28a745;
+        }
+
+        .status .error {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Controller Module Demo</h1>
+        <p class="subtitle">Testing two-way controller with slideToClickedSlide</p>
+
+        <div class="section">
+            <h2>Controller Example (Two-way Control)</h2>
+
+            <!-- Main Slider -->
+            <div
+                waterfall="controller-main"
+                waterfall-controller="controller-thumbs"
+                waterfall-space-between="10"
+                waterfall-debug-mode="true"
+            >
+                <div class="swiper main-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">Slide 1</div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
+                        <div class="swiper-slide">Slide 4</div>
+                        <div class="swiper-slide">Slide 5</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thumbnail Slider -->
+            <div
+                waterfall="controller-thumbs"
+                waterfall-controller="controller-main"
+                waterfall-slides-per-view="5"
+                waterfall-space-between="10"
+                waterfall-slide-to-clicked-slide="true"
+                waterfall-prevent-clicks="false"
+                waterfall-prevent-clicks-propagation="false"
+                waterfall-debug-mode="true"
+            >
+                <div class="swiper thumb-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">1</div>
+                        <div class="swiper-slide">2</div>
+                        <div class="swiper-slide">3</div>
+                        <div class="swiper-slide">4</div>
+                        <div class="swiper-slide">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status" id="status">
+                <p><strong>Debug Info:</strong></p>
+                <p id="controller-status">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './dist/well-waterfall.es.js';
+
+        // Wait for initialization
+        setTimeout(() => {
+            console.log('=== DEBUG INFO ===');
+            console.log('All Waterfalls:', window.waterfalls);
+
+            const main = window.waterfalls.find(w => w.name === 'controller-main');
+            const thumbs = window.waterfalls.find(w => w.name === 'controller-thumbs');
+
+            console.log('Main swiper:', main);
+            console.log('Thumbs swiper:', thumbs);
+
+            let statusHtml = '';
+
+            if (main && thumbs) {
+                console.log('Main controller config:', main.swiper.controller);
+                console.log('Thumbs controller config:', thumbs.swiper.controller);
+                console.log('Main slideToClickedSlide:', main.swiper.params.slideToClickedSlide);
+                console.log('Thumbs slideToClickedSlide:', thumbs.swiper.params.slideToClickedSlide);
+
+                statusHtml += `<p class="success">✅ Both swipers initialized</p>`;
+                statusHtml += `<p>Main controller.control: ${main.swiper.controller?.control ? '✅ Set' : '❌ Not set'}</p>`;
+                statusHtml += `<p>Thumbs controller.control: ${thumbs.swiper.controller?.control ? '✅ Set' : '❌ Not set'}</p>`;
+                statusHtml += `<p>Main slideToClickedSlide: ${main.swiper.params.slideToClickedSlide}</p>`;
+                statusHtml += `<p>Thumbs slideToClickedSlide: ${thumbs.swiper.params.slideToClickedSlide}</p>`;
+
+                // Test clicking on thumbs - Waterfall now automatically adds click handlers
+                console.log('=== CLICK HANDLER INFO ===');
+                console.log('✅ Automatic click handlers added by Waterfall');
+                console.log('Click on any thumbnail to navigate!');
+
+                // Test main slider movement
+                main.swiper.on('slideChange', () => {
+                    console.log('📊 Main slider changed to:', main.swiper.activeIndex);
+                    console.log('📊 Thumbs slider is at:', thumbs.swiper.activeIndex);
+                });
+
+                thumbs.swiper.on('slideChange', () => {
+                    console.log('🔷 Thumbs slider changed to:', thumbs.swiper.activeIndex);
+                    console.log('🔷 Main slider is at:', main.swiper.activeIndex);
+                });
+
+            } else {
+                statusHtml += `<p class="error">❌ Swipers not found</p>`;
+                statusHtml += `<p>Main: ${!!main}</p>`;
+                statusHtml += `<p>Thumbs: ${!!thumbs}</p>`;
+            }
+
+            document.getElementById('controller-status').innerHTML = statusHtml;
+        }, 500);
+    </script>
+</body>
+</html>

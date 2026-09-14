@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<style>
+  .swiper { width: 600px; height: 100px; }
+  .swiper-slide { display: flex; align-items: center; justify-content: center; background: #ccc; cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>Pure Swiper Test - slideToClickedSlide</h1>
+<p>Click on slides 2, 3, 4, 5 to test if slideToClickedSlide works</p>
+
+<div class="swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">1</div>
+    <div class="swiper-slide">2</div>
+    <div class="swiper-slide">3</div>
+    <div class="swiper-slide">4</div>
+    <div class="swiper-slide">5</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+const swiper = new Swiper('.swiper', {
+  slidesPerView: 4,
+  spaceBetween: 10,
+  slideToClickedSlide: true,
+  on: {
+    click: (swiper, event) => {
+      console.log('Click event fired', event.target);
+    },
+    slideChange: (swiper) => {
+      console.log('Slide changed to:', swiper.activeIndex);
+    }
+  }
+});
+
+console.log('Swiper config:', {
+  slideToClickedSlide: swiper.params.slideToClickedSlide,
+  preventClicks: swiper.params.preventClicks,
+  preventClicksPropagation: swiper.params.preventClicksPropagation
+});
+</script>
+</body>
+</html>

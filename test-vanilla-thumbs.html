@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+      .swiper-main {
+        width: 600px;
+        height: 300px;
+        margin-bottom: 10px;
+      }
+      .swiper-thumbs {
+        width: 600px;
+        height: 100px;
+      }
+      .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ccc;
+      }
+      .swiper-thumbs .swiper-slide {
+        cursor: pointer;
+        opacity: 0.5;
+      }
+      .swiper-thumbs .swiper-slide-thumb-active {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chocolate Vanilla Swiper with Thumbs Module Test</h1>
+    <p>Click on thumbnails to test if slideToClickedSlide works with thumbs module</p>
+
+    <div class="swiper swiper-main">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        <div class="swiper-slide">Slide 4</div>
+        <div class="swiper-slide">Slide 5</div>
+        <div class="swiper-slide">Slide 6</div>
+      </div>
+    </div>
+
+    <div class="swiper swiper-thumbs">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">1</div>
+        <div class="swiper-slide">2</div>
+        <div class="swiper-slide">3</div>
+        <div class="swiper-slide">4</div>
+        <div class="swiper-slide">5</div>
+        <div class="swiper-slide">6</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      // Initialize thumbs first
+      const thumbsSwiper = new Swiper(".swiper-thumbs", {
+        slidesPerView: 4,
+        spaceBetween: 10,
+        on: {
+          click: (swiper, event) => {
+            console.log("Thumbs click event fired");
+          },
+          slideChange: (swiper) => {
+            console.log("Thumbs slide changed to:", swiper.activeIndex);
+          },
+        },
+      });
+
+      // Initialize main with thumbs module
+      const mainSwiper = new Swiper(".swiper-main", {
+        spaceBetween: 10,
+        thumbs: {
+          swiper: thumbsSwiper,
+        },
+        on: {
+          slideChange: (swiper) => {
+            console.log("Main slide changed to:", swiper.activeIndex);
+          },
+        },
+      });
+
+      console.log("Thumbs config:", {
+        slideToClickedSlide: thumbsSwiper.params.slideToClickedSlide,
+        preventClicks: thumbsSwiper.params.preventClicks,
+      });
+    </script>
+  </body>
+</html>
