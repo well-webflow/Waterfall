@@ -1,5 +1,5 @@
 import {
-  ATTR_NAVIGATION_LOCK_CLASS,
+  ATTR_PAGINATION_LOCK_CLASS,
   ATTR_PAGINATION_BULLET_ACTIVE_CLASS,
   ATTR_PAGINATION_CLICKABLE,
   ATTR_PAGINATION_CLICKABLE_CLASS,
@@ -45,7 +45,7 @@ export function paginationConfig(config: SwiperOptions, element: HTMLElement) {
     hiddenClass: parseString(element, ATTR_PAGINATION_HIDDEN_CLASS, "swiper-pagination-hidden"),
     hideOnClick: parseBoolean(element, ATTR_PAGINATION_HIDE_ON_CLICK, true),
     horizontalClass: parseString(element, ATTR_PAGINATION_HORIZONTAL_CLASS, "swiper-pagination-horizontal"),
-    lockClass: parseString(element, ATTR_NAVIGATION_LOCK_CLASS, "swiper-pagination-lock"),
+    lockClass: parseString(element, ATTR_PAGINATION_LOCK_CLASS, "swiper-pagination-lock"),
     modifierClass: parseString(element, ATTR_PAGINATION_MODIFIER_CLASS, "swiper-pagination-"),
     paginationDisabledClass: parseString(
       element,
