@@ -24,26 +24,10 @@ export const ATTR_A11Y_SCROLL_ON_FOCUS = "waterfall-a11y-scroll-on-focus";
 export const ATTR_A11Y_SLIDE_LABEL_MESSAGE = "waterfall-a11y-slide-label-message";
 export const ATTR_A11Y_SLIDE_ROLE = "waterfall-a11y-slide-role";
 // Breakpoints
-export const ATTR_LMOBILE_CENTERED_SLIDES = "waterfall-centered-slides-lmobile";
-export const ATTR_LMOBILE_SLIDES_PER_VIEW = "waterfall-slides-per-view-lmobile";
-export const ATTR_LMOBILE_SLIDES_PER_GROUP = "waterfall-slides-per-group-lmobile";
-export const ATTR_LMOBILE_SPACE_BETWEEN = "waterfall-space-between-lmobile";
-export const ATTR_TABLET_CENTERED_SLIDES = "waterfall-centered-slides-tablet";
-export const ATTR_TABLET_SLIDES_PER_VIEW = "waterfall-slides-per-view-tablet";
-export const ATTR_TABLET_SLIDES_PER_GROUP = "waterfall-slides-per-group-tablet";
-export const ATTR_TABLET_SPACE_BETWEEN = "waterfall-space-between-tablet";
-export const ATTR_DESKTOP_CENTERED_SLIDES = "waterfall-centered-slides-desktop";
-export const ATTR_DESKTOP_SLIDES_PER_VIEW = "waterfall-slides-per-view-desktop";
-export const ATTR_DESKTOP_SLIDES_PER_GROUP = "waterfall-slides-per-group-desktop";
-export const ATTR_DESKTOP_SPACE_BETWEEN = "waterfall-space-between-desktop";
-export const ATTR_LARGE_CENTERED_SLIDES = "waterfall-centered-slides-large";
-export const ATTR_LARGE_SLIDES_PER_VIEW = "waterfall-slides-per-view-large";
-export const ATTR_LARGE_SLIDES_PER_GROUP = "waterfall-slides-per-group-large";
-export const ATTR_LARGE_SPACE_BETWEEN = "waterfall-space-between-large";
-export const ATTR_XLARGE_CENTERED_SLIDES = "waterfall-centered-slides-xlarge";
-export const ATTR_XLARGE_SLIDES_PER_VIEW = "waterfall-slides-per-view-xlarge";
-export const ATTR_XLARGE_SLIDES_PER_GROUP = "waterfall-slides-per-group-xlarge";
-export const ATTR_XLARGE_SPACE_BETWEEN = "waterfall-space-between-xlarge";
+// Suffixes for Webflow's breakpoints, e.g. waterfall-slides-per-view-tablet
+export const BREAKPOINTS = ["mobile", "mobile-large", "tablet", "desktop", "desktop-small", "desktop-large"] as const;
+export type Breakpoint = (typeof BREAKPOINTS)[number];
+export const breakpointAttr = (attr: string, breakpoint: Breakpoint) => `${attr}-${breakpoint}`;
 // Controller
 export const ATTR_CONTROLLER = "waterfall-controller";
 export const ATTR_CONTROLLER_BY = "waterfall-controller-by";

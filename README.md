@@ -9,7 +9,7 @@ Waterfall is a free-forever JavaScript library for Webflow that lets you build [
 3.  **Full Documentation.** Every attribute is listed below, and each setting is explained directly in the Wellspring App.
 4.  **Turn Swipers into Components.** After creating a swiper, you can turn it into a Webflow component for reuse.
 
-Current version: **v<!-- version -->1.3.0<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->11.2.10<!-- /swiper-version -->**
+Current version: **v<!-- version -->1.3.1<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->11.2.10<!-- /swiper-version -->**
 
 ## Table of contents
 
@@ -66,7 +66,7 @@ Use the Wellspring App to install the code onto your site. If you are installing
 **Specific Version (Stable - Recommended)**
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.3.0"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.3.1"></script>
 ```
 
 **Latest Version**
@@ -163,25 +163,26 @@ The attribute names are also exported as constants from `src/lib/attributes.ts` 
 
 ### Responsive Breakpoints
 
-Breakpoints match Webflow's breakpoints and apply **at and above** the listed width. The base attributes (e.g. `waterfall-slides-per-view`) apply below 478px and at any breakpoint where no override is set.
+Breakpoints match Webflow's breakpoints and cascade the same way Webflow styles do: outward from Desktop. A value set on Tablet also applies to Mobile Landscape and Mobile Portrait unless they override it, and a value set on Desktop also applies to 1280px and 1440px. Anywhere no breakpoint value applies, the base attribute (e.g. `waterfall-slides-per-view`) is used.
 
-| Suffix     | Applies from             |
-| ---------- | ------------------------ |
-| `-lmobile` | 478px (mobile landscape) |
-| `-tablet`  | 767px                    |
-| `-desktop` | 991px                    |
-| `-large`   | 1280px                   |
-| `-xlarge`  | 1440px                   |
+| Suffix           | Webflow breakpoint | Applies to      | Falls back to                      |
+| ---------------- | ------------------ | --------------- | ---------------------------------- |
+| `-mobile`        | Mobile portrait    | 479px and below | `-mobile-large`, `-tablet`, base   |
+| `-mobile-large`  | Mobile landscape   | 480px – 767px   | `-tablet`, base                    |
+| `-tablet`        | Tablet             | 768px – 991px   | base                               |
+| `-desktop`       | Desktop            | 992px and up    | base                               |
+| `-desktop-small` | 1280px             | 1280px and up   | `-desktop`, base                   |
+| `-desktop-large` | 1440px             | 1440px and up   | `-desktop-small`, `-desktop`, base |
 
 | Attribute pattern                         | Swiper option     | Values                  | Description                                                                                       |
 | ----------------------------------------- | ----------------- | ----------------------- | ------------------------------------------------------------------------------------------------- |
-| `waterfall-slides-per-view-{breakpoint}`  | `slidesPerView`   | number                  | Slides visible at this breakpoint. `auto` is not supported at breakpoints.                        |
+| `waterfall-slides-per-view-{breakpoint}`  | `slidesPerView`   | number                  | Slides visible at this breakpoint, or `auto`.                                                     |
 | `waterfall-slides-per-group-{breakpoint}` | `slidesPerGroup`  | number                  | Slides advanced per step at this breakpoint.                                                      |
 | `waterfall-space-between-{breakpoint}`    | `spaceBetween`    | number (px)             | Gap between slides at this breakpoint.                                                            |
 | `waterfall-centered-slides-{breakpoint}`  | `centeredSlides`  | boolean                 | Centers the active slide at this breakpoint.                                                      |
 | `waterfall-breakpoints-base`              | `breakpointsBase` | `window` \| `container` | Measures breakpoints against the window width (default `window`) or the slider container's width. |
 
-Example: `waterfall-slides-per-view="1"` + `waterfall-slides-per-view-tablet="2"` + `waterfall-slides-per-view-desktop="3"`.
+Example: `waterfall-slides-per-view="3"` + `waterfall-slides-per-view-tablet="2"` + `waterfall-slides-per-view-mobile-large="1"` shows 3 slides on Desktop and up, 2 on Tablet, and 1 on both mobile breakpoints.
 
 ### Playback (Loop, Rewind, Speed)
 
