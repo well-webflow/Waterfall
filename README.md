@@ -9,7 +9,7 @@ Waterfall is a free-forever JavaScript library for Webflow that lets you build [
 3.  **Full Documentation.** Every attribute is listed below, and each setting is explained directly in the Wellspring App.
 4.  **Turn Swipers into Components.** After creating a swiper, you can turn it into a Webflow component for reuse.
 
-Current version: **v<!-- version -->1.3.1<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->11.2.10<!-- /swiper-version -->**
+Current version: **v<!-- version -->1.3.2<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->11.2.10<!-- /swiper-version -->**
 
 ## Table of contents
 
@@ -66,7 +66,7 @@ Use the Wellspring App to install the code onto your site. If you are installing
 **Specific Version (Stable - Recommended)**
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.3.1"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.3.2"></script>
 ```
 
 **Latest Version**
