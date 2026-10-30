@@ -1,7 +1,7 @@
 import Swiper from "swiper";
 import { Waterfall } from "types/waterfall";
 
-export function printDebug(debug: boolean, str: string, el: any) {
+export function printDebug(debug: boolean, str: string, el: unknown) {
   if (!debug) return;
   console.log(`${str}:`, el);
 }
@@ -40,10 +40,15 @@ export function parseSlidesPerView(
   return parsedValue;
 }
 
-export function parseAny(el: HTMLElement, attrName: string, defaultValue?: any): any | undefined {
+// Returns the raw attribute value, typed as whatever the call site expects (Swiper string/number unions).
+export function parseAny<T extends string | number = string>(
+  el: HTMLElement,
+  attrName: string,
+  defaultValue?: string,
+): T | undefined {
   const attrValue = el.getAttribute(attrName)?.trim();
   if (!attrValue || attrValue === defaultValue) return undefined;
-  return attrValue;
+  return attrValue as unknown as T;
 }
 
 // ✅ Parse attribute as number
@@ -72,16 +77,17 @@ function isHTMLElement(value: unknown): value is HTMLElement {
   return typeof HTMLElement !== "undefined" && value instanceof HTMLElement;
 }
 
-export function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T): T {
+export function removeNullOrUndefinedKeys<T extends object>(obj: T): T {
   if (typeof obj !== "object" || obj === null) return obj;
 
-  for (const key in obj) {
-    const value = obj[key];
+  const record = obj as Record<string, unknown>;
+  for (const key in record) {
+    const value = record[key];
     if (value === null || value === undefined) {
-      delete obj[key];
+      delete record[key];
     } else if (typeof value === "object" && value !== null && !isHTMLElement(value)) {
-      removeNullOrUndefinedKeys(value as Record<string, any>);
-      if (Object.keys(value).length === 0) delete obj[key];
+      removeNullOrUndefinedKeys(value as Record<string, unknown>);
+      if (Object.keys(value).length === 0) delete record[key];
     }
   }
 
@@ -92,11 +98,7 @@ export function getWaterfallByName(waterfalls: Waterfall[], name: string): Water
   return waterfalls.find((w) => w.name?.toLowerCase() === name?.toLowerCase());
 }
 
-export function findWaterfallByName(
-  waterfalls: Waterfall[],
-  name: string,
-  element?: Element,
-): Waterfall | null {
+export function findWaterfallByName(waterfalls: Waterfall[], name: string, element?: Element): Waterfall | null {
   const waterfall = getWaterfallByName(waterfalls, name);
   if (!waterfall) {
     console.warn(`[MANIPULATION] No Waterfall found with name: "${name}"`, element);
@@ -117,7 +119,7 @@ export function getWaterfallsByName(waterfalls: Waterfall[], selector: string, d
     })
     .map((w) => w.swiper);
 
-  debug && console.log(`📊 Found ${matchedWaterfalls.length} matching waterfall(s) for "${selector}"`);
+  if (debug) console.log(`📊 Found ${matchedWaterfalls.length} matching waterfall(s) for "${selector}"`);
 
   return matchedWaterfalls;
 }

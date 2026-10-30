@@ -5,7 +5,6 @@ export const ATTR_WATERFALL_POSTLOAD = "waterfall-postload";
 export const ATTR_WATERFALL_CONTENT = "waterfall-content";
 // Debug
 export const ATTR_DEBUG_MODE = "waterfall-debug-mode";
-export const ATTR_ADVANCED_DEBUG_MODE = "waterfall-advanced-debug-mode";
 // A11Y`
 export const ATTR_A11Y = "waterfall-a11y";
 export const ATTR_A11Y_CONTAINER_MESSAGE = "waterfall-a11y-container-message";
@@ -239,7 +238,6 @@ export const ATTR_MANIPULATION_APPEND_SLIDE = "waterfall-append-slide";
 export const ATTR_MANIPULATION_PREPEND_SLIDE = "waterfall-prepend-slide";
 export const ATTR_MANIPULATION_REMOVE_SLIDE = "waterfall-remove-slide";
 export const ATTR_MANIPULATION_REMOVE_INDEX = "waterfall-remove-index";
-export const ATTR_MANIPULATION_REMOVE_ALL_SLIDES = "waterfall-remove-all-slides";
 // Zoom
 export const ATTR_ZOOM = "waterfall-zoom";
 export const ATTR_ZOOM_ENABLED = "waterfall-zoom-enabled";

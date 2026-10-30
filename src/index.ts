@@ -37,7 +37,9 @@ export * from "./lib/attributes";
 export * from "./lib/elements";
 export type { SlideChangeCallbackParams } from "./modules/callbacks";
 
-console.log(`🚿 Hello from Wellflow Waterfall v${APP_VERSION}`);
+console.log(
+  `🚿 Hello from Wellspring Waterfall (v${APP_VERSION}). To learn more, visit https://wellspring-app.webflow.io/apps/waterfall`,
+);
 
 const waterfalls: Waterfall[] = [];
 window.waterfalls = waterfalls;
@@ -79,7 +81,7 @@ function initConfig(el: HTMLElement, index: number) {
     const debug = Boolean(parseBoolean(el, ATTR_DEBUG_MODE, false) || false);
     if (debug) console.warn(`Initializing Waterfall: ${name}`);
 
-    let swiperConfig: SwiperOptions = {};
+    const swiperConfig: SwiperOptions = {};
 
     generalConfig(swiperConfig, el);
     breakpointsConfig(swiperConfig, el);

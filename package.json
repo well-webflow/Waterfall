@@ -1,6 +1,6 @@
 {
   "name": "well-waterfall",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Create Swipers in Webflow with attributes",
   "type": "module",
   "main": "./dist/well-waterfall.umd.js",
@@ -13,6 +13,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/well-waterfall.es.js",
       "default": "./dist/well-waterfall.umd.js"
+    },
+    "./attributes": {
+      "types": "./dist/attributes.d.ts",
+      "import": "./dist/attributes.js"
     }
   },
   "files": [
@@ -20,17 +24,20 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vite build",
+    "build": "vite build && vite build --mode attributes",
     "postbuild": "node scripts/sync-readme-version.js",
     "build:watch": "vite build --watch",
     "dev": "vite",
     "preview": "vite preview",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "kevingerstner",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "@types/jquery": "^3.5.32",
     "@types/node": "^22.10.5",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
@@ -38,9 +45,11 @@
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^16.5.0",
     "prettier": "^3.4.2",
     "swiper": "^14.3.0",
     "typescript": "^5.7.3",
+    "typescript-eslint": "^8.72.1",
     "vite": "^7.1.2",
     "vite-plugin-css-injected-by-js": "^3.5.2",
     "vite-plugin-dts": "^4.5.4"

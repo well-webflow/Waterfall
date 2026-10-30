@@ -1,4 +1,4 @@
-import { A11yOptions, SwiperOptions } from "swiper/types";
+import { SwiperOptions } from "swiper/types";
 import { parseBoolean, parseString } from "../util";
 import {
   ATTR_A11Y_CONTAINER_MESSAGE,

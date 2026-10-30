@@ -20,7 +20,7 @@ import {
   ATTR_PAGINATION_VERTICAL_CLASS,
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
-import { ATTR_WATERFALL_ELEMENT, EL_PAGINATION, EL_PAGINATION_BULLET, EL_PAGINATION_BULLET_ACTIVE } from "lib/elements";
+import { ATTR_WATERFALL_ELEMENT, EL_PAGINATION, EL_PAGINATION_BULLET } from "lib/elements";
 import { SwiperOptions } from "swiper/types";
 
 export function paginationConfig(config: SwiperOptions, element: HTMLElement) {
@@ -87,4 +87,3 @@ export function paginationConfig(config: SwiperOptions, element: HTMLElement) {
     return "bullets"; // default
   }
 }
-

@@ -15,7 +15,7 @@ import {
   ATTR_SPACE_BETWEEN,
   ATTR_WIDTH,
 } from "lib/attributes";
-import { parseAny, parseBoolean, parseNumber, parseSlidesPerView, parseString } from "../util";
+import { parseAny, parseBoolean, parseNumber, parseSlidesPerView } from "../util";
 import { SwiperOptions } from "swiper/types";
 
 export function layoutConfig(config: SwiperOptions, el: HTMLElement) {

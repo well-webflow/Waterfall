@@ -20,17 +20,16 @@ export function callbacksConfig(config: SwiperOptions, el: HTMLElement) {
 
     config.on = {
       ...config.on,
-      slideChange: function (this: Swiper) {
-        const swiper = this;
+      slideChange: (swiper: Swiper) => {
         const activeIndex = swiper.activeIndex;
         const activeSlide = swiper.slides[activeIndex] as HTMLElement | null;
         const previousSlide = swiper.slides[previousIndex] as HTMLElement | null;
 
         // Get the callback function from window object
-        const callbackFn = (window as any)[slideChangeCallbackName];
+        const callbackFn = (window as unknown as Record<string, unknown>)[slideChangeCallbackName];
 
         if (typeof callbackFn === "function") {
-          callbackFn({
+          (callbackFn as (params: SlideChangeCallbackParams) => void)({
             swiper,
             activeIndex,
             previousIndex,
@@ -38,9 +37,7 @@ export function callbacksConfig(config: SwiperOptions, el: HTMLElement) {
             previousSlide,
           } as SlideChangeCallbackParams);
         } else {
-          console.warn(
-            `Waterfall: Callback function "${slideChangeCallbackName}" not found on window object.`
-          );
+          console.warn(`Waterfall: Callback function "${slideChangeCallbackName}" not found on window object.`);
         }
 
         // Update previousIndex for next change

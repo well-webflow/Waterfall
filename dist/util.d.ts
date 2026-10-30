@@ -1,13 +1,13 @@
 import { default as Swiper } from 'swiper';
-import { Waterfall } from 'types/waterfall';
-export declare function printDebug(debug: boolean, str: string, el: any): void;
+import { Waterfall } from './types/waterfall';
+export declare function printDebug(debug: boolean, str: string, el: unknown): void;
 export declare function getUniqueClasses(targetElement: HTMLElement, comparisonElement: HTMLElement): string;
 export declare function parseString(el: HTMLElement, attrName: string, defaultValue?: string): string | undefined;
 export declare function parseSlidesPerView(el: HTMLElement, attrName: string, defaultValue?: number): number | "auto" | undefined;
-export declare function parseAny(el: HTMLElement, attrName: string, defaultValue?: any): any | undefined;
+export declare function parseAny<T extends string | number = string>(el: HTMLElement, attrName: string, defaultValue?: string): T | undefined;
 export declare function parseNumber(el: HTMLElement, attrName: string, defaultValue?: number): number | undefined;
 export declare function parseBoolean(el: HTMLElement, attrName: string, defaultValue?: boolean): boolean | undefined;
-export declare function removeNullOrUndefinedKeys<T extends Record<string, any>>(obj: T): T;
+export declare function removeNullOrUndefinedKeys<T extends object>(obj: T): T;
 export declare function getWaterfallByName(waterfalls: Waterfall[], name: string): Waterfall | undefined;
 export declare function findWaterfallByName(waterfalls: Waterfall[], name: string, element?: Element): Waterfall | null;
 export declare function getWaterfallsByName(waterfalls: Waterfall[], selector: string, debug: boolean): Swiper[];

@@ -12,9 +12,10 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "outDir": "dist",
-    "baseUrl": "./src",
+    "rootDir": "./src",
     "paths": {
-      "lib/*": ["./lib/*"]
+      "lib/*": ["./src/lib/*"],
+      "types/*": ["./src/types/*"]
     },
     "resolveJsonModule": true,
     "sourceMap": true,

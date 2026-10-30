@@ -4815,9 +4815,10 @@ function Ia(e) {
 }
 function At(e) {
   if (typeof e != "object" || e === null) return e;
-  for (const t in e) {
-    const s = e[t];
-    s == null ? delete e[t] : typeof s == "object" && s !== null && !Ia(s) && (At(s), Object.keys(s).length === 0 && delete e[t]);
+  const t = e;
+  for (const s in t) {
+    const a = t[s];
+    a == null ? delete t[s] : typeof a == "object" && a !== null && !Ia(a) && (At(a), Object.keys(a).length === 0 && delete t[s]);
   }
   return e;
 }
@@ -4837,7 +4838,7 @@ function wa() {
     e.removeAttribute("role");
   });
 }
-const ce = "waterfall", oo = "waterfall-preload", co = "waterfall-postload", fo = "waterfall-content", Oa = "waterfall-debug-mode", uo = "waterfall-advanced-debug-mode", po = "waterfall-a11y", Da = "waterfall-a11y-container-message", Na = "waterfall-a11y-container-role", za = "waterfall-a11y-container-role-description-message", ka = "waterfall-a11y-enabled", $a = "waterfall-a11y-first-slide-message", Ga = "waterfall-a11y-id", Ba = "waterfall-a11y-item-role-description-message", Ha = "waterfall-a11y-last-slide-message", Va = "waterfall-a11y-next-slide-message", Ya = "waterfall-a11y-notification-class", Fa = "waterfall-a11y-pagination-bullet-message", Wa = "waterfall-a11y-prev-slide-message", Xa = "waterfall-a11y-scroll-on-focus", Ua = "waterfall-a11y-slide-label-message", qa = "waterfall-a11y-slide-role", ja = ["mobile", "mobile-large", "tablet", "desktop", "desktop-small", "desktop-large"], Ka = (e, t) => `${e}-${t}`, Je = "waterfall-controller", Za = "waterfall-controller-by", Qa = "waterfall-controller-inverse", mo = "waterfall-effect-crossfade", Ja = "waterfall-coverflow-depth", en = "waterfall-coverflow-modifier", tn = "waterfall-coverflow-rotate", sn = "waterfall-coverflow-scale", an = "waterfall-coverflow-slide-shadows", nn = "waterfall-coverflow-stretch", ln = "waterfall-flip-limit-rotation", rn = "waterfall-flip-slide-shadows", on = "waterfall-cube-shadow", dn = "waterfall-cube-shadow-offset", cn = "waterfall-cube-shadow-scale", fn = "waterfall-cube-slide-shadows", un = "waterfall-cards-per-slide-offset", pn = "waterfall-cards-per-slide-rotate", mn = "waterfall-cards-rotate", hn = "waterfall-cards-slide-shadows", gn = "waterfall-allow-slide-next", Tn = "waterfall-allow-slide-prev", vn = "waterfall-allow-touch-move", Sn = "waterfall-auto-height", En = "waterfall-breakpoints-base", bn = "waterfall-center-insufficient-slides", xt = "waterfall-centered-slides", ho = "waterfall-centered-slides-bounds", yn = "waterfall-container-modifier-class", An = "waterfall-create-elements", _n = "waterfall-css-mode", xn = "waterfall-direction", Ln = "waterfall-edge-swipe-detection", Cn = "waterfall-edge-swipe-threshold", Mn = "waterfall-effect", In = "waterfall-enabled", Rn = "waterfall-events-prefix", Pn = "waterfall-focusable-elements", wn = "waterfall-follow-finger", On = "waterfall-grab-cursor", Dn = "waterfall-height", Nn = "waterfall-init", zn = "waterfall-initial-slide", kn = "waterfall-lazy-preload-prev-next", $n = "waterfall-lazy-preloader-class", Gn = "waterfall-long-swipes", Bn = "waterfall-long-swipes-ms", Hn = "waterfall-long-swipes-ratio", go = "waterfall-loop-mode", Vn = "waterfall-loop-add-blank-slides", Yn = "waterfall-loop-additional-slides", Fn = "waterfall-loop-prevents-sliding", Wn = "waterfall-max-backface-hidden-slides", Xn = "waterfall-nested", Un = "waterfall-no-swiping", qn = "waterfall-no-swiping-class", jn = "waterfall-no-swiping-selector", Kn = "waterfall-normalize-slide-index", Zn = "waterfall-observe-parents", Qn = "waterfall-observe-slide-children", Jn = "waterfall-observer", ei = "waterfall-data-one-way-movement", ti = "waterfall-passive-listeners", si = "waterfall-prevent-clicks", ai = "waterfall-prevent-clicks-propagation", ni = "waterfall-prevent-interaction-on-transition", ii = "waterfall-resistance", li = "waterfall-resistance-ratio", ri = "waterfall-resize-observer", To = "waterfall-rewind", oi = "waterfall-round-lengths", di = "waterfall-run-callbacks-on-init", ci = "waterfall-set-wrapper-size", fi = "waterfall-short-swipes", ui = "waterfall-simulate-touch", pi = "waterfall-slide-active-class", mi = "waterfall-slide-class", hi = "waterfall-slide-blank-class", gi = "waterfall-slide-fully-visible-class", Ti = "waterfall-slide-next-class", vi = "waterfall-slide-prev-class", Si = "waterfall-slide-to-clicked-slide", Ei = "waterfall-slide-visible-class", bi = "waterfall-slides-offset-after", yi = "waterfall-slides-offset-before", Lt = "waterfall-slides-per-group", Ai = "waterfall-slides-per-group-auto", _i = "waterfall-slides-per-group-skip", Ct = "waterfall-slides-per-view", Mt = "waterfall-space-between", xi = "waterfall-speed", Li = "waterfall-swipe-handler", Ci = "waterfall-swiper-element-node-name", Mi = "waterfall-threshold", Ii = "waterfall-touch-angle", Ri = "waterfall-touch-events-target", Pi = "waterfall-touch-move-stop-propagation", wi = "waterfall-touch-ratio", Oi = "waterfall-touch-release-on-edges", Di = "waterfall-touch-start-force-prevent-default", Ni = "waterfall-touch-start-prevent-default", zi = "waterfall-unique-nav-elements", ki = "waterfall-update-on-window-resize", $i = "waterfall-url", Gi = "waterfall-user-agent", vo = "waterfall-virtual-translate", Bi = "waterfall-watch-overflow", Hi = "waterfall-watch-slides-progress", Vi = "waterfall-width", Yi = "waterfall-wrapper-class", Fi = "waterfall-hash-replace-state", Wi = "waterfall-hash-watch-state", Xi = "waterfall-history-keep-query", Ui = "waterfall-history-key", qi = "waterfall-history-replace-state", ji = "waterfall-history-root", Ki = "waterfall-keyboard-enabled", Zi = "waterfall-keyboard-only-in-viewport", Qi = "waterfall-keyboard-page-up-down", Ji = "waterfall-mouse-enabled", el = "waterfall-mouse-events-target", tl = "waterfall-mouse-force-to-axis", sl = "waterfall-mouse-invert", al = "waterfall-mouse-no-mouse-wheel-class", nl = "waterfall-mouse-release-on-edges", il = "waterfall-mouse-sensitivity", ll = "waterfall-mouse-threshold-delta", rl = "waterfall-mouse-threshold-time", ol = "waterfall-grid-rows", dl = "waterfall-grid-fill", cl = "waterfall-navigation-disabled-class", fl = "waterfall-navigation-enabled", ul = "waterfall-navigation-hidden-class", pl = "waterfall-navigation-hide-on-click", ml = "waterfall-navigation-lock-class", hl = "waterfall-navigation-navigation-disabled-class", gl = "waterfall-pagination-type", So = "waterfall-pagination-bullet-class", Tl = "waterfall-pagination-bullet-active-class", vl = "waterfall-pagination-clickable", Sl = "waterfall-pagination-clickable-class", El = "waterfall-pagination-current-class", bl = "waterfall-pagination-dynamic-bullets", yl = "waterfall-pagination-dynamic-main-bullets", Al = "waterfall-pagination-enabled", _l = "waterfall-pagination-hidden-class", xl = "waterfall-pagination-hide-on-click", Ll = "waterfall-pagination-horizontal-class", Cl = "waterfall-pagination-lock-class", Ml = "waterfall-pagination-modifier-class", Il = "waterfall-pagination-pagination-disabled-class", Rl = "waterfall-pagination-progressbar-fill-class", Pl = "waterfall-pagination-progressbar-opposite", wl = "waterfall-pagination-progressbar-opposite-class", Ol = "waterfall-pagination-total-class", Dl = "waterfall-pagination-vertical-class", It = "waterfall-autoplay-mode", Rt = "waterfall-smooth-autoplay", Nl = "waterfall-delay", zl = "waterfall-disable-on-interaction", kl = "waterfall-reverse-direction", $l = "waterfall-pause-on-mouse-enter", Gl = "waterfall-stop-on-last-slide", Eo = "waterfall-wait-for-transition", Bl = "waterfall-autoplay-control-enabled", Hl = "waterfall-autoplay-control-default-state", Vl = "waterfall-free-mode-enabled", Yl = "waterfall-free-mode-minimum-velocity", Fl = "waterfall-free-mode-momentum", Wl = "waterfall-free-mode-momentum-bounce", Xl = "waterfall-free-mode-momentum-bounce-ratio", Ul = "waterfall-free-mode-momentum-ratio", ql = "waterfall-free-mode-momentum-velocity-ratio", jl = "waterfall-free-mode-sticky", bo = "waterfall-scrollbar-drag-class", Kl = "waterfall-scrollbar-drag-size", Zl = "waterfall-scrollbar-draggable", Ql = "waterfall-scrollbar-enabled", Jl = "waterfall-scrollbar-hide", er = "waterfall-scrollbar-horizontal-class", tr = "waterfall-scrollbar-lock-class", sr = "waterfall-scrollbar-scrollbar-disabled-class", ar = "waterfall-scrollbar-vertical-class", nr = "waterfall-scrollbar-snap-on-release", et = "waterfall-thumbs", ir = "waterfall-thumbs-auto-scroll-offset", lr = "waterfall-thumbs-multiple-active-thumbs", rr = "waterfall-slide-thumb-active-class", or = "waterfall-thumbs-container-class", dr = "waterfall-add-slide", ut = "waterfall-add-index", cr = "waterfall-append-slide", fr = "waterfall-prepend-slide", ur = "waterfall-remove-slide", pt = "waterfall-remove-index", yo = "waterfall-remove-all-slides", Ao = "waterfall-zoom", _o = "waterfall-zoom-enabled", pr = "waterfall-zoom-container-class", mr = "waterfall-zoom-limit-to-original-size", hr = "waterfall-zoom-max-ratio", gr = "waterfall-zoom-min-ratio", Tr = "waterfall-zoom-pan-on-mouse-move", vr = "waterfall-zoom-toggle", Sr = "waterfall-zoomed-slide-class", xo = "waterfall-zoom-fade", Er = "waterfall-parallax-enabled", Lo = "data-swiper-parallax", Co = "data-swiper-parallax-x", Mo = "data-swiper-parallax-y", Io = "data-swiper-parallax-scale", Ro = "data-swiper-parallax-opacity", Po = "data-swiper-parallax-duration", br = "waterfall-callback-slide-change", yr = "waterfall-playback-mode", le = "waterfall-el", Ar = "pagination", _r = "pagination-bullet", wo = "pagination-bullet-active", Oo = "waterfall-navigation", xr = "navigation-next", Lr = "navigation-prev", Cr = "scrollbar", Mr = "scrollbar-drag", Ir = "slide-count", Rr = "autoplay-control", Pr = "autoplay-control-pause", wr = "autoplay-control-play";
+const ce = "waterfall", oo = "waterfall-preload", co = "waterfall-postload", fo = "waterfall-content", Oa = "waterfall-debug-mode", uo = "waterfall-a11y", Da = "waterfall-a11y-container-message", Na = "waterfall-a11y-container-role", za = "waterfall-a11y-container-role-description-message", ka = "waterfall-a11y-enabled", $a = "waterfall-a11y-first-slide-message", Ga = "waterfall-a11y-id", Ba = "waterfall-a11y-item-role-description-message", Ha = "waterfall-a11y-last-slide-message", Va = "waterfall-a11y-next-slide-message", Ya = "waterfall-a11y-notification-class", Fa = "waterfall-a11y-pagination-bullet-message", Wa = "waterfall-a11y-prev-slide-message", Xa = "waterfall-a11y-scroll-on-focus", Ua = "waterfall-a11y-slide-label-message", qa = "waterfall-a11y-slide-role", ja = ["mobile", "mobile-large", "tablet", "desktop", "desktop-small", "desktop-large"], Ka = (e, t) => `${e}-${t}`, Je = "waterfall-controller", Za = "waterfall-controller-by", Qa = "waterfall-controller-inverse", po = "waterfall-effect-crossfade", Ja = "waterfall-coverflow-depth", en = "waterfall-coverflow-modifier", tn = "waterfall-coverflow-rotate", sn = "waterfall-coverflow-scale", an = "waterfall-coverflow-slide-shadows", nn = "waterfall-coverflow-stretch", ln = "waterfall-flip-limit-rotation", rn = "waterfall-flip-slide-shadows", on = "waterfall-cube-shadow", dn = "waterfall-cube-shadow-offset", cn = "waterfall-cube-shadow-scale", fn = "waterfall-cube-slide-shadows", un = "waterfall-cards-per-slide-offset", pn = "waterfall-cards-per-slide-rotate", mn = "waterfall-cards-rotate", hn = "waterfall-cards-slide-shadows", gn = "waterfall-allow-slide-next", Tn = "waterfall-allow-slide-prev", vn = "waterfall-allow-touch-move", Sn = "waterfall-auto-height", En = "waterfall-breakpoints-base", bn = "waterfall-center-insufficient-slides", xt = "waterfall-centered-slides", mo = "waterfall-centered-slides-bounds", yn = "waterfall-container-modifier-class", An = "waterfall-create-elements", _n = "waterfall-css-mode", xn = "waterfall-direction", Ln = "waterfall-edge-swipe-detection", Cn = "waterfall-edge-swipe-threshold", Mn = "waterfall-effect", In = "waterfall-enabled", Rn = "waterfall-events-prefix", Pn = "waterfall-focusable-elements", wn = "waterfall-follow-finger", On = "waterfall-grab-cursor", Dn = "waterfall-height", Nn = "waterfall-init", zn = "waterfall-initial-slide", kn = "waterfall-lazy-preload-prev-next", $n = "waterfall-lazy-preloader-class", Gn = "waterfall-long-swipes", Bn = "waterfall-long-swipes-ms", Hn = "waterfall-long-swipes-ratio", ho = "waterfall-loop-mode", Vn = "waterfall-loop-add-blank-slides", Yn = "waterfall-loop-additional-slides", Fn = "waterfall-loop-prevents-sliding", Wn = "waterfall-max-backface-hidden-slides", Xn = "waterfall-nested", Un = "waterfall-no-swiping", qn = "waterfall-no-swiping-class", jn = "waterfall-no-swiping-selector", Kn = "waterfall-normalize-slide-index", Zn = "waterfall-observe-parents", Qn = "waterfall-observe-slide-children", Jn = "waterfall-observer", ei = "waterfall-data-one-way-movement", ti = "waterfall-passive-listeners", si = "waterfall-prevent-clicks", ai = "waterfall-prevent-clicks-propagation", ni = "waterfall-prevent-interaction-on-transition", ii = "waterfall-resistance", li = "waterfall-resistance-ratio", ri = "waterfall-resize-observer", go = "waterfall-rewind", oi = "waterfall-round-lengths", di = "waterfall-run-callbacks-on-init", ci = "waterfall-set-wrapper-size", fi = "waterfall-short-swipes", ui = "waterfall-simulate-touch", pi = "waterfall-slide-active-class", mi = "waterfall-slide-class", hi = "waterfall-slide-blank-class", gi = "waterfall-slide-fully-visible-class", Ti = "waterfall-slide-next-class", vi = "waterfall-slide-prev-class", Si = "waterfall-slide-to-clicked-slide", Ei = "waterfall-slide-visible-class", bi = "waterfall-slides-offset-after", yi = "waterfall-slides-offset-before", Lt = "waterfall-slides-per-group", Ai = "waterfall-slides-per-group-auto", _i = "waterfall-slides-per-group-skip", Ct = "waterfall-slides-per-view", Mt = "waterfall-space-between", xi = "waterfall-speed", Li = "waterfall-swipe-handler", Ci = "waterfall-swiper-element-node-name", Mi = "waterfall-threshold", Ii = "waterfall-touch-angle", Ri = "waterfall-touch-events-target", Pi = "waterfall-touch-move-stop-propagation", wi = "waterfall-touch-ratio", Oi = "waterfall-touch-release-on-edges", Di = "waterfall-touch-start-force-prevent-default", Ni = "waterfall-touch-start-prevent-default", zi = "waterfall-unique-nav-elements", ki = "waterfall-update-on-window-resize", $i = "waterfall-url", Gi = "waterfall-user-agent", To = "waterfall-virtual-translate", Bi = "waterfall-watch-overflow", Hi = "waterfall-watch-slides-progress", Vi = "waterfall-width", Yi = "waterfall-wrapper-class", Fi = "waterfall-hash-replace-state", Wi = "waterfall-hash-watch-state", Xi = "waterfall-history-keep-query", Ui = "waterfall-history-key", qi = "waterfall-history-replace-state", ji = "waterfall-history-root", Ki = "waterfall-keyboard-enabled", Zi = "waterfall-keyboard-only-in-viewport", Qi = "waterfall-keyboard-page-up-down", Ji = "waterfall-mouse-enabled", el = "waterfall-mouse-events-target", tl = "waterfall-mouse-force-to-axis", sl = "waterfall-mouse-invert", al = "waterfall-mouse-no-mouse-wheel-class", nl = "waterfall-mouse-release-on-edges", il = "waterfall-mouse-sensitivity", ll = "waterfall-mouse-threshold-delta", rl = "waterfall-mouse-threshold-time", ol = "waterfall-grid-rows", dl = "waterfall-grid-fill", cl = "waterfall-navigation-disabled-class", fl = "waterfall-navigation-enabled", ul = "waterfall-navigation-hidden-class", pl = "waterfall-navigation-hide-on-click", ml = "waterfall-navigation-lock-class", hl = "waterfall-navigation-navigation-disabled-class", gl = "waterfall-pagination-type", vo = "waterfall-pagination-bullet-class", Tl = "waterfall-pagination-bullet-active-class", vl = "waterfall-pagination-clickable", Sl = "waterfall-pagination-clickable-class", El = "waterfall-pagination-current-class", bl = "waterfall-pagination-dynamic-bullets", yl = "waterfall-pagination-dynamic-main-bullets", Al = "waterfall-pagination-enabled", _l = "waterfall-pagination-hidden-class", xl = "waterfall-pagination-hide-on-click", Ll = "waterfall-pagination-horizontal-class", Cl = "waterfall-pagination-lock-class", Ml = "waterfall-pagination-modifier-class", Il = "waterfall-pagination-pagination-disabled-class", Rl = "waterfall-pagination-progressbar-fill-class", Pl = "waterfall-pagination-progressbar-opposite", wl = "waterfall-pagination-progressbar-opposite-class", Ol = "waterfall-pagination-total-class", Dl = "waterfall-pagination-vertical-class", It = "waterfall-autoplay-mode", Rt = "waterfall-smooth-autoplay", Nl = "waterfall-delay", zl = "waterfall-disable-on-interaction", kl = "waterfall-reverse-direction", $l = "waterfall-pause-on-mouse-enter", Gl = "waterfall-stop-on-last-slide", So = "waterfall-wait-for-transition", Bl = "waterfall-autoplay-control-enabled", Hl = "waterfall-autoplay-control-default-state", Vl = "waterfall-free-mode-enabled", Yl = "waterfall-free-mode-minimum-velocity", Fl = "waterfall-free-mode-momentum", Wl = "waterfall-free-mode-momentum-bounce", Xl = "waterfall-free-mode-momentum-bounce-ratio", Ul = "waterfall-free-mode-momentum-ratio", ql = "waterfall-free-mode-momentum-velocity-ratio", jl = "waterfall-free-mode-sticky", Eo = "waterfall-scrollbar-drag-class", Kl = "waterfall-scrollbar-drag-size", Zl = "waterfall-scrollbar-draggable", Ql = "waterfall-scrollbar-enabled", Jl = "waterfall-scrollbar-hide", er = "waterfall-scrollbar-horizontal-class", tr = "waterfall-scrollbar-lock-class", sr = "waterfall-scrollbar-scrollbar-disabled-class", ar = "waterfall-scrollbar-vertical-class", nr = "waterfall-scrollbar-snap-on-release", et = "waterfall-thumbs", ir = "waterfall-thumbs-auto-scroll-offset", lr = "waterfall-thumbs-multiple-active-thumbs", rr = "waterfall-slide-thumb-active-class", or = "waterfall-thumbs-container-class", dr = "waterfall-add-slide", ut = "waterfall-add-index", cr = "waterfall-append-slide", fr = "waterfall-prepend-slide", ur = "waterfall-remove-slide", pt = "waterfall-remove-index", bo = "waterfall-zoom", yo = "waterfall-zoom-enabled", pr = "waterfall-zoom-container-class", mr = "waterfall-zoom-limit-to-original-size", hr = "waterfall-zoom-max-ratio", gr = "waterfall-zoom-min-ratio", Tr = "waterfall-zoom-pan-on-mouse-move", vr = "waterfall-zoom-toggle", Sr = "waterfall-zoomed-slide-class", Ao = "waterfall-zoom-fade", Er = "waterfall-parallax-enabled", _o = "data-swiper-parallax", xo = "data-swiper-parallax-x", Lo = "data-swiper-parallax-y", Co = "data-swiper-parallax-scale", Mo = "data-swiper-parallax-opacity", Io = "data-swiper-parallax-duration", br = "waterfall-callback-slide-change", yr = "waterfall-playback-mode", le = "waterfall-el", Ar = "pagination", _r = "pagination-bullet", Ro = "pagination-bullet-active", Po = "waterfall-navigation", xr = "navigation-next", Lr = "navigation-prev", Cr = "scrollbar", Mr = "scrollbar-drag", Ir = "slide-count", Rr = "autoplay-control", Pr = "autoplay-control-pause", wr = "autoplay-control-play";
 function Or(e, t, s) {
   e.allowSlideNext = N(t, gn, !0), e.allowSlidePrev = N(t, Tn, !0), e.navigation = {
     disabledClass: B(t, cl, "swiper-button-disabled"),
@@ -5181,17 +5182,15 @@ function lo(e, t) {
     let a = 0;
     e.on = {
       ...e.on,
-      slideChange: function() {
-        const n = this, i = n.activeIndex, u = n.slides[i], d = n.slides[a], r = window[s];
+      slideChange: (n) => {
+        const i = n.activeIndex, u = n.slides[i], d = n.slides[a], r = window[s];
         typeof r == "function" ? r({
           swiper: n,
           activeIndex: i,
           previousIndex: a,
           activeSlide: u,
           previousSlide: d
-        }) : console.warn(
-          `Waterfall: Callback function "${s}" not found on window object.`
-        ), a = i;
+        }) : console.warn(`Waterfall: Callback function "${s}" not found on window object.`), a = i;
       }
     };
   }
@@ -5209,7 +5208,9 @@ function ro(e, t, s) {
     s.autoplay && (s.autoplay.running ? (s.autoplay.stop(), T(!1)) : (s.autoplay.start(), T(!0)));
   });
 }
-console.log("🚿 Hello from Wellflow Waterfall v1.4.1");
+console.log(
+  "🚿 Hello from Wellspring Waterfall (v1.4.2). To learn more, visit https://wellspring-app.webflow.io/apps/waterfall"
+);
 const De = [];
 window.waterfalls = De;
 function mt(e, t) {
@@ -5230,7 +5231,7 @@ function Pt(e, t) {
     if (!s) return;
     const a = !!N(e, Oa, !1);
     a && console.warn(`Initializing Waterfall: ${s}`);
-    let n = {};
+    const n = {};
     Yr(n, e), zr(n, e), Gr(n, e), Or(n, e, s), kr(n, e), $r(n, e), Hr(n, e), to(n, e), Vr(n, e), Wr(n, e, De, a), Xr(n, e), eo(n, e), Jr(n, e), Ur(n, e), qr(n, e), jr(n, e, De, a), Kr(n, e), so(n, e), no(n, e), Qr(n, e), io(n, e), lo(n, e), ao(n, e), Zr(), a && console.warn(n);
     const i = At(n), u = e.querySelector(".swiper");
     a && console.log("SWIPER: ", u);
@@ -5244,7 +5245,7 @@ function Pt(e, t) {
   }
 }
 export {
-  po as ATTR_A11Y,
+  uo as ATTR_A11Y,
   Da as ATTR_A11Y_CONTAINER_MESSAGE,
   Na as ATTR_A11Y_CONTAINER_ROLE,
   za as ATTR_A11Y_CONTAINER_ROLE_DESCRIPTION_MESSAGE,
@@ -5260,7 +5261,6 @@ export {
   Xa as ATTR_A11Y_SCROLL_ON_FOCUS,
   Ua as ATTR_A11Y_SLIDE_LABEL_MESSAGE,
   qa as ATTR_A11Y_SLIDE_ROLE,
-  uo as ATTR_ADVANCED_DEBUG_MODE,
   gn as ATTR_ALLOW_SLIDE_NEXT,
   Tn as ATTR_ALLOW_SLIDE_PREV,
   vn as ATTR_ALLOW_TOUCH_MOVE,
@@ -5275,7 +5275,7 @@ export {
   mn as ATTR_CARDS_ROTATE,
   hn as ATTR_CARDS_SLIDE_SHADOWS,
   xt as ATTR_CENTERED_SLIDES,
-  ho as ATTR_CENTERED_SLIDES_BOUNDS,
+  mo as ATTR_CENTERED_SLIDES_BOUNDS,
   bn as ATTR_CENTER_INSUFFICIENT_SLIDES,
   yn as ATTR_CONTAINER_MODIFIER_CLASS,
   Je as ATTR_CONTROLLER,
@@ -5300,7 +5300,7 @@ export {
   Ln as ATTR_EDGE_SWIPE_DETECTION,
   Cn as ATTR_EDGE_SWIPE_THRESHOLD,
   Mn as ATTR_EFFECT,
-  mo as ATTR_EFFECT_CROSSFADE,
+  po as ATTR_EFFECT_CROSSFADE,
   In as ATTR_ENABLED,
   Rn as ATTR_EVENTS_PREFIX,
   ln as ATTR_FLIP_LIMIT_ROTATION,
@@ -5335,7 +5335,7 @@ export {
   Gn as ATTR_LONG_SWIPES,
   Bn as ATTR_LONG_SWIPES_MS,
   Hn as ATTR_LONG_SWIPES_RATIO,
-  go as ATTR_LOOP,
+  ho as ATTR_LOOP,
   Yn as ATTR_LOOP_ADD_ADDITIONAL_SLIDES,
   Vn as ATTR_LOOP_ADD_BLANK_SLIDES,
   Fn as ATTR_LOOP_PREVENTS_SLIDING,
@@ -5343,7 +5343,6 @@ export {
   dr as ATTR_MANIPULATION_ADD_SLIDE,
   cr as ATTR_MANIPULATION_APPEND_SLIDE,
   fr as ATTR_MANIPULATION_PREPEND_SLIDE,
-  yo as ATTR_MANIPULATION_REMOVE_ALL_SLIDES,
   pt as ATTR_MANIPULATION_REMOVE_INDEX,
   ur as ATTR_MANIPULATION_REMOVE_SLIDE,
   Wn as ATTR_MAX_BACKFACE_HIDDEN_SLIDES,
@@ -5372,7 +5371,7 @@ export {
   Zn as ATTR_OBSERVE_SLIDE_PARENTS,
   ei as ATTR_ONE_WAY_MOVEMENT,
   Tl as ATTR_PAGINATION_BULLET_ACTIVE_CLASS,
-  So as ATTR_PAGINATION_BULLET_CLASS,
+  vo as ATTR_PAGINATION_BULLET_CLASS,
   vl as ATTR_PAGINATION_CLICKABLE,
   Sl as ATTR_PAGINATION_CLICKABLE_CLASS,
   El as ATTR_PAGINATION_CURRENT_CLASS,
@@ -5391,13 +5390,13 @@ export {
   Ol as ATTR_PAGINATION_TOTAL_CLASS,
   gl as ATTR_PAGINATION_TYPE,
   Dl as ATTR_PAGINATION_VERTICAL_CLASS,
-  Lo as ATTR_PARALLAX,
-  Po as ATTR_PARALLAX_DURATION,
+  _o as ATTR_PARALLAX,
+  Io as ATTR_PARALLAX_DURATION,
   Er as ATTR_PARALLAX_ENABLED,
-  Ro as ATTR_PARALLAX_OPACITY,
-  Io as ATTR_PARALLAX_SCALE,
-  Co as ATTR_PARALLAX_X,
-  Mo as ATTR_PARALLAX_Y,
+  Mo as ATTR_PARALLAX_OPACITY,
+  Co as ATTR_PARALLAX_SCALE,
+  xo as ATTR_PARALLAX_X,
+  Lo as ATTR_PARALLAX_Y,
   ti as ATTR_PASSIVE_LISTENERS,
   $l as ATTR_PAUSE_ON_MOUSE_ENTER,
   yr as ATTR_PLAYBACK_MODE,
@@ -5408,11 +5407,11 @@ export {
   li as ATTR_RESISTANCE_RATIO,
   ri as ATTR_RESIZE_OBSERVER,
   kl as ATTR_REVERSE_DIRECTION,
-  To as ATTR_REWIND,
+  go as ATTR_REWIND,
   oi as ATTR_ROUND_LENGTHS,
   di as ATTR_RUN_CALLBACKS_ON_INIT,
   Zl as ATTR_SCROLLBAR_DRAGGABLE,
-  bo as ATTR_SCROLLBAR_DRAG_CLASS,
+  Eo as ATTR_SCROLLBAR_DRAG_CLASS,
   Kl as ATTR_SCROLLBAR_DRAG_SIZE,
   Ql as ATTR_SCROLLBAR_ENABLED,
   Jl as ATTR_SCROLLBAR_HIDE,
@@ -5461,8 +5460,8 @@ export {
   ki as ATTR_UPDATE_ON_WINDOW_RESIZE,
   $i as ATTR_URL,
   Gi as ATTR_USER_AGENT,
-  vo as ATTR_VIRTUAL_TRANSLATE,
-  Eo as ATTR_WAIT_FOR_TRANSITION,
+  To as ATTR_VIRTUAL_TRANSLATE,
+  So as ATTR_WAIT_FOR_TRANSITION,
   Bi as ATTR_WATCH_OVERFLOW,
   Hi as ATTR_WATCH_SLIDES_PROGRESS,
   ce as ATTR_WATERFALL,
@@ -5472,11 +5471,11 @@ export {
   oo as ATTR_WATERFALL_PRELOAD,
   Vi as ATTR_WIDTH,
   Yi as ATTR_WRAPPER_CLASS,
-  Ao as ATTR_ZOOM,
+  bo as ATTR_ZOOM,
   Sr as ATTR_ZOOMED_SLIDE_CLASS,
   pr as ATTR_ZOOM_CONTAINER_CLASS,
-  _o as ATTR_ZOOM_ENABLED,
-  xo as ATTR_ZOOM_FADE,
+  yo as ATTR_ZOOM_ENABLED,
+  Ao as ATTR_ZOOM_FADE,
   mr as ATTR_ZOOM_LIMIT_TO_ORIGINAL_SIZE,
   hr as ATTR_ZOOM_MAX_RATIO,
   gr as ATTR_ZOOM_MIN_RATIO,
@@ -5486,12 +5485,12 @@ export {
   Rr as EL_AUTOPLAY_CONTROL,
   Pr as EL_AUTOPLAY_CONTROL_PAUSE,
   wr as EL_AUTOPLAY_CONTROL_PLAY,
-  Oo as EL_NAVIGATION,
+  Po as EL_NAVIGATION,
   xr as EL_NAVIGATION_NEXT,
   Lr as EL_NAVIGATION_PREV,
   Ar as EL_PAGINATION,
   _r as EL_PAGINATION_BULLET,
-  wo as EL_PAGINATION_BULLET_ACTIVE,
+  Ro as EL_PAGINATION_BULLET_ACTIVE,
   Cr as EL_SCROLLBAR,
   Mr as EL_SCROLLBAR_DRAG,
   Ir as EL_SLIDE_COUNT,
