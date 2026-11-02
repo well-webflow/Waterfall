@@ -2,6 +2,7 @@ import {
   ATTR_AUTO_HEIGHT,
   ATTR_CENTER_INSUFFICIENT_SLIDES,
   ATTR_CENTERED_SLIDES,
+  ATTR_CENTERED_SLIDES_BOUNDS,
   ATTR_DIRECTION,
   ATTR_GRID_FILL,
   ATTR_GRID_ROWS,
@@ -22,6 +23,8 @@ export function layoutConfig(config: SwiperOptions, el: HTMLElement) {
   config.autoHeight = parseBoolean(el, ATTR_AUTO_HEIGHT, false);
   config.centerInsufficientSlides = parseBoolean(el, ATTR_CENTER_INSUFFICIENT_SLIDES, false);
   config.centeredSlides = parseBoolean(el, ATTR_CENTERED_SLIDES, false);
+  // Requires centeredSlides; Swiper advises against combining it with loop or pagination.
+  config.centeredSlidesBounds = parseBoolean(el, ATTR_CENTERED_SLIDES_BOUNDS, false);
   config.direction = parseAny(el, ATTR_DIRECTION, "horizontal");
   config.grid = {
     fill: parseAny(el, ATTR_GRID_FILL, "column"),

@@ -1,6 +1,6 @@
 import {
-  ATTR_HASH_REPLACE_STATE,
-  ATTR_HASH_WATCH_STATE,
+  ATTR_HASH_NAVIGATION_REPLACE_STATE,
+  ATTR_HASH_NAVIGATION_WATCH_STATE,
   ATTR_HISTORY_KEEP_QUERY,
   ATTR_HISTORY_KEY,
   ATTR_HISTORY_REPLACE_STATE,
@@ -12,8 +12,8 @@ import { SwiperOptions } from "swiper/types";
 export function hashNavigationConfig(config: SwiperOptions, el: HTMLElement) {
   config.hashNavigation = {
     //getSlideIndex
-    replaceState: parseBoolean(el, ATTR_HASH_REPLACE_STATE, false),
-    watchState: parseBoolean(el, ATTR_HASH_WATCH_STATE, false),
+    replaceState: parseBoolean(el, ATTR_HASH_NAVIGATION_REPLACE_STATE, false),
+    watchState: parseBoolean(el, ATTR_HASH_NAVIGATION_WATCH_STATE, false),
   };
 }
 

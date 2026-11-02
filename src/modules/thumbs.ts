@@ -2,15 +2,15 @@ import { SwiperOptions } from "swiper/types";
 import { getWaterfallByName, parseBoolean, parseNumber, parseString } from "../util";
 import { Waterfall } from "types/waterfall";
 import {
-  ATTR_THUMBS,
   ATTR_THUMBS_AUTO_SCROLL_OFFSET,
-  ATTR_THUMBS_CONTAINER_CLASS,
   ATTR_THUMBS_MULTIPLE_ACTIVE_THUMBS,
   ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS,
+  ATTR_THUMBS_SWIPER,
+  ATTR_THUMBS_THUMBS_CONTAINER_CLASS,
 } from "lib/attributes";
 
 export function thumbsConfig(config: SwiperOptions, el: HTMLElement, swipers: Waterfall[], debug: boolean) {
-  const thumbsName = parseString(el, ATTR_THUMBS, "");
+  const thumbsName = parseString(el, ATTR_THUMBS_SWIPER, "");
   if (!thumbsName || thumbsName === "") {
     return;
   }
@@ -27,7 +27,7 @@ export function thumbsConfig(config: SwiperOptions, el: HTMLElement, swipers: Wa
     multipleActiveThumbs: parseBoolean(el, ATTR_THUMBS_MULTIPLE_ACTIVE_THUMBS, false),
     slideThumbActiveClass: parseString(el, ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS, "swiper-slide-thumb-active"),
     swiper: waterfall.swiper,
-    thumbsContainerClass: parseString(el, ATTR_THUMBS_CONTAINER_CLASS, "swiper-thumbs"),
+    thumbsContainerClass: parseString(el, ATTR_THUMBS_THUMBS_CONTAINER_CLASS, "swiper-thumbs"),
   };
   return config;
 }

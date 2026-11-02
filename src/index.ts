@@ -31,7 +31,7 @@ import parallaxConfig from "./modules/parallax";
 import { callbacksConfig } from "./modules/callbacks";
 import { initAutoplayControl } from "./modules/autoplayControl";
 
-import { ATTR_WATERFALL, ATTR_DEBUG_MODE, ATTR_THUMBS, ATTR_CONTROLLER } from "./lib/attributes";
+import { ATTR_WATERFALL, ATTR_DEBUG_MODE, ATTR_THUMBS_SWIPER, ATTR_CONTROLLER_CONTROL } from "./lib/attributes";
 
 export * from "./lib/attributes";
 export * from "./lib/elements";
@@ -57,13 +57,13 @@ let indexCounter = 0;
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize all other sliders
   document.querySelectorAll(`[${ATTR_WATERFALL}]`).forEach((el) => {
-    if (el.hasAttribute(ATTR_THUMBS) || el.hasAttribute(ATTR_CONTROLLER)) return;
+    if (el.hasAttribute(ATTR_THUMBS_SWIPER) || el.hasAttribute(ATTR_CONTROLLER_CONTROL)) return;
     initConfig(el as HTMLElement, indexCounter++);
   });
 
   // Initialize Controller Sliders last
-  indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_THUMBS}]`, indexCounter);
-  indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_CONTROLLER}]`, indexCounter);
+  indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_THUMBS_SWIPER}]`, indexCounter);
+  indexCounter = initAll(`[${ATTR_WATERFALL}][${ATTR_CONTROLLER_CONTROL}]`, indexCounter);
 
   // SLIDE COUNT
   initSlideCount();

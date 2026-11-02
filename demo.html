@@ -259,8 +259,8 @@
           waterfall="basic-slider"
           waterfall-navigation-enabled="true"
           waterfall-loop-mode="true"
-          waterfall-autoplay-mode="true"
-          waterfall-delay="3000"
+          waterfall-autoplay="true"
+          waterfall-autoplay-delay="3000"
           waterfall-speed="600"
         >
           <div class="swiper">
@@ -278,7 +278,7 @@
 
         <div class="code-snippet">
           &lt;div waterfall="basic-slider" waterfall-navigation-enabled="true" waterfall-loop-mode="true"
-          waterfall-autoplay-mode="true" waterfall-delay="3000"&gt;
+          waterfall-autoplay="true" waterfall-autoplay-delay="3000"&gt;
         </div>
       </div>
 
@@ -331,8 +331,8 @@
           waterfall="progressbar-slider"
           waterfall-pagination-enabled="true"
           waterfall-pagination-type="progressbar"
-          waterfall-autoplay-mode="true"
-          waterfall-delay="2500"
+          waterfall-autoplay="true"
+          waterfall-autoplay-delay="2500"
         >
           <div class="swiper">
             <div class="swiper-wrapper">
@@ -347,7 +347,7 @@
 
         <div class="code-snippet">
           &lt;div waterfall="progressbar-slider" waterfall-pagination-type="progressbar"
-          waterfall-autoplay-mode="true"&gt;
+          waterfall-autoplay="true"&gt;
         </div>
       </div>
 
@@ -433,9 +433,9 @@
         <div
           waterfall="fade-slider"
           waterfall-effect="fade"
-          waterfall-effect-crossfade="true"
-          waterfall-autoplay-mode="true"
-          waterfall-delay="2000"
+          waterfall-fade-effect-mode="cross-fade"
+          waterfall-autoplay="true"
+          waterfall-autoplay-delay="2000"
           waterfall-pagination-enabled="true"
         >
           <div class="swiper">
@@ -450,8 +450,8 @@
         </div>
 
         <div class="code-snippet">
-          &lt;div waterfall="fade-slider" waterfall-effect="fade" waterfall-effect-crossfade="true"
-          waterfall-autoplay-mode="true"&gt;
+          &lt;div waterfall="fade-slider" waterfall-effect="fade" waterfall-fade-effect-mode="cross-fade"
+          waterfall-autoplay="true"&gt;
         </div>
       </div>
 
@@ -467,8 +467,8 @@
         <div
           waterfall="cube-slider"
           waterfall-effect="cube"
-          waterfall-cube-shadow="true"
-          waterfall-cube-slide-shadows="true"
+          waterfall-cube-effect-shadow="true"
+          waterfall-cube-effect-slide-shadows="true"
           waterfall-speed="1000"
           waterfall-pagination-enabled="true"
         >
@@ -484,8 +484,8 @@
         </div>
 
         <div class="code-snippet">
-          &lt;div waterfall="cube-slider" waterfall-effect="cube" waterfall-cube-shadow="true"
-          waterfall-cube-slide-shadows="true"&gt;
+          &lt;div waterfall="cube-slider" waterfall-effect="cube" waterfall-cube-effect-shadow="true"
+          waterfall-cube-effect-slide-shadows="true"&gt;
         </div>
       </div>
 
@@ -501,11 +501,11 @@
         <div
           waterfall="coverflow-slider"
           waterfall-effect="coverflow"
-          waterfall-coverflow-rotate="50"
-          waterfall-coverflow-stretch="0"
-          waterfall-coverflow-depth="100"
-          waterfall-coverflow-modifier="1"
-          waterfall-coverflow-slide-shadows="true"
+          waterfall-coverflow-effect-rotate="50"
+          waterfall-coverflow-effect-stretch="0"
+          waterfall-coverflow-effect-depth="100"
+          waterfall-coverflow-effect-modifier="1"
+          waterfall-coverflow-effect-slide-shadows="true"
           waterfall-centered-slides="true"
           waterfall-slides-per-view="3"
           waterfall-pagination-enabled="true"
@@ -576,7 +576,7 @@
         <div
           waterfall="vertical-slider"
           waterfall-direction="vertical"
-          waterfall-mouse-enabled="true"
+          waterfall-mousewheel-enabled="true"
           waterfall-keyboard-enabled="true"
           waterfall-pagination-enabled="true"
           waterfall-slides-per-view="1"
@@ -594,7 +594,7 @@
         </div>
 
         <div class="code-snippet">
-          &lt;div waterfall="vertical-slider" waterfall-direction="vertical" waterfall-mouse-enabled="true"
+          &lt;div waterfall="vertical-slider" waterfall-direction="vertical" waterfall-mousewheel-enabled="true"
           waterfall-keyboard-enabled="true"&gt;
         </div>
       </div>
@@ -673,7 +673,7 @@
         <p>Main slider controlled by thumbnail navigation below.</p>
 
         <!-- Main Slider -->
-        <div waterfall="thumbs-main" waterfall-thumbs="thumbs-nav" waterfall-space-between="10">
+        <div waterfall="thumbs-main" waterfall-thumbs-swiper="thumbs-nav" waterfall-space-between="10">
           <div class="swiper swiper-main">
             <div class="swiper-wrapper">
               <div class="swiper-slide">Gallery 1</div>
@@ -705,7 +705,7 @@
         </div>
 
         <div class="code-snippet">
-          &lt;div waterfall="thumbs-main" waterfall-thumbs="thumbs-nav"&gt; &lt;div waterfall="thumbs-nav"
+          &lt;div waterfall="thumbs-main" waterfall-thumbs-swiper="thumbs-nav"&gt; &lt;div waterfall="thumbs-nav"
           waterfall-watch-slides-progress="true"&gt;
         </div>
       </div>
@@ -761,7 +761,7 @@
 
         <div
           waterfall="hash-slider"
-          waterfall-hash-watch-state="true"
+          waterfall-hash-navigation-watch-state="true"
           waterfall-pagination-enabled="true"
           waterfall-navigation-enabled="true"
         >
@@ -779,7 +779,7 @@
         </div>
 
         <div class="code-snippet">
-          &lt;div waterfall="hash-slider" waterfall-hash-watch-state="true"&gt; &lt;div class="swiper-slide"
+          &lt;div waterfall="hash-slider" waterfall-hash-navigation-watch-state="true"&gt; &lt;div class="swiper-slide"
           data-hash="slide1"&gt;Content&lt;/div&gt;
         </div>
       </div>

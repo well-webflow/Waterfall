@@ -1,6 +1,6 @@
 {
   "name": "well-waterfall",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "Create Swipers in Webflow with attributes",
   "type": "module",
   "main": "./dist/well-waterfall.umd.js",
@@ -25,7 +25,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build && vite build --mode attributes",
-    "postbuild": "node scripts/sync-readme-version.js",
+    "postbuild": "node scripts/sync-readme-version.js && node scripts/generate-reference.js",
+    "reference": "node scripts/generate-reference.js",
+    "reference:check": "node scripts/generate-reference.js --check",
     "build:watch": "vite build --watch",
     "dev": "vite",
     "preview": "vite preview",
@@ -47,7 +49,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^16.5.0",
     "prettier": "^3.4.2",
-    "swiper": "^14.3.0",
+    "swiper": "^14.4.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.72.1",
     "vite": "^7.1.2",

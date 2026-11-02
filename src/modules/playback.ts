@@ -1,30 +1,35 @@
 import {
   ATTR_AUTOPLAY,
-  ATTR_DELAY,
-  ATTR_DISABLE_ON_INTERACTION,
+  ATTR_AUTOPLAY_DELAY,
+  ATTR_AUTOPLAY_DISABLE_ON_INTERACTION,
+  ATTR_AUTOPLAY_PAUSE_ON_MOUSE_ENTER,
+  ATTR_AUTOPLAY_REVERSE_DIRECTION,
+  ATTR_AUTOPLAY_STOP_ON_LAST_SLIDE,
+  ATTR_AUTOPLAY_WAIT_FOR_TRANSITION,
+  ATTR_LOOP,
   ATTR_LOOP_ADD_ADDITIONAL_SLIDES,
   ATTR_LOOP_ADD_BLANK_SLIDES,
   ATTR_LOOP_PREVENTS_SLIDING,
   ATTR_ONE_WAY_MOVEMENT,
-  ATTR_PAUSE_ON_MOUSE_ENTER,
-  ATTR_PLAYBACK_MODE,
-  ATTR_REVERSE_DIRECTION,
+  ATTR_REWIND,
   ATTR_SMOOTH_AUTOPLAY,
   ATTR_SPEED,
-  ATTR_STOP_ON_LAST_SLIDE,
 } from "lib/attributes";
-import { parseBoolean, parseNumber, parseString } from "../util";
+import { parseBoolean, parseNumber } from "../util";
 import { SwiperOptions } from "swiper/types";
 
 export function playbackConfig(config: SwiperOptions, el: HTMLElement) {
-  // Set Loop, Rewind, or None
-  const playbackMode = parseString(el, ATTR_PLAYBACK_MODE, "none");
-  if (playbackMode === "loop") config.loop = true;
-  if (playbackMode === "rewind") config.rewind = true;
-  if (playbackMode === "none") {
-    config.loop = false;
-    config.rewind = false;
+  // Loop and rewind are mutually exclusive in Swiper; loop wins if both are set.
+  const loop = parseBoolean(el, ATTR_LOOP, false);
+  const rewind = parseBoolean(el, ATTR_REWIND, false);
+  if (loop && rewind) {
+    console.warn(
+      `[PLAYBACK] "${ATTR_LOOP}" and "${ATTR_REWIND}" cannot both be true. Using loop and ignoring rewind.`,
+      el,
+    );
   }
+  config.loop = loop;
+  config.rewind = loop ? undefined : rewind;
   config.loopAddBlankSlides = parseBoolean(el, ATTR_LOOP_ADD_BLANK_SLIDES, true);
   config.loopAdditionalSlides = parseNumber(el, ATTR_LOOP_ADD_ADDITIONAL_SLIDES, 0);
   config.loopPreventsSliding = parseBoolean(el, ATTR_LOOP_PREVENTS_SLIDING, true);
@@ -33,7 +38,7 @@ export function playbackConfig(config: SwiperOptions, el: HTMLElement) {
 
   // Smooth Autoplay
   const smoothAutoplay = parseBoolean(el, ATTR_SMOOTH_AUTOPLAY, false);
-  let delay = parseNumber(el, ATTR_DELAY, undefined);
+  let delay = parseNumber(el, ATTR_AUTOPLAY_DELAY, undefined);
   if (smoothAutoplay) delay = 0;
 
   if (autoplayMode) {
@@ -41,10 +46,11 @@ export function playbackConfig(config: SwiperOptions, el: HTMLElement) {
     setSmoothAutoplay();
     config.autoplay = {
       delay,
-      disableOnInteraction: parseBoolean(el, ATTR_DISABLE_ON_INTERACTION, false), // documentation says default is true, doesn't appear to be correct
-      reverseDirection: parseBoolean(el, ATTR_REVERSE_DIRECTION, false),
-      pauseOnMouseEnter: parseBoolean(el, ATTR_PAUSE_ON_MOUSE_ENTER, false),
-      stopOnLastSlide: parseBoolean(el, ATTR_STOP_ON_LAST_SLIDE, false),
+      disableOnInteraction: parseBoolean(el, ATTR_AUTOPLAY_DISABLE_ON_INTERACTION, false), // documentation says default is true, doesn't appear to be correct
+      reverseDirection: parseBoolean(el, ATTR_AUTOPLAY_REVERSE_DIRECTION, false),
+      pauseOnMouseEnter: parseBoolean(el, ATTR_AUTOPLAY_PAUSE_ON_MOUSE_ENTER, false),
+      stopOnLastSlide: parseBoolean(el, ATTR_AUTOPLAY_STOP_ON_LAST_SLIDE, false),
+      waitForTransition: parseBoolean(el, ATTR_AUTOPLAY_WAIT_FOR_TRANSITION, true),
     };
   }
   // Other Options

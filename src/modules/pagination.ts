@@ -1,6 +1,7 @@
 import {
   ATTR_PAGINATION_LOCK_CLASS,
   ATTR_PAGINATION_BULLET_ACTIVE_CLASS,
+  ATTR_PAGINATION_BULLET_CLASS,
   ATTR_PAGINATION_CLICKABLE,
   ATTR_PAGINATION_CLICKABLE_CLASS,
   ATTR_PAGINATION_CURRENT_CLASS,
@@ -33,7 +34,7 @@ export function paginationConfig(config: SwiperOptions, element: HTMLElement) {
 
   config.pagination = {
     bulletActiveClass: parseString(element, ATTR_PAGINATION_BULLET_ACTIVE_CLASS, "swiper-pagination-bullet-active"),
-    bulletClass: paginationBullet?.getAttribute("class")?.trim() || "swiper-pagination-bullet",
+    bulletClass: parseString(element, ATTR_PAGINATION_BULLET_CLASS, "swiper-pagination-bullet"),
     bulletElement: paginationBullet?.tagName?.toLowerCase() || "span",
     clickable: parseBoolean(element, ATTR_PAGINATION_CLICKABLE, false),
     clickableClass: parseString(element, ATTR_PAGINATION_CLICKABLE_CLASS, "swiper-pagination-clickable"),

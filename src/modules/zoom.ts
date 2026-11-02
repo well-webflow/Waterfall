@@ -5,7 +5,7 @@ import {
   ATTR_ZOOM_MIN_RATIO,
   ATTR_ZOOM_PAN_ON_MOUSE_MOVE,
   ATTR_ZOOM_TOGGLE,
-  ATTR_ZOOMED_SLIDE_CLASS,
+  ATTR_ZOOM_ZOOMED_SLIDE_CLASS,
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
 import { SwiperOptions } from "swiper/types";
@@ -18,6 +18,6 @@ export function zoomConfig(config: SwiperOptions, el: HTMLElement) {
     minRatio: parseNumber(el, ATTR_ZOOM_MIN_RATIO, 1),
     panOnMouseMove: parseBoolean(el, ATTR_ZOOM_PAN_ON_MOUSE_MOVE, false),
     toggle: parseBoolean(el, ATTR_ZOOM_TOGGLE, true),
-    zoomedSlideClass: parseString(el, ATTR_ZOOMED_SLIDE_CLASS, "swiper-slide-zoomed"),
+    zoomedSlideClass: parseString(el, ATTR_ZOOM_ZOOMED_SLIDE_CLASS, "swiper-slide-zoomed"),
   };
 }

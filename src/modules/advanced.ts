@@ -12,6 +12,7 @@ import {
   ATTR_UNIQUE_NAV_ELEMENTS,
   ATTR_URL,
   ATTR_USER_AGENT,
+  ATTR_VIRTUAL_TRANSLATE,
 } from "lib/attributes";
 import { parseBoolean, parseNumber, parseString } from "../util";
 import { SwiperOptions } from "swiper/types";
@@ -46,6 +47,8 @@ export default function advancedConfig(config: SwiperOptions, el: HTMLElement) {
   config.setWrapperSize = parseBoolean(el, ATTR_SET_WRAPPER_SIZE, false);
   // NOTE Turning this off is a weird way of looking for navigation elements
   config.uniqueNavElements = parseBoolean(el, ATTR_UNIQUE_NAV_ELEMENTS, true);
+  // NOTE Swiper runs as usual but never translates the wrapper; for custom slide transitions
+  config.virtualTranslate = parseBoolean(el, ATTR_VIRTUAL_TRANSLATE, false);
   // NOTE Used for Server Side Rendering (SSR)
   config.url = parseString(el, ATTR_URL);
   config.userAgent = parseString(el, ATTR_USER_AGENT);

@@ -1,11 +1,11 @@
 import { Waterfall } from "types/waterfall";
 import { getWaterfallsByName, parseAny, parseBoolean, parseString } from "../util";
 import Swiper from "swiper";
-import { ATTR_CONTROLLER, ATTR_CONTROLLER_BY, ATTR_CONTROLLER_INVERSE } from "../lib/attributes";
+import { ATTR_CONTROLLER_CONTROL, ATTR_CONTROLLER_BY, ATTR_CONTROLLER_INVERSE } from "../lib/attributes";
 import { SwiperOptions } from "swiper/types";
 
 export function controllerConfig(config: SwiperOptions, el: HTMLElement, waterfalls: Waterfall[], debug: boolean) {
-  const controllerSelector = parseString(el, ATTR_CONTROLLER, "");
+  const controllerSelector = parseString(el, ATTR_CONTROLLER_CONTROL, "");
   if (!controllerSelector) return;
   const swipers: Swiper[] = getWaterfallsByName(waterfalls, controllerSelector, debug);
 

@@ -1,12 +1,8 @@
 // Waterfall Attributes
 export const ATTR_WATERFALL = "waterfall";
-export const ATTR_WATERFALL_PRELOAD = "waterfall-preload";
-export const ATTR_WATERFALL_POSTLOAD = "waterfall-postload";
-export const ATTR_WATERFALL_CONTENT = "waterfall-content";
 // Debug
 export const ATTR_DEBUG_MODE = "waterfall-debug-mode";
-// A11Y`
-export const ATTR_A11Y = "waterfall-a11y";
+// A11Y
 export const ATTR_A11Y_CONTAINER_MESSAGE = "waterfall-a11y-container-message";
 export const ATTR_A11Y_CONTAINER_ROLE = "waterfall-a11y-container-role";
 export const ATTR_A11Y_CONTAINER_ROLE_DESCRIPTION_MESSAGE = "waterfall-a11y-container-role-description-message";
@@ -28,27 +24,27 @@ export const BREAKPOINTS = ["mobile", "mobile-large", "tablet", "desktop", "desk
 export type Breakpoint = (typeof BREAKPOINTS)[number];
 export const breakpointAttr = (attr: string, breakpoint: Breakpoint) => `${attr}-${breakpoint}`;
 // Controller
-export const ATTR_CONTROLLER = "waterfall-controller";
+export const ATTR_CONTROLLER_CONTROL = "waterfall-controller-control";
 export const ATTR_CONTROLLER_BY = "waterfall-controller-by";
 export const ATTR_CONTROLLER_INVERSE = "waterfall-controller-inverse";
 // Effect
-export const ATTR_EFFECT_CROSSFADE = "waterfall-effect-crossfade";
-export const ATTR_COVERFLOW_DEPTH = "waterfall-coverflow-depth";
-export const ATTR_COVERFLOW_MODIFIER = "waterfall-coverflow-modifier";
-export const ATTR_COVERFLOW_ROTATE = "waterfall-coverflow-rotate";
-export const ATTR_COVERFLOW_SCALE = "waterfall-coverflow-scale";
-export const ATTR_COVERFLOW_SLIDE_SHADOWS = "waterfall-coverflow-slide-shadows";
-export const ATTR_COVERFLOW_STRETCH = "waterfall-coverflow-stretch";
-export const ATTR_FLIP_LIMIT_ROTATION = "waterfall-flip-limit-rotation";
-export const ATTR_FLIP_SLIDE_SHADOWS = "waterfall-flip-slide-shadows";
-export const ATTR_CUBE_SHADOW = "waterfall-cube-shadow";
-export const ATTR_CUBE_SHADOW_OFFSET = "waterfall-cube-shadow-offset";
-export const ATTR_CUBE_SHADOW_SCALE = "waterfall-cube-shadow-scale";
-export const ATTR_CUBE_SLIDE_SHADOWS = "waterfall-cube-slide-shadows";
-export const ATTR_CARDS_PER_SLIDE_OFFSET = "waterfall-cards-per-slide-offset";
-export const ATTR_CARDS_PER_SLIDE_ROTATE = "waterfall-cards-per-slide-rotate";
-export const ATTR_CARDS_ROTATE = "waterfall-cards-rotate";
-export const ATTR_CARDS_SLIDE_SHADOWS = "waterfall-cards-slide-shadows";
+export const ATTR_FADE_EFFECT_MODE = "waterfall-fade-effect-mode";
+export const ATTR_COVERFLOW_EFFECT_DEPTH = "waterfall-coverflow-effect-depth";
+export const ATTR_COVERFLOW_EFFECT_MODIFIER = "waterfall-coverflow-effect-modifier";
+export const ATTR_COVERFLOW_EFFECT_ROTATE = "waterfall-coverflow-effect-rotate";
+export const ATTR_COVERFLOW_EFFECT_SCALE = "waterfall-coverflow-effect-scale";
+export const ATTR_COVERFLOW_EFFECT_SLIDE_SHADOWS = "waterfall-coverflow-effect-slide-shadows";
+export const ATTR_COVERFLOW_EFFECT_STRETCH = "waterfall-coverflow-effect-stretch";
+export const ATTR_FLIP_EFFECT_LIMIT_ROTATION = "waterfall-flip-effect-limit-rotation";
+export const ATTR_FLIP_EFFECT_SLIDE_SHADOWS = "waterfall-flip-effect-slide-shadows";
+export const ATTR_CUBE_EFFECT_SHADOW = "waterfall-cube-effect-shadow";
+export const ATTR_CUBE_EFFECT_SHADOW_OFFSET = "waterfall-cube-effect-shadow-offset";
+export const ATTR_CUBE_EFFECT_SHADOW_SCALE = "waterfall-cube-effect-shadow-scale";
+export const ATTR_CUBE_EFFECT_SLIDE_SHADOWS = "waterfall-cube-effect-slide-shadows";
+export const ATTR_CARDS_EFFECT_PER_SLIDE_OFFSET = "waterfall-cards-effect-per-slide-offset";
+export const ATTR_CARDS_EFFECT_PER_SLIDE_ROTATE = "waterfall-cards-effect-per-slide-rotate";
+export const ATTR_CARDS_EFFECT_ROTATE = "waterfall-cards-effect-rotate";
+export const ATTR_CARDS_EFFECT_SLIDE_SHADOWS = "waterfall-cards-effect-slide-shadows";
 // General
 export const ATTR_ALLOW_SLIDE_NEXT = "waterfall-allow-slide-next";
 export const ATTR_ALLOW_SLIDE_PREV = "waterfall-allow-slide-prev";
@@ -78,7 +74,7 @@ export const ATTR_LAZY_PRELOADER_CLASS = "waterfall-lazy-preloader-class";
 export const ATTR_LONG_SWIPES = "waterfall-long-swipes";
 export const ATTR_LONG_SWIPES_MS = "waterfall-long-swipes-ms";
 export const ATTR_LONG_SWIPES_RATIO = "waterfall-long-swipes-ratio";
-export const ATTR_LOOP = "waterfall-loop-mode";
+export const ATTR_LOOP = "waterfall-loop";
 export const ATTR_LOOP_ADD_BLANK_SLIDES = "waterfall-loop-add-blank-slides";
 export const ATTR_LOOP_ADD_ADDITIONAL_SLIDES = "waterfall-loop-additional-slides";
 export const ATTR_LOOP_PREVENTS_SLIDING = "waterfall-loop-prevents-sliding";
@@ -91,7 +87,7 @@ export const ATTR_NORMALIZE_SLIDE_INDEX = "waterfall-normalize-slide-index";
 export const ATTR_OBSERVE_SLIDE_PARENTS = "waterfall-observe-parents";
 export const ATTR_OBSERVE_SLIDE_CHILDREN = "waterfall-observe-slide-children";
 export const ATTR_OBSERVER = "waterfall-observer";
-export const ATTR_ONE_WAY_MOVEMENT = "waterfall-data-one-way-movement";
+export const ATTR_ONE_WAY_MOVEMENT = "waterfall-one-way-movement";
 export const ATTR_PASSIVE_LISTENERS = "waterfall-passive-listeners";
 export const ATTR_PREVENT_CLICKS = "waterfall-prevent-clicks";
 export const ATTR_PREVENT_CLICKS_PROPAGATION = "waterfall-prevent-clicks-propagation";
@@ -141,8 +137,8 @@ export const ATTR_WATCH_SLIDES_PROGRESS = "waterfall-watch-slides-progress";
 export const ATTR_WIDTH = "waterfall-width";
 export const ATTR_WRAPPER_CLASS = "waterfall-wrapper-class";
 // Hash Navigation
-export const ATTR_HASH_REPLACE_STATE = "waterfall-hash-replace-state";
-export const ATTR_HASH_WATCH_STATE = "waterfall-hash-watch-state";
+export const ATTR_HASH_NAVIGATION_REPLACE_STATE = "waterfall-hash-navigation-replace-state";
+export const ATTR_HASH_NAVIGATION_WATCH_STATE = "waterfall-hash-navigation-watch-state";
 // History Navigation
 export const ATTR_HISTORY_KEEP_QUERY = "waterfall-history-keep-query";
 export const ATTR_HISTORY_KEY = "waterfall-history-key";
@@ -153,15 +149,15 @@ export const ATTR_KEYBOARD_ENABLED = "waterfall-keyboard-enabled";
 export const ATTR_KEYBOARD_ONLY_IN_VIEWPORT = "waterfall-keyboard-only-in-viewport";
 export const ATTR_KEYBOARD_PAGE_UP_DOWN = "waterfall-keyboard-page-up-down";
 // Mousewheel
-export const ATTR_MOUSE_ENABLED = "waterfall-mouse-enabled";
-export const ATTR_MOUSE_EVENTS_TARGET = "waterfall-mouse-events-target";
-export const ATTR_MOUSE_FORCE_TO_AXIS = "waterfall-mouse-force-to-axis";
-export const ATTR_MOUSE_INVERT = "waterfall-mouse-invert";
-export const ATTR_MOUSE_NO_MOUSE_WHEEL_CLASS = "waterfall-mouse-no-mouse-wheel-class";
-export const ATTR_MOUSE_RELEASE_ON_EDGES = "waterfall-mouse-release-on-edges";
-export const ATTR_MOUSE_SENSITIVITY = "waterfall-mouse-sensitivity";
-export const ATTR_MOUSE_THRESHOLD_DELTA = "waterfall-mouse-threshold-delta";
-export const ATTR_MOUSE_THRESHOLD_TIME = "waterfall-mouse-threshold-time";
+export const ATTR_MOUSEWHEEL_ENABLED = "waterfall-mousewheel-enabled";
+export const ATTR_MOUSEWHEEL_EVENTS_TARGET = "waterfall-mousewheel-events-target";
+export const ATTR_MOUSEWHEEL_FORCE_TO_AXIS = "waterfall-mousewheel-force-to-axis";
+export const ATTR_MOUSEWHEEL_INVERT = "waterfall-mousewheel-invert";
+export const ATTR_MOUSEWHEEL_NO_MOUSEWHEEL_CLASS = "waterfall-mousewheel-no-mousewheel-class";
+export const ATTR_MOUSEWHEEL_RELEASE_ON_EDGES = "waterfall-mousewheel-release-on-edges";
+export const ATTR_MOUSEWHEEL_SENSITIVITY = "waterfall-mousewheel-sensitivity";
+export const ATTR_MOUSEWHEEL_THRESHOLD_DELTA = "waterfall-mousewheel-threshold-delta";
+export const ATTR_MOUSEWHEEL_THRESHOLD_TIME = "waterfall-mousewheel-threshold-time";
 // Grid
 export const ATTR_GRID_ROWS = "waterfall-grid-rows";
 export const ATTR_GRID_FILL = "waterfall-grid-fill";
@@ -194,14 +190,14 @@ export const ATTR_PAGINATION_PROGRESSBAR_OPPOSITE_CLASS = "waterfall-pagination-
 export const ATTR_PAGINATION_TOTAL_CLASS = "waterfall-pagination-total-class";
 export const ATTR_PAGINATION_VERTICAL_CLASS = "waterfall-pagination-vertical-class";
 // Playback
-export const ATTR_AUTOPLAY = "waterfall-autoplay-mode";
+export const ATTR_AUTOPLAY = "waterfall-autoplay";
 export const ATTR_SMOOTH_AUTOPLAY = "waterfall-smooth-autoplay";
-export const ATTR_DELAY = "waterfall-delay";
-export const ATTR_DISABLE_ON_INTERACTION = "waterfall-disable-on-interaction";
-export const ATTR_REVERSE_DIRECTION = "waterfall-reverse-direction";
-export const ATTR_PAUSE_ON_MOUSE_ENTER = "waterfall-pause-on-mouse-enter";
-export const ATTR_STOP_ON_LAST_SLIDE = "waterfall-stop-on-last-slide";
-export const ATTR_WAIT_FOR_TRANSITION = "waterfall-wait-for-transition";
+export const ATTR_AUTOPLAY_DELAY = "waterfall-autoplay-delay";
+export const ATTR_AUTOPLAY_DISABLE_ON_INTERACTION = "waterfall-autoplay-disable-on-interaction";
+export const ATTR_AUTOPLAY_REVERSE_DIRECTION = "waterfall-autoplay-reverse-direction";
+export const ATTR_AUTOPLAY_PAUSE_ON_MOUSE_ENTER = "waterfall-autoplay-pause-on-mouse-enter";
+export const ATTR_AUTOPLAY_STOP_ON_LAST_SLIDE = "waterfall-autoplay-stop-on-last-slide";
+export const ATTR_AUTOPLAY_WAIT_FOR_TRANSITION = "waterfall-autoplay-wait-for-transition";
 // Autoplay Control
 export const ATTR_AUTOPLAY_CONTROL_ENABLED = "waterfall-autoplay-control-enabled";
 export const ATTR_AUTOPLAY_CONTROL_DEFAULT_STATE = "waterfall-autoplay-control-default-state";
@@ -226,11 +222,11 @@ export const ATTR_SCROLLBAR_SCROLLBAR_DISABLED_CLASS = "waterfall-scrollbar-scro
 export const ATTR_SCROLLBAR_VERTICAL_CLASS = "waterfall-scrollbar-vertical-class";
 export const ATTR_SCROLLBAR_SNAP_ON_RELEASE = "waterfall-scrollbar-snap-on-release";
 // Thumbs
-export const ATTR_THUMBS = "waterfall-thumbs";
+export const ATTR_THUMBS_SWIPER = "waterfall-thumbs-swiper";
 export const ATTR_THUMBS_AUTO_SCROLL_OFFSET = "waterfall-thumbs-auto-scroll-offset";
 export const ATTR_THUMBS_MULTIPLE_ACTIVE_THUMBS = "waterfall-thumbs-multiple-active-thumbs";
-export const ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS = "waterfall-slide-thumb-active-class";
-export const ATTR_THUMBS_CONTAINER_CLASS = "waterfall-thumbs-container-class";
+export const ATTR_THUMBS_SLIDE_THUMB_ACTIVE_CLASS = "waterfall-thumbs-slide-thumb-active-class";
+export const ATTR_THUMBS_THUMBS_CONTAINER_CLASS = "waterfall-thumbs-thumbs-container-class";
 // Manipulation
 export const ATTR_MANIPULATION_ADD_SLIDE = "waterfall-add-slide";
 export const ATTR_MANIPULATION_ADD_INDEX = "waterfall-add-index";
@@ -239,16 +235,13 @@ export const ATTR_MANIPULATION_PREPEND_SLIDE = "waterfall-prepend-slide";
 export const ATTR_MANIPULATION_REMOVE_SLIDE = "waterfall-remove-slide";
 export const ATTR_MANIPULATION_REMOVE_INDEX = "waterfall-remove-index";
 // Zoom
-export const ATTR_ZOOM = "waterfall-zoom";
-export const ATTR_ZOOM_ENABLED = "waterfall-zoom-enabled";
 export const ATTR_ZOOM_CONTAINER_CLASS = "waterfall-zoom-container-class";
 export const ATTR_ZOOM_LIMIT_TO_ORIGINAL_SIZE = "waterfall-zoom-limit-to-original-size";
 export const ATTR_ZOOM_MAX_RATIO = "waterfall-zoom-max-ratio";
 export const ATTR_ZOOM_MIN_RATIO = "waterfall-zoom-min-ratio";
 export const ATTR_ZOOM_PAN_ON_MOUSE_MOVE = "waterfall-zoom-pan-on-mouse-move";
 export const ATTR_ZOOM_TOGGLE = "waterfall-zoom-toggle";
-export const ATTR_ZOOMED_SLIDE_CLASS = "waterfall-zoomed-slide-class";
-export const ATTR_ZOOM_FADE = "waterfall-zoom-fade";
+export const ATTR_ZOOM_ZOOMED_SLIDE_CLASS = "waterfall-zoom-zoomed-slide-class";
 // Parallax
 export const ATTR_PARALLAX_ENABLED = "waterfall-parallax-enabled";
 export const ATTR_PARALLAX = "data-swiper-parallax";
@@ -259,6 +252,3 @@ export const ATTR_PARALLAX_OPACITY = "data-swiper-parallax-opacity";
 export const ATTR_PARALLAX_DURATION = "data-swiper-parallax-duration";
 // Callbacks
 export const ATTR_CALLBACK_SLIDE_CHANGE = "waterfall-callback-slide-change";
-
-// Extras ??? //FIXME - this probably should be removed
-export const ATTR_PLAYBACK_MODE = "waterfall-playback-mode";

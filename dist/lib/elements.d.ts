@@ -1,12 +1,9 @@
 export declare const ATTR_WATERFALL_ELEMENT = "waterfall-el";
 export declare const EL_PAGINATION = "pagination";
 export declare const EL_PAGINATION_BULLET = "pagination-bullet";
-export declare const EL_PAGINATION_BULLET_ACTIVE = "pagination-bullet-active";
-export declare const EL_NAVIGATION = "waterfall-navigation";
 export declare const EL_NAVIGATION_NEXT = "navigation-next";
 export declare const EL_NAVIGATION_PREV = "navigation-prev";
 export declare const EL_SCROLLBAR = "scrollbar";
-export declare const EL_SCROLLBAR_DRAG = "scrollbar-drag";
 export declare const EL_SLIDE_COUNT = "slide-count";
 export declare const EL_AUTOPLAY_CONTROL = "autoplay-control";
 export declare const EL_AUTOPLAY_CONTROL_PAUSE = "autoplay-control-pause";
