@@ -10,16 +10,23 @@ import {
   ATTR_SCROLLBAR_SNAP_ON_RELEASE,
   ATTR_SCROLLBAR_VERTICAL_CLASS,
 } from "lib/attributes";
-import { ATTR_WATERFALL_ELEMENT, EL_SCROLLBAR } from "lib/elements";
-import { parseAny, parseBoolean, parseString } from "../util";
+import { ATTR_WATERFALL_ELEMENT, EL_SCROLLBAR, EL_SCROLLBAR_DRAG } from "lib/elements";
+import { getDonatedClasses, parseAny, parseBoolean, parseString } from "../util";
 import { SwiperOptions } from "swiper/types";
 
 export function scrollbarConfig(config: SwiperOptions, element: HTMLElement) {
   const scrollbar = element.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_SCROLLBAR}]`);
   if (!scrollbar) return;
 
+  // The drag element donates its classes to the handle, so Swiper reuses it in place.
+  // An explicit class overrides that, and Swiper then builds its own handle — leaving the
+  // donor behind in the track as a second, unstyled one unless we take it out.
+  const scrollbarDrag = scrollbar.querySelector<HTMLElement>(`[${ATTR_WATERFALL_ELEMENT}=${EL_SCROLLBAR_DRAG}]`);
+  const dragClassAttr = parseString(element, ATTR_SCROLLBAR_DRAG_CLASS);
+  if (dragClassAttr) scrollbarDrag?.remove();
+
   config.scrollbar = {
-    dragClass: parseString(element, ATTR_SCROLLBAR_DRAG_CLASS, "swiper-scrollbar-drag"),
+    dragClass: dragClassAttr ?? getDonatedClasses(scrollbarDrag),
     dragSize: parseAny(element, ATTR_SCROLLBAR_DRAG_SIZE, "auto"),
     draggable: parseBoolean(element, ATTR_SCROLLBAR_DRAGGABLE, false),
     el: scrollbar || null,

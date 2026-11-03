@@ -9,7 +9,7 @@ Waterfall is a free-forever JavaScript library for Webflow that lets you build [
 3.  **Full Documentation.** Every attribute is listed below, and each setting is explained directly in the Wellspring App.
 4.  **Turn Swipers into Components.** After creating a swiper, you can turn it into a Webflow component for reuse.
 
-Current version: **v<!-- version -->1.5.0<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->14.4.0<!-- /swiper-version -->**
+Current version: **v<!-- version -->1.5.1<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->14.4.0<!-- /swiper-version -->**
 
 ## Table of contents
 
@@ -66,7 +66,7 @@ Use the Wellspring App to install the code onto your site. If you are installing
 **Specific Version (Stable - Recommended)**
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.5.0"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.5.1"></script>
 ```
 
 **Latest Version**
@@ -258,50 +258,50 @@ Navigation turns on automatically when a `navigation-next` or `navigation-prev` 
 
 ### Pagination
 
-Pagination turns on when a `pagination` [element](#element-reference) is found inside the wrapper. To change the tag used for bullets, add a `pagination-bullet` element and Waterfall uses its tag name. Set the bullet class with `waterfall-pagination-bullet-class`.
+Pagination turns on when a `pagination` [element](#element-reference) is found inside the wrapper. Add a `pagination-bullet` element to style the bullets in the Designer: every generated bullet gets that element's tag name and its classes. To set the class in code instead, use `waterfall-pagination-bullet-class`, which overrides the donated classes.
 
 <!-- reference:pagination:0 -->
-| Attribute                                         | Swiper option                         | Values                                                                  | Default                                  | Description                                                                                            |
-| ------------------------------------------------- | ------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `waterfall-pagination-type`                       | `pagination.type`                     | `bullets` \| `numberBullets` \| `fraction` \| `progressbar` \| `custom` | `bullets`                                | Pagination style. `numberBullets` shows bullets containing the slide number.                           |
-| `waterfall-pagination-enabled`                    | `pagination.enabled`                  | boolean                                                                 | _(auto)_                                 | Set to `false` to turn pagination off even when the element exists.                                    |
-| `waterfall-pagination-clickable`                  | `pagination.clickable`                | boolean                                                                 | `false`                                  | Clicking a bullet goes to that slide.                                                                  |
-| `waterfall-pagination-dynamic-bullets`            | `pagination.dynamicBullets`           | boolean                                                                 | `false`                                  | Shows only a few bullets at a time; useful with many slides.                                           |
-| `waterfall-pagination-dynamic-main-bullets`       | `pagination.dynamicMainBullets`       | number                                                                  | `1`                                      | Number of main bullets shown with dynamic bullets.                                                     |
-| `waterfall-pagination-hide-on-click`              | `pagination.hideOnClick`              | boolean                                                                 | `false`                                  | Toggles pagination visibility when the slider is clicked.                                              |
-| `waterfall-pagination-progressbar-opposite`       | `pagination.progressbarOpposite`      | boolean                                                                 | `false`                                  | Draws the progress bar in the opposite direction to the slider (e.g. vertical on a horizontal slider). |
-| `waterfall-pagination-bullet-active-class`        | `pagination.bulletActiveClass`        | string                                                                  | `swiper-pagination-bullet-active`        | Class on the active bullet.                                                                            |
-| `waterfall-pagination-clickable-class`            | `pagination.clickableClass`           | string                                                                  | `swiper-pagination-clickable`            | Class added when pagination is clickable.                                                              |
-| `waterfall-pagination-current-class`              | `pagination.currentClass`             | string                                                                  | `swiper-pagination-current`              | Class on the current number in `fraction` pagination.                                                  |
-| `waterfall-pagination-total-class`                | `pagination.totalClass`               | string                                                                  | `swiper-pagination-total`                | Class on the total number in `fraction` pagination.                                                    |
-| `waterfall-pagination-hidden-class`               | `pagination.hiddenClass`              | string                                                                  | `swiper-pagination-hidden`               | Class added when pagination is hidden.                                                                 |
-| `waterfall-pagination-horizontal-class`           | `pagination.horizontalClass`          | string                                                                  | `swiper-pagination-horizontal`           | Class added for horizontal sliders.                                                                    |
-| `waterfall-pagination-vertical-class`             | `pagination.verticalClass`            | string                                                                  | `swiper-pagination-vertical`             | Class added for vertical sliders.                                                                      |
-| `waterfall-pagination-lock-class`                 | `pagination.lockClass`                | string                                                                  | `swiper-pagination-lock`                 | Class added when pagination is locked (not enough slides).                                             |
-| `waterfall-pagination-modifier-class`             | `pagination.modifierClass`            | string                                                                  | `swiper-pagination-`                     | Prefix for the type modifier class (e.g. `swiper-pagination-bullets`).                                 |
-| `waterfall-pagination-pagination-disabled-class`  | `pagination.paginationDisabledClass`  | string                                                                  | `swiper-pagination-disabled`             | Class added when pagination is disabled.                                                               |
-| `waterfall-pagination-progressbar-fill-class`     | `pagination.progressbarFillClass`     | string                                                                  | `swiper-pagination-progressbar-fill`     | Class on the progress bar fill.                                                                        |
-| `waterfall-pagination-progressbar-opposite-class` | `pagination.progressbarOppositeClass` | string                                                                  | `swiper-pagination-progressbar-opposite` | Class added with an opposite progress bar.                                                             |
-| `waterfall-pagination-bullet-class`               | `pagination.bulletClass`              | string                                                                  | `swiper-pagination-bullet`               | Class applied to every generated bullet.                                                               |
+| Attribute                                         | Swiper option                         | Values                                                                  | Default                                  | Description                                                                                              |
+| ------------------------------------------------- | ------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `waterfall-pagination-type`                       | `pagination.type`                     | `bullets` \| `numberBullets` \| `fraction` \| `progressbar` \| `custom` | `bullets`                                | Pagination style. `numberBullets` shows bullets containing the slide number.                             |
+| `waterfall-pagination-enabled`                    | `pagination.enabled`                  | boolean                                                                 | _(auto)_                                 | Set to `false` to turn pagination off even when the element exists.                                      |
+| `waterfall-pagination-clickable`                  | `pagination.clickable`                | boolean                                                                 | `false`                                  | Clicking a bullet goes to that slide.                                                                    |
+| `waterfall-pagination-dynamic-bullets`            | `pagination.dynamicBullets`           | boolean                                                                 | `false`                                  | Shows only a few bullets at a time; useful with many slides.                                             |
+| `waterfall-pagination-dynamic-main-bullets`       | `pagination.dynamicMainBullets`       | number                                                                  | `1`                                      | Number of main bullets shown with dynamic bullets.                                                       |
+| `waterfall-pagination-hide-on-click`              | `pagination.hideOnClick`              | boolean                                                                 | `false`                                  | Toggles pagination visibility when the slider is clicked.                                                |
+| `waterfall-pagination-progressbar-opposite`       | `pagination.progressbarOpposite`      | boolean                                                                 | `false`                                  | Draws the progress bar in the opposite direction to the slider (e.g. vertical on a horizontal slider).   |
+| `waterfall-pagination-bullet-active-class`        | `pagination.bulletActiveClass`        | string                                                                  | `swiper-pagination-bullet-active`        | Class on the active bullet.                                                                              |
+| `waterfall-pagination-clickable-class`            | `pagination.clickableClass`           | string                                                                  | `swiper-pagination-clickable`            | Class added when pagination is clickable.                                                                |
+| `waterfall-pagination-current-class`              | `pagination.currentClass`             | string                                                                  | `swiper-pagination-current`              | Class on the current number in `fraction` pagination.                                                    |
+| `waterfall-pagination-total-class`                | `pagination.totalClass`               | string                                                                  | `swiper-pagination-total`                | Class on the total number in `fraction` pagination.                                                      |
+| `waterfall-pagination-hidden-class`               | `pagination.hiddenClass`              | string                                                                  | `swiper-pagination-hidden`               | Class added when pagination is hidden.                                                                   |
+| `waterfall-pagination-horizontal-class`           | `pagination.horizontalClass`          | string                                                                  | `swiper-pagination-horizontal`           | Class added for horizontal sliders.                                                                      |
+| `waterfall-pagination-vertical-class`             | `pagination.verticalClass`            | string                                                                  | `swiper-pagination-vertical`             | Class added for vertical sliders.                                                                        |
+| `waterfall-pagination-lock-class`                 | `pagination.lockClass`                | string                                                                  | `swiper-pagination-lock`                 | Class added when pagination is locked (not enough slides).                                               |
+| `waterfall-pagination-modifier-class`             | `pagination.modifierClass`            | string                                                                  | `swiper-pagination-`                     | Prefix for the type modifier class (e.g. `swiper-pagination-bullets`).                                   |
+| `waterfall-pagination-pagination-disabled-class`  | `pagination.paginationDisabledClass`  | string                                                                  | `swiper-pagination-disabled`             | Class added when pagination is disabled.                                                                 |
+| `waterfall-pagination-progressbar-fill-class`     | `pagination.progressbarFillClass`     | string                                                                  | `swiper-pagination-progressbar-fill`     | Class on the progress bar fill.                                                                          |
+| `waterfall-pagination-progressbar-opposite-class` | `pagination.progressbarOppositeClass` | string                                                                  | `swiper-pagination-progressbar-opposite` | Class added with an opposite progress bar.                                                               |
+| `waterfall-pagination-bullet-class`               | `pagination.bulletClass`              | string                                                                  | the `pagination-bullet` element's class  | Class applied to every generated bullet. Overrides the class donated by the `pagination-bullet` element. |
 <!-- /reference:pagination:0 -->
 
 ### Scrollbar
 
-The scrollbar turns on when a `scrollbar` [element](#element-reference) is found inside the wrapper. Swiper creates the drag handle itself; style it with `waterfall-scrollbar-drag-class`.
+The scrollbar turns on when a `scrollbar` [element](#element-reference) is found inside the wrapper. Swiper builds the drag handle itself, but a `scrollbar-drag` element inside the track donates its classes to it, so you can style the handle in the Designer. `waterfall-scrollbar-drag-class` overrides the donated classes.
 
 <!-- reference:scrollbar:0 -->
-| Attribute                                      | Swiper option                      | Values                | Default                       | Description                                                            |
-| ---------------------------------------------- | ---------------------------------- | --------------------- | ----------------------------- | ---------------------------------------------------------------------- |
-| `waterfall-scrollbar-enabled`                  | `scrollbar.enabled`                | boolean               | _(auto)_                      | Set to `false` to turn the scrollbar off even when the element exists. |
-| `waterfall-scrollbar-draggable`                | `scrollbar.draggable`              | boolean               | `false`                       | Lets the user drag the scrollbar handle.                               |
-| `waterfall-scrollbar-hide`                     | `scrollbar.hide`                   | boolean               | `false`                       | Hides the scrollbar after the user stops interacting.                  |
-| `waterfall-scrollbar-snap-on-release`          | `scrollbar.snapOnRelease`          | boolean               | `true`                        | Snaps to the nearest slide when the handle is released.                |
-| `waterfall-scrollbar-drag-size`                | `scrollbar.dragSize`               | number (px) \| `auto` | `auto`                        | Size of the drag handle.                                               |
-| `waterfall-scrollbar-horizontal-class`         | `scrollbar.horizontalClass`        | string                | `swiper-scrollbar-horizontal` | Class added for horizontal sliders.                                    |
-| `waterfall-scrollbar-vertical-class`           | `scrollbar.verticalClass`          | string                | `swiper-scrollbar-vertical`   | Class added for vertical sliders.                                      |
-| `waterfall-scrollbar-lock-class`               | `scrollbar.lockClass`              | string                | `swiper-scrollbar-lock`       | Class added when the scrollbar is locked (not enough slides).          |
-| `waterfall-scrollbar-scrollbar-disabled-class` | `scrollbar.scrollbarDisabledClass` | string                | `swiper-scrollbar-disabled`   | Class added when the scrollbar is disabled.                            |
-| `waterfall-scrollbar-drag-class`               | `scrollbar.dragClass`              | string                | `swiper-scrollbar-drag`       | Class applied to the drag handle.                                      |
+| Attribute                                      | Swiper option                      | Values                | Default                              | Description                                                                                    |
+| ---------------------------------------------- | ---------------------------------- | --------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `waterfall-scrollbar-enabled`                  | `scrollbar.enabled`                | boolean               | _(auto)_                             | Set to `false` to turn the scrollbar off even when the element exists.                         |
+| `waterfall-scrollbar-draggable`                | `scrollbar.draggable`              | boolean               | `false`                              | Lets the user drag the scrollbar handle.                                                       |
+| `waterfall-scrollbar-hide`                     | `scrollbar.hide`                   | boolean               | `false`                              | Hides the scrollbar after the user stops interacting.                                          |
+| `waterfall-scrollbar-snap-on-release`          | `scrollbar.snapOnRelease`          | boolean               | `true`                               | Snaps to the nearest slide when the handle is released.                                        |
+| `waterfall-scrollbar-drag-size`                | `scrollbar.dragSize`               | number (px) \| `auto` | `auto`                               | Size of the drag handle.                                                                       |
+| `waterfall-scrollbar-horizontal-class`         | `scrollbar.horizontalClass`        | string                | `swiper-scrollbar-horizontal`        | Class added for horizontal sliders.                                                            |
+| `waterfall-scrollbar-vertical-class`           | `scrollbar.verticalClass`          | string                | `swiper-scrollbar-vertical`          | Class added for vertical sliders.                                                              |
+| `waterfall-scrollbar-lock-class`               | `scrollbar.lockClass`              | string                | `swiper-scrollbar-lock`              | Class added when the scrollbar is locked (not enough slides).                                  |
+| `waterfall-scrollbar-scrollbar-disabled-class` | `scrollbar.scrollbarDisabledClass` | string                | `swiper-scrollbar-disabled`          | Class added when the scrollbar is disabled.                                                    |
+| `waterfall-scrollbar-drag-class`               | `scrollbar.dragClass`              | string                | the `scrollbar-drag` element's class | Class applied to the drag handle. Overrides the class donated by the `scrollbar-drag` element. |
 <!-- /reference:scrollbar:0 -->
 
 ### Effects
@@ -674,17 +674,18 @@ Moves elements from elsewhere on the page into a Waterfall when the page loads, 
 Elements are identified with the `waterfall-el` attribute and must be placed **inside** the `[waterfall]` wrapper, so each slider finds its own controls.
 
 <!-- reference:element-reference:0 -->
-| `waterfall-el` value     | Purpose                                                                                                                                |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `navigation-next`        | Next slide button. Enables navigation.                                                                                                 |
-| `navigation-prev`        | Previous slide button. Enables navigation.                                                                                             |
-| `pagination`             | Pagination container. Enables pagination.                                                                                              |
-| `pagination-bullet`      | Optional bullet template. Its **tag name** is used for every generated bullet; set the class with `waterfall-pagination-bullet-class`. |
-| `scrollbar`              | Scrollbar track. Enables the scrollbar.                                                                                                |
-| `slide-count`            | Placed inside a slide; its text is replaced with that slide's 1-based number.                                                          |
-| `autoplay-control`       | Play/pause button. See [Autoplay Control Button](#autoplay-control-button).                                                            |
-| `autoplay-control-play`  | Icon shown while autoplay is paused.                                                                                                   |
-| `autoplay-control-pause` | Icon shown while autoplay is playing.                                                                                                  |
+| `waterfall-el` value     | Purpose                                                                                                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `navigation-next`        | Next slide button. Enables navigation.                                                                                                                       |
+| `navigation-prev`        | Previous slide button. Enables navigation.                                                                                                                   |
+| `pagination`             | Pagination container. Enables pagination.                                                                                                                    |
+| `pagination-bullet`      | Optional bullet template. Donates its **tag name** and its **classes** to every generated bullet; `waterfall-pagination-bullet-class` overrides the classes. |
+| `scrollbar`              | Scrollbar track. Enables the scrollbar.                                                                                                                      |
+| `scrollbar-drag`         | Optional drag handle template inside `scrollbar`. Donates its **classes** to the handle Swiper builds; `waterfall-scrollbar-drag-class` overrides them.      |
+| `slide-count`            | Placed inside a slide; its text is replaced with that slide's 1-based number.                                                                                |
+| `autoplay-control`       | Play/pause button. See [Autoplay Control Button](#autoplay-control-button).                                                                                  |
+| `autoplay-control-play`  | Icon shown while autoplay is paused.                                                                                                                         |
+| `autoplay-control-pause` | Icon shown while autoplay is playing.                                                                                                                        |
 <!-- /reference:element-reference:0 -->
 
 ## JavaScript API

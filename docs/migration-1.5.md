@@ -154,18 +154,18 @@ They remain mutually exclusive, as Swiper requires. Setting both to `true` uses 
 
 1.4 hardcoded `crossFade: true` and ignored the `waterfall-effect-crossfade` attribute entirely. 1.5 follows the documented contract that an omitted attribute takes Swiper's default, which is `default`. **To keep a 1.4 slider looking the same, add `waterfall-fade-effect-mode="cross-fade"`.**
 
-### Bullet and drag classes come from attributes, not donor elements
+### Bullet and drag classes gain an attribute override
 
-1.4 read these classes off template elements in your markup. 1.5 takes them from attributes:
+Donor elements still work exactly as in 1.4 — this is unchanged behaviour. Two attributes were added that override them:
 
-| What                    | Old source                                | New attribute                       | Default                    |
-| ----------------------- | ----------------------------------------- | ----------------------------------- | -------------------------- |
-| Pagination bullet class | the `pagination-bullet` element's `class` | `waterfall-pagination-bullet-class` | `swiper-pagination-bullet` |
-| Scrollbar drag class    | the `scrollbar-drag` element's `class`    | `waterfall-scrollbar-drag-class`    | `swiper-scrollbar-drag`    |
+| What                    | Donated by (default)                      | Overriding attribute                |
+| ----------------------- | ----------------------------------------- | ----------------------------------- |
+| Pagination bullet class | the `pagination-bullet` element's `class` | `waterfall-pagination-bullet-class` |
+| Scrollbar drag class    | the `scrollbar-drag` element's `class`    | `waterfall-scrollbar-drag-class`    |
 
-The `pagination-bullet` element is still supported and still donates its **tag name**. The **`scrollbar-drag` element is removed** — Swiper builds the drag handle itself, so you can delete it from your markup.
+The `pagination-bullet` element still donates its **tag name** as well. The `scrollbar-drag` element is still read, so leave it in your markup if you style the handle in the Designer.
 
-This also fixes a latent bug: 1.4 defaulted `scrollbar.dragClass` to an empty string when no `scrollbar-drag` element was present, leaving the handle unstyleable.
+With neither the element nor the attribute present, Swiper's own defaults apply (`swiper-pagination-bullet`, `swiper-scrollbar-drag`). That fixes a latent 1.4 bug: 1.4 defaulted `scrollbar.dragClass` to an empty string when no `scrollbar-drag` element was present, leaving the handle unstyleable.
 
 ### Newly working attributes
 
@@ -176,8 +176,8 @@ These were exported in 1.4 but never read. They now work:
 | `waterfall-centered-slides-bounds`       | `centeredSlidesBounds`       | `false`                    | Requires `waterfall-centered-slides="true"`. Not for use with loop or pagination. |
 | `waterfall-virtual-translate`            | `virtualTranslate`           | `false`                    | Runs the slider without translating the wrapper.                                  |
 | `waterfall-autoplay-wait-for-transition` | `autoplay.waitForTransition` | `true`                     | An **autoplay** option, so it carries the autoplay prefix.                        |
-| `waterfall-pagination-bullet-class`      | `pagination.bulletClass`     | `swiper-pagination-bullet` | See above.                                                                        |
-| `waterfall-scrollbar-drag-class`         | `scrollbar.dragClass`        | `swiper-scrollbar-drag`    | See above.                                                                        |
+| `waterfall-pagination-bullet-class`      | `pagination.bulletClass`     | _(donor element)_          | See above.                                                                        |
+| `waterfall-scrollbar-drag-class`         | `scrollbar.dragClass`        | _(donor element)_          | See above.                                                                        |
 
 ### Removed
 
@@ -191,7 +191,6 @@ Nothing read these and nothing documented them, so removing them changes no beha
 | `waterfall-zoom`, `waterfall-zoom-enabled`                     | Never read; zoom has no enable gate.                        |
 | `waterfall-zoom-fade`                                          | Not a Swiper option at all.                                 |
 | `waterfall-preload`, `waterfall-postload`, `waterfall-content` | Vestigial.                                                  |
-| `waterfall-el="scrollbar-drag"`                                | Swiper creates the drag handle.                             |
 | `waterfall-el="pagination-bullet-active"`                      | Never read; use `waterfall-pagination-bullet-active-class`. |
 | `waterfall-el="waterfall-navigation"`                          | Vestigial; use `navigation-next` / `navigation-prev`.       |
 

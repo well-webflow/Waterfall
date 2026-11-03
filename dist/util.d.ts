@@ -1,6 +1,7 @@
 import { default as Swiper } from 'swiper';
 import { Waterfall } from './types/waterfall';
 export declare function printDebug(debug: boolean, str: string, el: unknown): void;
+export declare function getDonatedClasses(el: HTMLElement | null | undefined): string | undefined;
 export declare function getUniqueClasses(targetElement: HTMLElement, comparisonElement: HTMLElement): string;
 export declare function parseString(el: HTMLElement, attrName: string, defaultValue?: string): string | undefined;
 export declare function parseSlidesPerView(el: HTMLElement, attrName: string, defaultValue?: number): number | "auto" | undefined;

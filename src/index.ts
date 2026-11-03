@@ -38,7 +38,7 @@ export * from "./lib/elements";
 export type { SlideChangeCallbackParams } from "./modules/callbacks";
 
 console.log(
-  `🚿 Hello from Wellspring Waterfall (v${APP_VERSION}). To learn more, visit https://wellspring-app.webflow.io/apps/waterfall`,
+  `🚿 Hello from Wellspring Waterfall (v${APP_VERSION}). To learn more, visit https://wellspring-dev.com/apps/waterfall`,
 );
 
 const waterfalls: Waterfall[] = [];

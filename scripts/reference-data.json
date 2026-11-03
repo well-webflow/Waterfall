@@ -670,8 +670,8 @@
               "`waterfall-pagination-bullet-class`",
               "`pagination.bulletClass`",
               "string",
-              "`swiper-pagination-bullet`",
-              "Class applied to every generated bullet."
+              "the `pagination-bullet` element's class",
+              "Class applied to every generated bullet. Overrides the class donated by the `pagination-bullet` element."
             ]
           ]
         }
@@ -758,8 +758,8 @@
               "`waterfall-scrollbar-drag-class`",
               "`scrollbar.dragClass`",
               "string",
-              "`swiper-scrollbar-drag`",
-              "Class applied to the drag handle."
+              "the `scrollbar-drag` element's class",
+              "Class applied to the drag handle. Overrides the class donated by the `scrollbar-drag` element."
             ]
           ]
         }
@@ -2204,11 +2204,15 @@
             ],
             [
               "`pagination-bullet`",
-              "Optional bullet template. Its **tag name** is used for every generated bullet; set the class with `waterfall-pagination-bullet-class`."
+              "Optional bullet template. Donates its **tag name** and its **classes** to every generated bullet; `waterfall-pagination-bullet-class` overrides the classes."
             ],
             [
               "`scrollbar`",
               "Scrollbar track. Enables the scrollbar."
+            ],
+            [
+              "`scrollbar-drag`",
+              "Optional drag handle template inside `scrollbar`. Donates its **classes** to the handle Swiper builds; `waterfall-scrollbar-drag-class` overrides them."
             ],
             [
               "`slide-count`",

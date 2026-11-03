@@ -7,8 +7,8 @@ All 17 dead constants found by `npm run reference` in 1.4.2 are now resolved. `n
 | `ATTR_CENTERED_SLIDES_BOUNDS`                                                 | **Implemented** — wired in `modules/layout.ts`.                                                                                                               |
 | `ATTR_VIRTUAL_TRANSLATE`                                                      | **Implemented** — wired in `modules/advanced.ts`.                                                                                                             |
 | `ATTR_WAIT_FOR_TRANSITION`                                                    | **Implemented and renamed** to `ATTR_AUTOPLAY_WAIT_FOR_TRANSITION`; it is an autoplay option, so it took the autoplay prefix. Wired in `modules/playback.ts`. |
-| `ATTR_PAGINATION_BULLET_CLASS`                                                | **Implemented** — now the source of `pagination.bulletClass`, replacing the donor element.                                                                    |
-| `ATTR_SCROLLBAR_DRAG_CLASS`                                                   | **Implemented** — now the source of `scrollbar.dragClass`, replacing the donor element.                                                                       |
+| `ATTR_PAGINATION_BULLET_CLASS`                                                | **Implemented** — overrides the `pagination-bullet` donor element as the source of `pagination.bulletClass`.                                                  |
+| `ATTR_SCROLLBAR_DRAG_CLASS`                                                   | **Implemented** — overrides the `scrollbar-drag` donor element as the source of `scrollbar.dragClass`.                                                        |
 | `ATTR_EFFECT_CROSSFADE`                                                       | **Replaced** by `ATTR_FADE_EFFECT_MODE`, since Swiper 14 deprecated `fadeEffect.crossFade` in favour of `fadeEffect.mode`.                                    |
 | `ATTR_LOOP`                                                                   | **Repurposed** — value changed from `waterfall-loop-mode` to `waterfall-loop` and now read in `modules/playback.ts`.                                          |
 | `ATTR_REWIND`                                                                 | **Repurposed** — now read in `modules/playback.ts`.                                                                                                           |
@@ -19,7 +19,7 @@ All 17 dead constants found by `npm run reference` in 1.4.2 are now resolved. `n
 | `EL_PAGINATION_BULLET_ACTIVE`                                                 | **Removed** — use `waterfall-pagination-bullet-active-class`.                                                                                                 |
 | `EL_NAVIGATION`                                                               | **Removed** — vestigial; `EL_NAVIGATION_NEXT` / `EL_NAVIGATION_PREV` are the real elements.                                                                   |
 
-`EL_SCROLLBAR_DRAG` was also removed. It was not dead — it donated the drag handle's class — but that job moved to `waterfall-scrollbar-drag-class`, leaving the element with no purpose.
+`EL_SCROLLBAR_DRAG` was never dead: it donates the drag handle's class, and still does. `waterfall-scrollbar-drag-class` overrides it rather than replacing it.
 
 See [migration-1.5.md](migration-1.5.md) for what each change means for existing sites.
 

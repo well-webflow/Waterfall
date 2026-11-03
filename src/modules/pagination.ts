@@ -20,7 +20,7 @@ import {
   ATTR_PAGINATION_TYPE,
   ATTR_PAGINATION_VERTICAL_CLASS,
 } from "lib/attributes";
-import { parseBoolean, parseNumber, parseString } from "../util";
+import { getDonatedClasses, parseBoolean, parseNumber, parseString } from "../util";
 import { ATTR_WATERFALL_ELEMENT, EL_PAGINATION, EL_PAGINATION_BULLET } from "lib/elements";
 import { SwiperOptions } from "swiper/types";
 
@@ -34,7 +34,7 @@ export function paginationConfig(config: SwiperOptions, element: HTMLElement) {
 
   config.pagination = {
     bulletActiveClass: parseString(element, ATTR_PAGINATION_BULLET_ACTIVE_CLASS, "swiper-pagination-bullet-active"),
-    bulletClass: parseString(element, ATTR_PAGINATION_BULLET_CLASS, "swiper-pagination-bullet"),
+    bulletClass: parseString(element, ATTR_PAGINATION_BULLET_CLASS) ?? getDonatedClasses(paginationBullet),
     bulletElement: paginationBullet?.tagName?.toLowerCase() || "span",
     clickable: parseBoolean(element, ATTR_PAGINATION_CLICKABLE, false),
     clickableClass: parseString(element, ATTR_PAGINATION_CLICKABLE_CLASS, "swiper-pagination-clickable"),

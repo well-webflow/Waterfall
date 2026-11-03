@@ -6,6 +6,11 @@ export function printDebug(debug: boolean, str: string, el: unknown) {
   console.log(`${str}:`, el);
 }
 
+// Classes on a `waterfall-el` template element, donated to the Swiper part it stands in for.
+export function getDonatedClasses(el: HTMLElement | null | undefined): string | undefined {
+  return el?.getAttribute("class")?.trim() || undefined;
+}
+
 export function getUniqueClasses(targetElement: HTMLElement, comparisonElement: HTMLElement): string {
   if (!targetElement.classList || !comparisonElement.classList) return "";
 
