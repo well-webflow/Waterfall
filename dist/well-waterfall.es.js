@@ -5261,7 +5261,7 @@ function Eo(e, t, s) {
   });
 }
 console.log(
-  "🚿 Hello from Wellspring Waterfall (v1.5.1). To learn more, visit https://wellspring-dev.com/apps/waterfall"
+  "🚿 Hello from Wellspring Waterfall (v1.5.1). To learn more, visit https://heywellspring.com/apps/waterfall"
 );
 const De = [];
 window.waterfalls = De;

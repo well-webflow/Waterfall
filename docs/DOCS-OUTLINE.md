@@ -266,7 +266,7 @@ Each entry: symptom → cause → fix, with `waterfall-debug-mode` as the first 
 
 ## Open questions
 
-1. **Where do these docs live?** Options: the Webflow site already referenced in the console (`wellspring-dev.com/apps/waterfall`), a static docs site, or in-App panels. This changes page sizing and navigation depth.
+1. **Where do these docs live?** Options: the Webflow site already referenced in the console (`heywellspring.com/apps/waterfall`), a static docs site, or in-App panels. This changes page sizing and navigation depth.
 2. **README's role after this.** Settled: `scripts/reference-data.json` is canonical and the README's tables are generated from it. A docs site should render from that same JSON. Guides stay hand-written.
 3. **Live examples.** `demo.html` exists in the repo — worth turning into embeddable per-feature demos rather than writing static code blocks.
 4. **Depth of the Wellspring App coverage.** The App has built-in documentation already; the docs should decide whether to duplicate, summarize, or link.
