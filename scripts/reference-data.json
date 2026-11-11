@@ -6,6 +6,7 @@
       "data-swiper-parallax",
       "data-swiper-parallax-duration",
       "data-swiper-parallax-opacity",
+      "data-swiper-parallax-rotate",
       "data-swiper-parallax-scale",
       "data-swiper-parallax-x",
       "data-swiper-parallax-y"
@@ -1659,8 +1660,8 @@
               "`waterfall-parallax-enabled`",
               "`parallax.enabled`",
               "boolean",
-              "_(auto)_",
-              "Parallax for elements inside the slider. Left off, it switches itself on only when the slider contains at least one of the `data-swiper-parallax-*` attributes below, so sliders that do not use parallax skip its cost. Set `true` to force it on (needed when the slides only gain those attributes after init), or `false` to force it off."
+              "`false`",
+              "Turns on parallax for elements inside the slider."
             ]
           ]
         },

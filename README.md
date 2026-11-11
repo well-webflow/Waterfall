@@ -9,7 +9,7 @@ Waterfall is a free-forever JavaScript library for Webflow that lets you build [
 3.  **Full Documentation.** Every attribute is listed below, and each setting is explained directly in the Wellspring App.
 4.  **Turn Swipers into Components.** After creating a swiper, you can turn it into a Webflow component for reuse.
 
-Current version: **v<!-- version -->1.5.3<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->14.4.0<!-- /swiper-version -->**
+Current version: **v<!-- version -->1.5.4<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->14.4.0<!-- /swiper-version -->**
 
 ## Table of contents
 
@@ -66,7 +66,7 @@ Use the Wellspring App to install the code onto your site. If you are installing
 **Specific Version (Stable - Recommended)**
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.5.3"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.5.4"></script>
 ```
 
 **Latest Version**
@@ -521,14 +521,12 @@ Double-tap or pinch to zoom. Wrap each slide's image in `<div class="swiper-zoom
 ### Parallax
 
 <!-- reference:parallax:0 -->
-| Attribute                    | Swiper option      | Values  | Default  | Description                                                                                                                                                                                                                                                                                                                                    |
-| ---------------------------- | ------------------ | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `waterfall-parallax-enabled` | `parallax.enabled` | boolean | _(auto)_ | Parallax for elements inside the slider. Left off, it switches itself on only when the slider contains at least one of the `data-swiper-parallax-*` attributes below, so sliders that do not use parallax skip its cost. Set `true` to force it on (needed when the slides only gain those attributes after init), or `false` to force it off. |
+| Attribute                    | Swiper option      | Values  | Default | Description                                       |
+| ---------------------------- | ------------------ | ------- | ------- | ------------------------------------------------- |
+| `waterfall-parallax-enabled` | `parallax.enabled` | boolean | `false` | Turns on parallax for elements inside the slider. |
 <!-- /reference:parallax:0 -->
 
-There is nothing to switch on: add SwiperJS's native parallax attributes to elements **inside** the slides (or on a background element inside `.swiper`) and Waterfall turns parallax on for that slider by itself. A slider with none of these attributes leaves it off, which matters because Swiper forces `watchSlidesProgress` on whenever parallax is enabled and then walks every slide on each transition.
-
-The one case detection cannot see is slides that gain their parallax attributes after the slider initializes. Set `waterfall-parallax-enabled="true"` there to force it on.
+Set `waterfall-parallax-enabled="true"`, then add SwiperJS's native parallax attributes to elements **inside** the slides (or on a background element inside `.swiper`). Leave it off for sliders that do not use parallax: Swiper forces `watchSlidesProgress` on whenever parallax is enabled, and then walks every slide on each transition.
 
 <!-- reference:parallax:1 -->
 | Attribute                       | Values                        | Description                                                                  |

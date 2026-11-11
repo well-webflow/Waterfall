@@ -804,13 +804,17 @@
         <h2>14. Parallax Effect</h2>
         <p><span class="feature-badge">Parallax</span><span class="feature-badge">Multi-layer</span></p>
         <p>
-          Create depth with parallax scrolling elements at different speeds. There is no attribute switching it on here
-          &mdash; the <code>data-swiper-parallax</code> values on the title and text are the whole setup, and Waterfall
-          turns parallax on for any slider it finds them in. Sliders without them leave it off, so they skip the
-          per-slide work Swiper does while parallax is active.
+          Create depth with parallax scrolling elements at different speeds. Switch it on with
+          <code>waterfall-parallax-enabled="true"</code>, then give the elements you want to move a
+          <code>data-swiper-parallax</code> value.
         </p>
 
-        <div waterfall="parallax-slider" waterfall-speed="800" waterfall-pagination-enabled="true">
+        <div
+          waterfall="parallax-slider"
+          waterfall-parallax-enabled="true"
+          waterfall-speed="800"
+          waterfall-pagination-enabled="true"
+        >
           <div class="swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
@@ -837,7 +841,8 @@
         </div>
 
         <div class="code-snippet">
-          &lt;div waterfall="parallax-slider"&gt; &lt;div data-swiper-parallax="-300"&gt;Title&lt;/div&gt;
+          &lt;div waterfall="parallax-slider" waterfall-parallax-enabled="true"&gt; &lt;div
+          data-swiper-parallax="-300"&gt;Title&lt;/div&gt;
         </div>
       </div>
 
