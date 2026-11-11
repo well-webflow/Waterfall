@@ -78,20 +78,25 @@ export function parseBoolean(el: HTMLElement, attrName: string, defaultValue?: b
   return undefined;
 }
 
-function isHTMLElement(value: unknown): value is HTMLElement {
-  return typeof HTMLElement !== "undefined" && value instanceof HTMLElement;
+// Only `{}` literals. The config also carries live Swiper instances (thumbs.swiper,
+// controller.control), DOM elements and arrays, and walking into one of those deletes its own
+// null/undefined properties - which, for a Swiper instance, strips internals it relies on.
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  if (typeof value !== "object" || value === null) return false;
+  const prototype: unknown = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
 }
 
 export function removeNullOrUndefinedKeys<T extends object>(obj: T): T {
-  if (typeof obj !== "object" || obj === null) return obj;
+  if (!isPlainObject(obj)) return obj;
 
   const record = obj as Record<string, unknown>;
   for (const key in record) {
     const value = record[key];
     if (value === null || value === undefined) {
       delete record[key];
-    } else if (typeof value === "object" && value !== null && !isHTMLElement(value)) {
-      removeNullOrUndefinedKeys(value as Record<string, unknown>);
+    } else if (isPlainObject(value)) {
+      removeNullOrUndefinedKeys(value);
       if (Object.keys(value).length === 0) delete record[key];
     }
   }

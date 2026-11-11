@@ -30,6 +30,7 @@ import observerConfig from "./modules/observer";
 import parallaxConfig from "./modules/parallax";
 import { callbacksConfig } from "./modules/callbacks";
 import { initAutoplayControl } from "./modules/autoplayControl";
+import { initSmoothAutoplayHover } from "./modules/smoothAutoplayHover";
 
 import { ATTR_WATERFALL, ATTR_DEBUG_MODE, ATTR_THUMBS_SWIPER, ATTR_CONTROLLER_CONTROL } from "./lib/attributes";
 
@@ -129,5 +130,8 @@ function initConfig(el: HTMLElement, index: number) {
 
     // Initialize autoplay control
     initAutoplayControl(el, name, swiper);
+
+    // Hover pause for smooth autoplay, which Swiper's own pauseOnMouseEnter cannot handle
+    initSmoothAutoplayHover(el, swiper);
   }
 }

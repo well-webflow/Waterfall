@@ -19,8 +19,11 @@ import { parseBoolean, parseString } from "../util";
 import type Swiper from "swiper";
 
 export function initAutoplayControl(el: HTMLElement, name: string, swiper: Swiper) {
-  // Only initialize if autoplay control is enabled
-  const autoplayControlEnabled = parseBoolean(el, ATTR_AUTOPLAY_CONTROL_ENABLED, false);
+  // The control is on by default: building the three `waterfall-el` elements below is itself the
+  // opt-in, so only an explicit `waterfall-autoplay-control-enabled="false"` turns it off. That
+  // `true` has to be passed to parseBoolean as the default as well, or the explicit `="false"` is
+  // read as redundant and dropped.
+  const autoplayControlEnabled = parseBoolean(el, ATTR_AUTOPLAY_CONTROL_ENABLED, true) !== false;
   const autoplayEnabled = parseBoolean(el, ATTR_AUTOPLAY, false);
 
   if (!autoplayControlEnabled || !autoplayEnabled) return;

@@ -22,6 +22,11 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
+    server: {
+      // demo.html loads the built bundle from dist/, which sits outside Vite's watch, so its ETag
+      // can go stale and a rebuild keeps serving the old file until a hard refresh.
+      headers: { "Cache-Control": "no-store" },
+    },
     plugins: [
       cssInjectedByJsPlugin(),
       dts({

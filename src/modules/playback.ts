@@ -44,11 +44,17 @@ export function playbackConfig(config: SwiperOptions, el: HTMLElement) {
   if (autoplayMode) {
     // Add CSS for Smooth Autoplay
     setSmoothAutoplay();
+    const pauseOnMouseEnter = parseBoolean(el, ATTR_AUTOPLAY_PAUSE_ON_MOUSE_ENTER, false);
     config.autoplay = {
+      // Explicit, so that a slider with no other autoplay attributes still reaches Swiper with
+      // autoplay on: removeNullOrUndefinedKeys drops an object whose every key parsed to undefined.
+      enabled: true,
       delay,
       disableOnInteraction: parseBoolean(el, ATTR_AUTOPLAY_DISABLE_ON_INTERACTION, false), // documentation says default is true, doesn't appear to be correct
       reverseDirection: parseBoolean(el, ATTR_AUTOPLAY_REVERSE_DIRECTION, false),
-      pauseOnMouseEnter: parseBoolean(el, ATTR_AUTOPLAY_PAUSE_ON_MOUSE_ENTER, false),
+      // Swiper's own hover pause does nothing while a transition is running, which is all of the
+      // time at delay 0. initSmoothAutoplayHover takes that case over.
+      pauseOnMouseEnter: delay === 0 ? false : pauseOnMouseEnter,
       stopOnLastSlide: parseBoolean(el, ATTR_AUTOPLAY_STOP_ON_LAST_SLIDE, false),
       waitForTransition: parseBoolean(el, ATTR_AUTOPLAY_WAIT_FOR_TRANSITION, true),
     };

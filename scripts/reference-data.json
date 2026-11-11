@@ -389,7 +389,7 @@
               "`autoplay.pauseOnMouseEnter`",
               "boolean",
               "`false`",
-              "Pauses while the pointer is over the slider."
+              "Pauses while the pointer is over the slider. With `waterfall-smooth-autoplay`, the marquee freezes where it stands and picks the slide back up on the way out."
             ],
             [
               "`waterfall-autoplay-reverse-direction`",
@@ -432,8 +432,8 @@
             [
               "`waterfall-autoplay-control-enabled`",
               "boolean",
-              "`false`",
-              "Turns on the play/pause button."
+              "`true`",
+              "The play/pause button. On by default whenever autoplay is on and the three `waterfall-el` control elements are present; set to `false` to turn it off."
             ],
             [
               "`waterfall-autoplay-control-default-state`",
@@ -1659,8 +1659,8 @@
               "`waterfall-parallax-enabled`",
               "`parallax.enabled`",
               "boolean",
-              "`false`",
-              "Turns on parallax for elements inside the slider."
+              "_(auto)_",
+              "Parallax for elements inside the slider. Left off, it switches itself on only when the slider contains at least one of the `data-swiper-parallax-*` attributes below, so sliders that do not use parallax skip its cost. Set `true` to force it on (needed when the slides only gain those attributes after init), or `false` to force it off."
             ]
           ]
         },
@@ -1696,6 +1696,11 @@
               "`data-swiper-parallax-opacity`",
               "number (0–1)",
               "Opacity while the slide is out of view."
+            ],
+            [
+              "`data-swiper-parallax-rotate`",
+              "number (deg)",
+              "Rotation while the slide is out of view. Applies to elements inside a slide."
             ],
             [
               "`data-swiper-parallax-duration`",

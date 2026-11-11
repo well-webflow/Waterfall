@@ -9,7 +9,7 @@ Waterfall is a free-forever JavaScript library for Webflow that lets you build [
 3.  **Full Documentation.** Every attribute is listed below, and each setting is explained directly in the Wellspring App.
 4.  **Turn Swipers into Components.** After creating a swiper, you can turn it into a Webflow component for reuse.
 
-Current version: **v<!-- version -->1.5.1<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->14.4.0<!-- /swiper-version -->**
+Current version: **v<!-- version -->1.5.3<!-- /version -->** · Bundled SwiperJS: **<!-- swiper-version -->14.4.0<!-- /swiper-version -->**
 
 ## Table of contents
 
@@ -66,7 +66,7 @@ Use the Wellspring App to install the code onto your site. If you are installing
 **Specific Version (Stable - Recommended)**
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.5.1"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/well-waterfall@1.5.3"></script>
 ```
 
 **Latest Version**
@@ -216,27 +216,29 @@ Example: `waterfall-slides-per-view="3"` + `waterfall-slides-per-view-tablet="2"
 ### Autoplay
 
 <!-- reference:autoplay:0 -->
-| Attribute                                   | Swiper option                   | Values      | Default | Description                                                                                                                                                |
-| ------------------------------------------- | ------------------------------- | ----------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `waterfall-autoplay`                        | `autoplay`                      | boolean     | `false` | Turns autoplay on. The other autoplay attributes apply only when this is `true`.                                                                           |
-| `waterfall-autoplay-delay`                  | `autoplay.delay`                | number (ms) | `3000`  | Time between transitions.                                                                                                                                  |
-| `waterfall-smooth-autoplay`                 | —                               | boolean     | `false` | Continuous "marquee" scrolling: sets the delay to `0` and applies linear easing to `.swiper-wrapper`. Pair it with a high `waterfall-speed` (e.g. `5000`). |
-| `waterfall-autoplay-disable-on-interaction` | `autoplay.disableOnInteraction` | boolean     | `false` | Stops autoplay permanently after the user interacts with the slider.                                                                                       |
-| `waterfall-autoplay-pause-on-mouse-enter`   | `autoplay.pauseOnMouseEnter`    | boolean     | `false` | Pauses while the pointer is over the slider.                                                                                                               |
-| `waterfall-autoplay-reverse-direction`      | `autoplay.reverseDirection`     | boolean     | `false` | Autoplays backwards.                                                                                                                                       |
-| `waterfall-autoplay-stop-on-last-slide`     | `autoplay.stopOnLastSlide`      | boolean     | `false` | Stops on the last slide. Has no effect in loop mode.                                                                                                       |
-| `waterfall-autoplay-wait-for-transition`    | `autoplay.waitForTransition`    | boolean     | `true`  | Waits for the slide transition to finish before the next autoplay step. Turn off when using `waterfall-virtual-translate`.                                 |
+| Attribute                                   | Swiper option                   | Values      | Default | Description                                                                                                                                                    |
+| ------------------------------------------- | ------------------------------- | ----------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `waterfall-autoplay`                        | `autoplay`                      | boolean     | `false` | Turns autoplay on. The other autoplay attributes apply only when this is `true`.                                                                               |
+| `waterfall-autoplay-delay`                  | `autoplay.delay`                | number (ms) | `3000`  | Time between transitions.                                                                                                                                      |
+| `waterfall-smooth-autoplay`                 | —                               | boolean     | `false` | Continuous "marquee" scrolling: sets the delay to `0` and applies linear easing to `.swiper-wrapper`. Pair it with a high `waterfall-speed` (e.g. `5000`).     |
+| `waterfall-autoplay-disable-on-interaction` | `autoplay.disableOnInteraction` | boolean     | `false` | Stops autoplay permanently after the user interacts with the slider.                                                                                           |
+| `waterfall-autoplay-pause-on-mouse-enter`   | `autoplay.pauseOnMouseEnter`    | boolean     | `false` | Pauses while the pointer is over the slider. With `waterfall-smooth-autoplay`, the marquee freezes where it stands and picks the slide back up on the way out. |
+| `waterfall-autoplay-reverse-direction`      | `autoplay.reverseDirection`     | boolean     | `false` | Autoplays backwards.                                                                                                                                           |
+| `waterfall-autoplay-stop-on-last-slide`     | `autoplay.stopOnLastSlide`      | boolean     | `false` | Stops on the last slide. Has no effect in loop mode.                                                                                                           |
+| `waterfall-autoplay-wait-for-transition`    | `autoplay.waitForTransition`    | boolean     | `true`  | Waits for the slide transition to finish before the next autoplay step. Turn off when using `waterfall-virtual-translate`.                                     |
 <!-- /reference:autoplay:0 -->
 
 ### Autoplay Control Button
 
-A play/pause toggle for autoplaying sliders. It requires `waterfall-autoplay="true"` and all three [elements](#element-reference) (`autoplay-control`, `autoplay-control-play`, `autoplay-control-pause`) inside the wrapper. The button shows the pause icon while playing and the play icon while paused.
+A play/pause toggle for autoplaying sliders. It needs `waterfall-autoplay="true"` and all three [elements](#element-reference) (`autoplay-control`, `autoplay-control-play`, `autoplay-control-pause`) inside the wrapper — build those and the button works, with no attribute to switch on. The button shows the pause icon while playing and the play icon while paused.
+
+If any one of the three elements is missing, the control does nothing at all, so check for all three before anything else when a button looks dead.
 
 <!-- reference:autoplay-control-button:0 -->
-| Attribute                                  | Values                | Default   | Description                                             |
-| ------------------------------------------ | --------------------- | --------- | ------------------------------------------------------- |
-| `waterfall-autoplay-control-enabled`       | boolean               | `false`   | Turns on the play/pause button.                         |
-| `waterfall-autoplay-control-default-state` | `playing` \| `paused` | `playing` | Whether autoplay starts running or paused on page load. |
+| Attribute                                  | Values                | Default   | Description                                                                                                                                            |
+| ------------------------------------------ | --------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `waterfall-autoplay-control-enabled`       | boolean               | `true`    | The play/pause button. On by default whenever autoplay is on and the three `waterfall-el` control elements are present; set to `false` to turn it off. |
+| `waterfall-autoplay-control-default-state` | `playing` \| `paused` | `playing` | Whether autoplay starts running or paused on page load.                                                                                                |
 <!-- /reference:autoplay-control-button:0 -->
 
 ### Navigation
@@ -519,12 +521,14 @@ Double-tap or pinch to zoom. Wrap each slide's image in `<div class="swiper-zoom
 ### Parallax
 
 <!-- reference:parallax:0 -->
-| Attribute                    | Swiper option      | Values  | Default | Description                                       |
-| ---------------------------- | ------------------ | ------- | ------- | ------------------------------------------------- |
-| `waterfall-parallax-enabled` | `parallax.enabled` | boolean | `false` | Turns on parallax for elements inside the slider. |
+| Attribute                    | Swiper option      | Values  | Default  | Description                                                                                                                                                                                                                                                                                                                                    |
+| ---------------------------- | ------------------ | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `waterfall-parallax-enabled` | `parallax.enabled` | boolean | _(auto)_ | Parallax for elements inside the slider. Left off, it switches itself on only when the slider contains at least one of the `data-swiper-parallax-*` attributes below, so sliders that do not use parallax skip its cost. Set `true` to force it on (needed when the slides only gain those attributes after init), or `false` to force it off. |
 <!-- /reference:parallax:0 -->
 
-With parallax on, add SwiperJS's native parallax attributes to elements **inside** the slides (or on a background element inside `.swiper`):
+There is nothing to switch on: add SwiperJS's native parallax attributes to elements **inside** the slides (or on a background element inside `.swiper`) and Waterfall turns parallax on for that slider by itself. A slider with none of these attributes leaves it off, which matters because Swiper forces `watchSlidesProgress` on whenever parallax is enabled and then walks every slide on each transition.
+
+The one case detection cannot see is slides that gain their parallax attributes after the slider initializes. Set `waterfall-parallax-enabled="true"` there to force it on.
 
 <!-- reference:parallax:1 -->
 | Attribute                       | Values                        | Description                                                                  |
@@ -534,6 +538,7 @@ With parallax on, add SwiperJS's native parallax attributes to elements **inside
 | `data-swiper-parallax-y`        | px or %                       | Vertical offset.                                                             |
 | `data-swiper-parallax-scale`    | number                        | Scale while the slide is out of view.                                        |
 | `data-swiper-parallax-opacity`  | number (0–1)                  | Opacity while the slide is out of view.                                      |
+| `data-swiper-parallax-rotate`   | number (deg)                  | Rotation while the slide is out of view. Applies to elements inside a slide. |
 | `data-swiper-parallax-duration` | number (ms)                   | Custom transition duration for this element.                                 |
 <!-- /reference:parallax:1 -->
 

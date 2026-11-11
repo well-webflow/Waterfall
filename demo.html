@@ -4,7 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waterfall Demo - SwiperJS Core Features</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet" />
     <style>
+      /*
+       * Wellspring brand tokens, mirrored from the Webflow site's variable collections.
+       * Theme values resolve the Theme collection's "Waterfall" mode, so this demo matches
+       * the app's own page on heywellspring.com rather than the site-wide default.
+       */
+      :root {
+        /* colors/wellflow */
+        --wf-blanket: #f0f2f3;
+        --wf-foamy: #e2eeed;
+        --wf-hot-stone: #92aabb;
+        --wf-marble: #6c8495;
+        --wf-haven: #3d5c5e;
+        --wf-blindfold: #18251c;
+        --wf-algae: #40c491;
+        --wf-lavender: #b592df;
+        --wf-whirlpool: #6baef1;
+        --wf-lemon: #e9e5b5;
+
+        /* colors/waterfall */
+        --wf-primary: #8acee0;
+        --wf-primary-light: #d3eaef;
+        --wf-primary-dark: #37729b;
+
+        /* palette/brand */
+        --brand-darkest: var(--wf-blindfold);
+        --brand-dark: var(--wf-haven);
+        --brand-neutral: var(--wf-hot-stone);
+        --brand-light: var(--wf-foamy);
+        --brand-lightest: var(--wf-blanket);
+        --brand-dark-o20: color-mix(in srgb, var(--brand-darkest) 20%, transparent);
+        --brand-dark-o40: color-mix(in srgb, var(--brand-darkest) 40%, transparent);
+
+        /* theme - "Waterfall" mode */
+        --theme-page: var(--brand-dark);
+        --theme-background-2: var(--brand-lightest);
+        --theme-text: var(--brand-dark);
+        --theme-text-2: var(--brand-darkest);
+        --theme-border: var(--brand-dark-o20);
+        --theme-primary: var(--wf-whirlpool);
+        --button-background: var(--wf-primary);
+        --button-background-hover: var(--wf-primary-dark);
+        --button-text: var(--brand-darkest);
+
+        /* typography */
+        --font-primary: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --tracking-normal: -0.04em;
+        --leading-standard: 1.2;
+        --leading-wide: 1.3;
+      }
+
       * {
         box-sizing: border-box;
         margin: 0;
@@ -12,10 +65,15 @@
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #333;
+        font-family: var(--font-primary);
+        background: var(--theme-page);
+        color: var(--theme-text);
         padding: 40px 20px;
+      }
+
+      ::selection {
+        background: var(--brand-darkest);
+        color: var(--brand-light);
       }
 
       .container {
@@ -25,37 +83,43 @@
 
       h1 {
         text-align: center;
-        color: white;
+        color: var(--brand-lightest);
         font-size: 3em;
+        font-weight: 700;
+        letter-spacing: var(--tracking-normal);
+        line-height: var(--leading-standard);
         margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
       }
 
       .subtitle {
         text-align: center;
-        color: rgba(255, 255, 255, 0.9);
+        color: var(--brand-light);
         font-size: 1.2em;
         margin-bottom: 60px;
       }
 
       .demo-section {
-        background: white;
+        background: var(--theme-background-2);
+        border: 1px solid var(--theme-border);
         border-radius: 20px;
         padding: 40px;
         margin-bottom: 40px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 40px var(--brand-dark-o40);
       }
 
       .demo-section h2 {
-        color: #667eea;
+        color: var(--wf-primary-dark);
+        font-weight: 700;
+        letter-spacing: var(--tracking-normal);
+        line-height: var(--leading-standard);
         margin-bottom: 10px;
         font-size: 2em;
       }
 
       .demo-section p {
-        color: #666;
+        color: var(--theme-text);
         margin-bottom: 30px;
-        line-height: 1.6;
+        line-height: var(--leading-wide);
       }
 
       .swiper {
@@ -70,49 +134,50 @@
         align-items: center;
         justify-content: center;
         font-size: 2em;
-        font-weight: bold;
-        color: white;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-weight: 700;
+        letter-spacing: var(--tracking-normal);
+        color: var(--brand-darkest);
+        background: linear-gradient(135deg, var(--wf-primary-light) 0%, var(--wf-primary) 100%);
       }
 
       .swiper-slide:nth-child(2n) {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        background: linear-gradient(135deg, var(--wf-foamy) 0%, var(--wf-whirlpool) 100%);
       }
 
       .swiper-slide:nth-child(3n) {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        background: linear-gradient(135deg, var(--wf-blanket) 0%, var(--wf-lavender) 100%);
       }
 
       .swiper-slide:nth-child(4n) {
-        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        background: linear-gradient(135deg, var(--wf-foamy) 0%, var(--wf-algae) 100%);
       }
 
       .swiper-slide:nth-child(5n) {
-        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        background: linear-gradient(135deg, var(--wf-lemon) 0%, var(--wf-hot-stone) 100%);
       }
 
       /* Navigation buttons */
       .swiper-button-next,
       .swiper-button-prev {
-        color: white !important;
-        background: rgba(0, 0, 0, 0.5);
-        width: 50px;
-        height: 50px;
+        /* Swiper sizes these from its own variable, so set that rather than width/height */
+        --swiper-navigation-size: 50px;
+        color: var(--brand-lightest) !important;
+        background: var(--brand-dark-o40);
         border-radius: 50%;
         transition: all 0.3s ease;
       }
 
       .swiper-button-next:hover,
       .swiper-button-prev:hover {
-        background: rgba(0, 0, 0, 0.7);
+        background: var(--brand-darkest);
         transform: scale(1.1);
       }
 
-      .swiper-button-next:after,
-      .swiper-button-prev:after {
-        font-size: 22px;
-        font-weight: bold;
-        color: white;
+      /* Swiper 14 injects an SVG arrow instead of the ::after glyph earlier versions used */
+      .swiper-button-next .swiper-navigation-icon,
+      .swiper-button-prev .swiper-navigation-icon {
+        width: 38%;
+        height: 38%;
       }
 
       .swiper-button-disabled {
@@ -124,22 +189,22 @@
       .swiper-pagination-bullet {
         width: 12px;
         height: 12px;
-        background: white;
+        background: var(--brand-lightest);
         opacity: 0.5;
       }
 
       .swiper-pagination-bullet-active {
         opacity: 1;
-        background: #667eea;
+        background: var(--wf-primary-dark);
       }
 
       /* Scrollbar */
       .swiper-scrollbar {
-        background: rgba(0, 0, 0, 0.1);
+        background: var(--brand-dark-o20);
       }
 
       .swiper-scrollbar-drag {
-        background: #667eea;
+        background: var(--wf-primary-dark);
       }
 
       /* Grid demo specific styles */
@@ -168,7 +233,7 @@
 
       .thumbs-demo .swiper-thumbs .swiper-slide-thumb-active {
         opacity: 1;
-        border: 3px solid #667eea;
+        border: 3px solid var(--wf-primary-dark);
       }
 
       /* Effects demo - smaller height for better visibility */
@@ -183,7 +248,7 @@
 
       /* Image slides for zoom demo */
       .zoom-demo .swiper-slide {
-        background: #000;
+        background: var(--brand-darkest);
       }
 
       .zoom-demo .swiper-slide img {
@@ -219,19 +284,43 @@
         height: 400px;
       }
 
+      /* Autoplay control (demo 17). The library swaps the two labels by forcing `display` on them
+         directly, so style the button and let each label be a plain block. */
+      .autoplay-control {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 22px;
+        border: none;
+        border-radius: 30px;
+        background: var(--button-background);
+        color: var(--button-text);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .autoplay-control:hover {
+        background: var(--button-background-hover);
+        color: var(--brand-lightest);
+      }
+
       .feature-badge {
         display: inline-block;
-        background: #667eea;
-        color: white;
+        background: var(--button-background);
+        color: var(--button-text);
         padding: 5px 15px;
         border-radius: 20px;
         font-size: 0.9em;
+        font-weight: 500;
         margin-right: 10px;
         margin-bottom: 10px;
       }
 
       .code-snippet {
-        background: #f5f5f5;
+        background: var(--brand-light);
+        border-left: 4px solid var(--wf-primary);
+        color: var(--theme-text-2);
         padding: 15px;
         border-radius: 5px;
         font-family: "Courier New", monospace;
@@ -258,7 +347,7 @@
         <div
           waterfall="basic-slider"
           waterfall-navigation-enabled="true"
-          waterfall-loop-mode="true"
+          waterfall-loop="true"
           waterfall-autoplay="true"
           waterfall-autoplay-delay="3000"
           waterfall-speed="600"
@@ -277,7 +366,7 @@
         </div>
 
         <div class="code-snippet">
-          &lt;div waterfall="basic-slider" waterfall-navigation-enabled="true" waterfall-loop-mode="true"
+          &lt;div waterfall="basic-slider" waterfall-navigation-enabled="true" waterfall-loop="true"
           waterfall-autoplay="true" waterfall-autoplay-delay="3000"&gt;
         </div>
       </div>
@@ -400,7 +489,7 @@
           waterfall-centered-slides="true"
           waterfall-slides-per-view="2.5"
           waterfall-space-between="20"
-          waterfall-loop-mode="true"
+          waterfall-loop="true"
           waterfall-pagination-enabled="true"
         >
           <div class="swiper">
@@ -417,7 +506,7 @@
 
         <div class="code-snippet">
           &lt;div waterfall="centered-slider" waterfall-centered-slides="true" waterfall-slides-per-view="2.5"
-          waterfall-loop-mode="true"&gt;
+          waterfall-loop="true"&gt;
         </div>
       </div>
 
@@ -714,14 +803,14 @@
       <div class="demo-section parallax-demo">
         <h2>14. Parallax Effect</h2>
         <p><span class="feature-badge">Parallax</span><span class="feature-badge">Multi-layer</span></p>
-        <p>Create depth with parallax scrolling elements at different speeds.</p>
+        <p>
+          Create depth with parallax scrolling elements at different speeds. There is no attribute switching it on here
+          &mdash; the <code>data-swiper-parallax</code> values on the title and text are the whole setup, and Waterfall
+          turns parallax on for any slider it finds them in. Sliders without them leave it off, so they skip the
+          per-slide work Swiper does while parallax is active.
+        </p>
 
-        <div
-          waterfall="parallax-slider"
-          waterfall-parallax-enabled="true"
-          waterfall-speed="800"
-          waterfall-pagination-enabled="true"
-        >
+        <div waterfall="parallax-slider" waterfall-speed="800" waterfall-pagination-enabled="true">
           <div class="swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
@@ -748,8 +837,7 @@
         </div>
 
         <div class="code-snippet">
-          &lt;div waterfall="parallax-slider" waterfall-parallax-enabled="true"&gt; &lt;div
-          data-swiper-parallax="-300"&gt;Title&lt;/div&gt;
+          &lt;div waterfall="parallax-slider"&gt; &lt;div data-swiper-parallax="-300"&gt;Title&lt;/div&gt;
         </div>
       </div>
 
@@ -784,21 +872,158 @@
         </div>
       </div>
 
+      <!-- 16. Smooth Autoplay with Hover Pause -->
+      <div class="demo-section">
+        <h2>16. Smooth Autoplay Marquee with Hover Pause</h2>
+        <p>
+          <span class="feature-badge">Smooth Autoplay</span><span class="feature-badge">Pause on Hover</span
+          ><span class="feature-badge">Loop</span>
+        </p>
+        <p>
+          A continuous marquee: delay <code>0</code> and a high speed, so one transition runs straight into the next.
+          Put the pointer over the slides and the marquee freezes exactly where it stands; take it away and the slide it
+          was on finishes travelling before autoplay picks up again.
+        </p>
+
+        <div
+          waterfall="marquee-slider"
+          waterfall-autoplay="true"
+          waterfall-smooth-autoplay="true"
+          waterfall-autoplay-pause-on-mouse-enter="true"
+          waterfall-loop="true"
+          waterfall-speed="12000"
+          waterfall-slides-per-view="3"
+          waterfall-space-between="20"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              <div class="swiper-slide">Slide 4</div>
+              <div class="swiper-slide">Slide 5</div>
+              <div class="swiper-slide">Slide 6</div>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin: 20px 0 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">
+          Marquee: <span id="marquee-state" style="font-weight: 700">&mdash;</span>
+        </p>
+
+        <div class="code-snippet">
+          &lt;div waterfall="marquee-slider" waterfall-autoplay="true" waterfall-smooth-autoplay="true"
+          waterfall-autoplay-pause-on-mouse-enter="true" waterfall-loop="true" waterfall-speed="12000"&gt;
+        </div>
+      </div>
+
+      <!-- 17. Autoplay Control Button -->
+      <div class="demo-section">
+        <h2>17. Autoplay Control Button</h2>
+        <p>
+          <span class="feature-badge">Autoplay Control</span><span class="feature-badge">Play / Pause</span
+          ><span class="feature-badge">Autoplay</span>
+        </p>
+        <p>
+          A play/pause toggle for an autoplaying slider. There is no attribute switching it on &mdash; the three
+          <code>waterfall-el</code> elements below (<code>autoplay-control</code>, plus an
+          <code>autoplay-control-pause</code> and an <code>autoplay-control-play</code> label) are the whole setup, and
+          the library shows whichever label matches the current state. All three are required; leave one out and the
+          control does nothing.
+        </p>
+
+        <div
+          waterfall="control-slider"
+          waterfall-autoplay="true"
+          waterfall-autoplay-delay="1800"
+          waterfall-autoplay-control-default-state="playing"
+          waterfall-loop="true"
+          waterfall-speed="600"
+          waterfall-slides-per-view="3"
+          waterfall-space-between="20"
+          waterfall-pagination-enabled="true"
+        >
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              <div class="swiper-slide">Slide 4</div>
+              <div class="swiper-slide">Slide 5</div>
+              <div class="swiper-slide">Slide 6</div>
+            </div>
+            <div class="swiper-pagination" waterfall-el="pagination"></div>
+          </div>
+
+          <button class="autoplay-control" waterfall-el="autoplay-control" type="button" aria-label="Toggle autoplay">
+            <span waterfall-el="autoplay-control-pause">&#9208;&nbsp; Pause</span>
+            <span waterfall-el="autoplay-control-play">&#9654;&nbsp; Play</span>
+          </button>
+        </div>
+
+        <p style="margin: 20px 0 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">
+          Autoplay: <span id="control-state" style="font-weight: 700">&mdash;</span>
+        </p>
+
+        <div class="code-snippet">
+          &lt;div waterfall="control-slider" waterfall-autoplay="true" waterfall-autoplay-delay="1800"&gt; &lt;button
+          waterfall-el="autoplay-control"&gt; &lt;span waterfall-el="autoplay-control-pause"&gt;Pause&lt;/span&gt;
+          &lt;span waterfall-el="autoplay-control-play"&gt;Play&lt;/span&gt; &lt;/button&gt;
+        </div>
+      </div>
+
       <!-- Footer -->
       <div
         class="demo-section"
-        style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white"
+        style="
+          text-align: center;
+          background: linear-gradient(135deg, var(--wf-haven) 0%, var(--wf-blindfold) 100%);
+          color: var(--brand-lightest);
+        "
       >
-        <h2 style="color: white">🚿 Waterfall by Wellflow</h2>
-        <p style="color: rgba(255, 255, 255, 0.9)">Free-forever JavaScript library for Webflow</p>
-        <p style="color: rgba(255, 255, 255, 0.9); margin-top: 20px">
-          Built with ❤️ using SwiperJS 11.2.10<br />
+        <h2 style="color: var(--wf-primary)">🚿 Waterfall by Wellspring</h2>
+        <p style="color: var(--brand-light)">Free-forever JavaScript library for Webflow</p>
+        <p style="color: var(--brand-light); margin-top: 20px">
+          Built with ❤️ using SwiperJS 14.4.0<br />
           No monthly subscription • No custom code required • Full documentation
         </p>
       </div>
     </div>
 
     <!-- Waterfall Library -->
-    <script src="http://localhost:3000/well-waterfall.umd.js"></script>
+    <script src="./dist/well-waterfall.umd.js"></script>
+
+    <!-- Readouts for demos 16 and 17, so the pause states can be read off rather than eyeballed -->
+    <script>
+      window.addEventListener("load", () => {
+        const find = (name) => (window.waterfalls || []).find((w) => w.name === name);
+        const paint = (el, on, onText, offText) => {
+          el.textContent = on ? onText : offText;
+          el.style.color = on ? "var(--wf-algae)" : "var(--wf-primary-dark)";
+        };
+
+        // Demo 16: the marquee never changes slide, so watch the translate instead.
+        const marqueeReadout = document.getElementById("marquee-state");
+        const marquee = find("marquee-slider");
+        if (marqueeReadout && marquee) {
+          let last = marquee.swiper.getTranslate();
+          setInterval(() => {
+            const now = marquee.swiper.getTranslate();
+            const moving = Math.abs(now - last) > 0.05;
+            last = now;
+            paint(marqueeReadout, moving, "moving", "paused");
+          }, 250);
+        }
+
+        // Demo 17: stepped autoplay, so ask autoplay itself.
+        const controlReadout = document.getElementById("control-state");
+        const control = find("control-slider");
+        if (controlReadout && control) {
+          setInterval(() => {
+            paint(controlReadout, Boolean(control.swiper.autoplay?.running), "running", "paused");
+          }, 250);
+        }
+      });
+    </script>
   </body>
 </html>
